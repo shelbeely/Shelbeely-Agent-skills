@@ -1,6 +1,6 @@
 # Shelbeely Agent Skills
 
-A collection of agent skills for GitHub Copilot and other AI agents, focusing on Material Design 3 Expressive design principles.
+A collection of agent skills for GitHub Copilot and other AI agents, focusing on Material Design 3 design principles — covering the full specification from Material You through M3 Expressive.
 
 ## What are Agent Skills?
 
@@ -12,9 +12,9 @@ Agent skills are folders of instructions, scripts, and resources that AI agents 
 
 ## Available Skills
 
-### Material Design 3 Expressive Skills
+### Material Design 3 Skills
 
-This repository contains a comprehensive set of skills for implementing Google's Material Design 3 Expressive design system:
+This repository contains a comprehensive set of skills for implementing Google's Material Design 3 design system — from Material You foundations through M3 Expressive enhancements:
 
 #### 🎨 [material-design-3-guide](/.github/skills/material-design-3-guide)
 **Master guide** that explains when to use each Material Design 3 skill subset. Start here if you're new to Material Design 3 or need to understand which skill to apply.
@@ -22,29 +22,39 @@ This repository contains a comprehensive set of skills for implementing Google's
 **Use this skill when**: Starting an M3 project, understanding the M3 system, or deciding which specific M3 skill to use.
 
 #### 🌈 [material-design-3-color](/.github/skills/material-design-3-color)
-Color palettes, dynamic theming, and accessibility for Material Design 3.
+Color palettes, dynamic theming, and accessibility for Material Design 3. Covers 26+ color roles, fixed accent colors, surface container hierarchy, and three contrast levels.
 
-**Use this skill when**: Setting up color systems, implementing themes, working with Material You dynamic colors, ensuring color accessibility.
+**Use this skill when**: Setting up color systems, implementing themes, working with Material You dynamic colors, ensuring color accessibility, adding fixed accent colors for branding.
 
 #### ✨ [material-design-3-motion](/.github/skills/material-design-3-motion)
-Spring-based animations, transitions, and micro-interactions.
+Physics-based spring animations, transitions, and micro-interactions. Covers expressive vs standard motion modes, haptics integration, and spring parameters.
 
 **Use this skill when**: Adding animations, implementing transitions, creating micro-interactions, making interfaces feel alive and responsive.
 
 #### 📝 [material-design-3-typography](/.github/skills/material-design-3-typography)
-Type scales, variable fonts, and text hierarchy.
+Type scales (30 styles: 15 baseline + 15 emphasized), variable fonts, and text hierarchy.
 
-**Use this skill when**: Setting up typography systems, implementing type scales, working with Roboto or custom fonts, ensuring text readability.
+**Use this skill when**: Setting up typography systems, implementing type scales, working with Roboto or custom fonts, ensuring text readability, adding emphasized type for key moments.
 
 #### 🔲 [material-design-3-shape](/.github/skills/material-design-3-shape)
-Rounded corners, morphing shapes, and containment.
+Rounded corners, 35 expressive shapes, morphing shapes, and containment. Covers updated corner radii (Large: 20dp, XL: 32dp, XXL: 48dp).
 
-**Use this skill when**: Defining component shapes, working with border radius, creating rounded corners, morphing shapes between states.
+**Use this skill when**: Defining component shapes, working with border radius, creating rounded corners, morphing shapes between states, using expressive decorative shapes.
 
 #### 📐 [material-design-3-layout](/.github/skills/material-design-3-layout)
-Spacing systems, responsive grids, and size hierarchy.
+Spacing systems, responsive grids, size hierarchy, background blur, depth effects, containment, and interaction states.
 
-**Use this skill when**: Creating layouts, implementing spacing, building responsive designs, working with grids and elevation.
+**Use this skill when**: Creating layouts, implementing spacing, building responsive designs, working with grids and elevation, adding background blur for overlays.
+
+#### 🧩 [material-design-3-components](/.github/skills/material-design-3-components)
+Complete component catalog — buttons, cards, dialogs, navigation, FABs, chips, text fields, tabs, menus, and M3 Expressive additions (split buttons, button groups, floating toolbars, FAB menus).
+
+**Use this skill when**: Building or styling any UI component following M3 guidelines, looking up component specifications, implementing new M3 Expressive components.
+
+#### 🔣 [material-design-3-icons](/.github/skills/material-design-3-icons)
+Material Symbols variable font icon system — 2,500+ icons with four customizable axes (fill, weight, grade, optical size).
+
+**Use this skill when**: Adding icons to an interface, configuring Material Symbols, implementing icon accessibility, using icon fill transitions.
 
 ## How to Use These Skills
 
@@ -86,9 +96,11 @@ cp -r .github/skills /path/to/your/repo/.github/
    - Color system (`material-design-3-color`)
    - Typography (`material-design-3-typography`)
    - Shape system (`material-design-3-shape`)
+   - Icons (`material-design-3-icons`)
    - Layout and spacing (`material-design-3-layout`)
-3. **Add motion**: Implement animations (`material-design-3-motion`)
-4. **Build components**: Use all skills together for complete M3 components
+3. **Build components**: Follow specs from (`material-design-3-components`)
+4. **Add motion**: Implement animations (`material-design-3-motion`)
+5. **Go expressive**: Add M3 Expressive enhancements (emphasized type, expressive shapes, spring physics)
 
 ## Skill Structure
 
@@ -98,14 +110,26 @@ Each skill contains:
 
 All skills follow the [Agent Skills specification](https://github.com/agentskills/agentskills) and work with GitHub Copilot, Claude, and other compatible AI agents.
 
-## Material Design 3 Expressive
+## Material Design 3
 
-Material Design 3 Expressive is Google's latest evolution of its design system, focused on:
+Material Design 3 is Google's open-source design system, covering the full specification from Material You through M3 Expressive:
+
+### Material You (M3 Baseline)
 - **Dynamic Color**: Adaptive themes based on user preferences
-- **Expressive Motion**: Spring-based, natural animations
-- **Flexible Typography**: Variable fonts and clear hierarchy
-- **Distinctive Shapes**: Rounded corners and morphing forms
-- **Thoughtful Layout**: Size-based hierarchy and responsive design
+- **Token System**: CSS custom properties for consistent theming
+- **Component Library**: Complete set of accessible, themed components
+- **Type Scale**: 15 baseline type styles across five roles
+- **Shape System**: Semantic corner radius scale
+- **Elevation System**: Five levels with tinting for depth
+
+### M3 Expressive (Latest Evolution)
+- **Expressive Motion**: Physics-based spring animations with haptics
+- **Flexible Typography**: 30-style type scale with emphasized variants
+- **Distinctive Shapes**: 35 expressive shapes with smooth morphing
+- **Enhanced Color**: Fixed accent colors, contrast levels, surface containers
+- **New Components**: Split buttons, button groups, floating toolbars, FAB menus
+- **Background Blur**: Depth effects for overlays and navigation
+- **Material Symbols**: Variable font icon system with 2,500+ icons
 
 Learn more at [m3.material.io](https://m3.material.io/)
 

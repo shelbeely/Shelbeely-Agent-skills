@@ -10,7 +10,7 @@ license: Apache-2.0
 
 This skill guides the implementation of Material Design 3 (M3) Expressive motion principles to create springy, natural-feeling animations that enhance usability and delight users.
 
-**Keywords**: Material Design 3, M3, motion, animation, transitions, micro-interactions, easing, duration, spring physics, expressive motion
+**Keywords**: Material Design 3, M3, motion, animation, transitions, micro-interactions, easing, duration, spring physics, expressive motion, haptics, physics-based animation
 
 ## Core Principles
 
@@ -18,26 +18,41 @@ This skill guides the implementation of Material Design 3 (M3) Expressive motion
 
 M3 Expressive motion is designed to feel alive, natural, and responsive:
 
-1. **Spring Physics**: Use spring-based animations instead of traditional cubic-bezier easing for more natural, lively motion
+1. **Physics-Based Springs**: Use spring-based animations governed by stiffness, damping, and velocity — replacing traditional cubic-bezier easing for more natural, lively motion
 2. **Purposeful Motion**: Every animation should serve a purpose—guiding attention, providing feedback, or showing relationships
 3. **Responsive Feel**: Motion responds to user input with appropriate speed and timing
 4. **Spatial Coherence**: Elements move in ways that respect spatial relationships and physics
+5. **Haptic Integration**: Pair spring animations with platform-native haptic feedback for tactile reinforcement
 
-### Motion Characteristics
+### Motion Modes
 
-**Standard Motion** (Most common):
-- Emphasized deceleration with spring-like bounce
-- Used for most UI transitions and element movements
-- Natural, organic feel
+**Expressive Motion** (Default for M3 Expressive):
+- Overshoots, bounces, and adds energy
+- Ideal for touch interactions and hero moments
+- Creates a playful, emotionally resonant feel
+- Uses higher spring energy and pronounced bounce
 
-**Emphasized Motion** (Attention-grabbing):
-- More pronounced spring with higher bounce
-- Used for important state changes or user-triggered actions
-- Draws focus and communicates importance
+**Standard Motion** (Utilitarian flows):
+- Restrained, minimal bounce
+- Better for productivity-focused or system-critical flows
+- Natural feel without excess playfulness
 
 **Legacy Motion** (Compatibility):
 - Traditional easing for backwards compatibility
 - Use only when spring physics cannot be applied
+
+### Spring Physics Parameters
+
+M3 Expressive motion uses three key physics parameters instead of traditional time/easing curves:
+
+1. **Stiffness**: Controls how "hard" the spring is — higher stiffness means the animation finishes more quickly
+2. **Damping**: Determines how quickly the bounce fades out — a damping value of 1 eliminates bounce completely
+3. **Initial Velocity**: Sets the initial speed, influencing overall timing and feel
+
+| Scheme     | Stiffness | Damping | Bounce Effect |
+|------------|-----------|---------|---------------|
+| Expressive | High      | Medium  | Pronounced overshoot |
+| Standard   | Medium    | High    | Minimal/none |
 
 ## Animation Types
 
@@ -136,31 +151,15 @@ M3 Expressive motion is designed to feel alive, natural, and responsive:
 - **Reduced Motion**: Reduce to 10-20% of standard duration or disable
 - **Large Elements**: Increase duration proportionally
 
-## Spring Physics Parameters
+## Spring Physics Implementation
 
-### Standard Spring
-
-```css
-/* CSS with spring-like bezier approximation */
-transition-timing-function: cubic-bezier(0.2, 0.0, 0, 1.0);
-
-/* Or use CSS linear() for better spring approximation */
-transition-timing-function: linear(
-  0, 0.009, 0.035 2.1%, 0.141 4.4%, 0.723 12.9%, 
-  0.938 16.7%, 1.017, 1.077, 1.121, 1.149 24.3%, 
-  1.159, 1.163, 1.161, 1.154 29.9%, 1.129 32.8%, 
-  1.051 39.6%, 1.017 43.1%, 0.991, 0.977 51%, 
-  0.974 53.8%, 0.975 57.1%, 0.997 69.8%, 1.003 76.9%, 1
-);
-```
-
-### Emphasized Spring
+### Expressive Spring (Default for M3 Expressive)
 
 ```css
-/* More pronounced spring for emphasis */
+/* CSS with expressive spring-like bezier approximation */
 transition-timing-function: cubic-bezier(0.05, 0.7, 0.1, 1.0);
 
-/* Or enhanced linear() for emphasized spring */
+/* Enhanced linear() for expressive spring with overshoot */
 transition-timing-function: linear(
   0, 0.004, 0.016 2.5%, 0.063 5%, 0.141, 0.25, 
   0.391 11.3%, 0.563, 0.765, 1.000 20%, 1.066 23.8%, 
@@ -170,9 +169,26 @@ transition-timing-function: linear(
 );
 ```
 
+### Standard Spring
+
+```css
+/* CSS with standard spring-like bezier approximation */
+transition-timing-function: cubic-bezier(0.2, 0.0, 0, 1.0);
+
+/* CSS linear() for better standard spring approximation */
+transition-timing-function: linear(
+  0, 0.009, 0.035 2.1%, 0.141 4.4%, 0.723 12.9%, 
+  0.938 16.7%, 1.017, 1.077, 1.121, 1.149 24.3%, 
+  1.159, 1.163, 1.161, 1.154 29.9%, 1.129 32.8%, 
+  1.051 39.6%, 1.017 43.1%, 0.991, 0.977 51%, 
+  0.974 53.8%, 0.975 57.1%, 0.997 69.8%, 1.003 76.9%, 1
+);
+```
+
 ### JavaScript (Web Animations API)
 
 ```javascript
+// Expressive spring animation
 element.animate(
   [
     { transform: 'scale(0)', opacity: 0 },
@@ -180,10 +196,70 @@ element.animate(
   ],
   {
     duration: 300,
+    easing: 'cubic-bezier(0.05, 0.7, 0.1, 1.0)',
+    fill: 'forwards'
+  }
+);
+
+// Standard spring animation
+element.animate(
+  [
+    { transform: 'translateY(20px)', opacity: 0 },
+    { transform: 'translateY(0)', opacity: 1 }
+  ],
+  {
+    duration: 250,
     easing: 'cubic-bezier(0.2, 0.0, 0, 1.0)',
     fill: 'forwards'
   }
 );
+```
+
+### Choosing Expressive vs Standard Motion
+
+| Scenario | Motion Mode | Why |
+|----------|-------------|-----|
+| Button press feedback | Expressive | User-triggered, benefits from bounce |
+| Page transition | Standard | Functional, should not distract |
+| Loading completion | Expressive | Celebratory moment of delight |
+| Form validation | Standard | Utilitarian feedback |
+| FAB expansion | Expressive | Key interaction with visual emphasis |
+| List scroll | Standard | Continuous motion, should be smooth |
+| Shape morphing | Expressive | Visual storytelling moment |
+| Tooltip appearance | Standard | Informational, should not distract |
+
+## Haptics Integration
+
+M3 Expressive recommends pairing spring-driven animations with platform-native haptic feedback:
+
+### Principles
+
+1. **Coordinate with Motion**: Haptic effects should fire at the key moment of the animation (e.g., at the point of overshoot or completion)
+2. **Match Intensity**: Gentle haptics for subtle interactions, stronger for significant state changes
+3. **Platform-Native**: Use the platform's haptic engine for the most natural feel
+4. **Respect Preferences**: Honor user haptic settings and provide accessibility options
+
+### Web Implementation
+
+```javascript
+// Pair haptic feedback with expressive motion
+function expressivePress(element) {
+  // Trigger haptic feedback
+  if (navigator.vibrate) {
+    navigator.vibrate(10); // Short, subtle haptic
+  }
+  
+  // Trigger spring animation
+  element.animate([
+    { transform: 'scale(1)' },
+    { transform: 'scale(0.95)' },
+    { transform: 'scale(1.02)' },
+    { transform: 'scale(1)' }
+  ], {
+    duration: 300,
+    easing: 'cubic-bezier(0.05, 0.7, 0.1, 1.0)'
+  });
+}
 ```
 
 ## Implementation Patterns
@@ -335,7 +411,7 @@ Ensure animated focus states are still visible:
 
 ## Motion Tokens
 
-Define motion tokens for consistency:
+Define motion tokens for consistency. M3 Expressive introduces tokenized spring-based motion:
 
 ```css
 :root {
@@ -353,12 +429,29 @@ Define motion tokens for consistency:
   --md-sys-motion-duration-long3: 550ms;
   --md-sys-motion-duration-long4: 600ms;
   
-  /* Easing */
+  /* Easing — Standard (utilitarian) */
   --md-sys-motion-easing-standard: cubic-bezier(0.2, 0.0, 0, 1.0);
+  --md-sys-motion-easing-standard-decelerate: cubic-bezier(0.0, 0.0, 0, 1.0);
+  --md-sys-motion-easing-standard-accelerate: cubic-bezier(0.3, 0.0, 1.0, 1.0);
+  
+  /* Easing — Expressive (default for M3 Expressive) */
+  --md-sys-motion-easing-expressive: cubic-bezier(0.05, 0.7, 0.1, 1.0);
+  --md-sys-motion-easing-expressive-decelerate: cubic-bezier(0.05, 0.7, 0.1, 1.0);
+  --md-sys-motion-easing-expressive-accelerate: cubic-bezier(0.3, 0.0, 0.8, 0.15);
+  
+  /* Easing — Emphasized (legacy naming, same as expressive) */
   --md-sys-motion-easing-emphasized: cubic-bezier(0.05, 0.7, 0.1, 1.0);
   --md-sys-motion-easing-emphasized-decelerate: cubic-bezier(0.05, 0.7, 0.1, 1.0);
   --md-sys-motion-easing-emphasized-accelerate: cubic-bezier(0.3, 0.0, 0.8, 0.15);
+  
+  /* Legacy easing */
   --md-sys-motion-easing-legacy: cubic-bezier(0.4, 0.0, 0.2, 1.0);
+  
+  /* Expressive tokenized motion (new in M3 Expressive) */
+  --md-sys-motion-expressive-fast-spatial: cubic-bezier(0.05, 0.7, 0.1, 1.0);
+  --md-sys-motion-expressive-fast-effects: cubic-bezier(0.2, 0.0, 0, 1.0);
+  --md-sys-motion-expressive-slow-spatial: cubic-bezier(0.05, 0.7, 0.1, 1.0);
+  --md-sys-motion-expressive-slow-effects: cubic-bezier(0.2, 0.0, 0, 1.0);
 }
 ```
 
@@ -366,7 +459,8 @@ Define motion tokens for consistency:
 
 When implementing M3 motion, ensure:
 
-- [ ] Spring-based easing is used (not linear or ease-in-out)
+- [ ] Spring-based physics easing is used (not linear or ease-in-out)
+- [ ] Expressive vs standard motion modes are chosen appropriately per context
 - [ ] Durations match element size and complexity
 - [ ] Reduced motion preferences are respected
 - [ ] Only transform and opacity are animated (when possible)
@@ -375,6 +469,8 @@ When implementing M3 motion, ensure:
 - [ ] Motion serves a functional purpose
 - [ ] Stagger animations are used for lists
 - [ ] All animations are tested on mobile devices
-- [ ] Motion tokens are defined and used consistently
+- [ ] Motion tokens are defined and used consistently (including expressive tokens)
 - [ ] Container transforms are used for view transitions
 - [ ] Ripple effects are implemented for touch targets
+- [ ] Haptic feedback is coordinated with spring animations where appropriate
+- [ ] Shape morphing animations use expressive easing

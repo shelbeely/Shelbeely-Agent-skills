@@ -1082,7 +1082,7 @@ function App() {
 - Ink: https://github.com/vadimdemedes/ink
 - Ink UI components: https://github.com/vadimdemedes/ink-ui
 - npm (ink): https://www.npmjs.com/package/ink
-- npm (ink-ui): https://www.npmjs.com/package/@inkjs/ui
+- npm (@inkjs/ui): https://www.npmjs.com/package/@inkjs/ui
 
 ---
 

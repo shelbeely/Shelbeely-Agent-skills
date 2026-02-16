@@ -70,6 +70,10 @@ Test that the skills provide correct framework-specific guidance:
 **Prompt**: "Show me how to create an M3 button in React, Angular, Vue, and Svelte"
 **Expected**: Copilot should load `material-design-3-components` and show MUI Button, mat-raised-button, v-btn, and SMUI Button examples
 
+### Test 16: Ink (React CLI)
+**Prompt**: "Create a Material Design 3 themed CLI app using Ink with M3 color tokens and @inkjs/ui components"
+**Expected**: Copilot should load `material-design-3-guide` + `material-design-3-color` and create an Ink app with M3 color token mapping, ThemeProvider, and styled Box/Text components
+
 ## Example Files
 
 Coming soon:
@@ -92,13 +96,13 @@ When you prompt GitHub Copilot with Material Design 3 related requests:
 
 | Skill | Keywords |
 |-------|----------|
-| material-design-3-guide | Material Design 3, M3, Material Design, design system, React, Angular, Vue, Svelte, web stack |
+| material-design-3-guide | Material Design 3, M3, Material Design, design system, React, Angular, Vue, Svelte, Ink, CLI, terminal, web stack |
 | material-design-3-color | color, palette, theme, dynamic color, Material You, accessibility |
 | material-design-3-motion | animation, transition, motion, spring, micro-interaction |
 | material-design-3-typography | typography, type scale, font, text, Roboto, hierarchy |
 | material-design-3-shape | shape, border-radius, rounded corners, containment |
 | material-design-3-layout | layout, spacing, grid, responsive, breakpoint, elevation |
-| material-design-3-components | component, button, card, dialog, navigation, FAB, MUI, Vuetify, Angular Material |
+| material-design-3-components | component, button, card, dialog, navigation, FAB, MUI, Vuetify, Angular Material, Ink, CLI |
 | material-design-3-icons | icon, Material Symbols, variable font, FILL, weight |
 
 ## Tips for Effective Prompts

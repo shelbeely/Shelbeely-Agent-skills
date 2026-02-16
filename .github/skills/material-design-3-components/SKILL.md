@@ -1134,6 +1134,16 @@ import Button from '@mui/material/Button';
 </button>
 ```
 
+**Ink (React CLI)**:
+```jsx
+import {Box, Text} from 'ink';
+
+// Filled button equivalent in terminal
+<Box paddingX={2} paddingY={0}>
+  <Text backgroundColor="magenta" color="white" bold> Action </Text>
+</Box>
+```
+
 ### Card — Cross-Framework Examples
 
 **Web Components (`@material/web`)**:
@@ -1204,6 +1214,13 @@ import CardContent from '@mui/material/CardContent';
 <v-text-field label="Name" variant="filled" />
 ```
 
+**Ink (React CLI)**:
+```jsx
+import {TextInput} from '@inkjs/ui';
+
+<TextInput placeholder="Email" onSubmit={value => {}} />
+```
+
 ### Navigation — Cross-Framework Examples
 
 **Web Components (`@material/web`)**:
@@ -1232,6 +1249,20 @@ import CardContent from '@mui/material/CardContent';
 </v-bottom-navigation>
 ```
 
+**Ink (React CLI)**:
+```jsx
+import {Select} from '@inkjs/ui';
+
+<Select
+  options={[
+    {label: '🏠 Home', value: 'home'},
+    {label: '🔍 Search', value: 'search'},
+    {label: '⚙️ Settings', value: 'settings'},
+  ]}
+  onChange={value => {}}
+/>
+```
+
 ### Framework Selection for Components
 
 | Component Type | Best Framework Support |
@@ -1244,6 +1275,7 @@ import CardContent from '@mui/material/CardContent';
 | Chips | MUI, Vuetify, Angular Material |
 | FABs | All frameworks |
 | Tabs | All frameworks |
+| CLI Components (inputs, selects, spinners) | Ink (`@inkjs/ui`) |
 | M3 Expressive (split buttons, toolbars) | Custom CSS or `@material/web` (framework support evolving) |
 
 ## Accessibility Guidelines for Components

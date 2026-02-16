@@ -10,7 +10,7 @@ license: Apache-2.0
 
 This is the master guide for implementing Material Design 3 (M3) — covering the full specification from Material You foundations through M3 Expressive enhancements. It explains the overall system and directs you to specialized skills for each aspect.
 
-**Keywords**: Material Design 3, M3, Material Design, design system, Google design, Material You, expressive design, UI design, M3 Expressive, React, MUI, Angular Material, Vue, Vuetify, Svelte, SMUI, Tailwind CSS, Next.js, Flutter, Jetpack Compose, web components, Beer CSS
+**Keywords**: Material Design 3, M3, Material Design, design system, Google design, Material You, expressive design, UI design, M3 Expressive, React, MUI, Angular Material, Vue, Vuetify, Svelte, SMUI, Tailwind CSS, Next.js, Flutter, Jetpack Compose, web components, Beer CSS, Ink, CLI, terminal UI
 
 ## What is Material Design 3?
 
@@ -443,6 +443,7 @@ M3 can be implemented across many web stacks. Each framework has different libra
 | **Tailwind CSS** | `tailwind-material-3` plugin | Token-based M3 | Community |
 | **CSS Framework** | Beer CSS | Full M3 | Active, lightweight |
 | **Next.js** | MUI + `@mui/material-nextjs` | M3 + SSR | Active |
+| **Ink (React CLI)** | `ink` + `@inkjs/ui` | Token-based M3 | Active, community |
 | **Flutter** | `material` / `m3e_design` | Full M3 | Official (Expressive paused) |
 | **Android** | Jetpack Compose Material 3 | Full M3, Expressive (Android 16+) | Official, active |
 
@@ -914,6 +915,177 @@ dependencies:
 
 ---
 
+### Ink (React CLI) — Terminal UI with M3 Tokens
+
+Ink is a React renderer for building interactive command-line interfaces. Combined with `@inkjs/ui`, it provides themeable CLI components. M3 design tokens can be mapped to terminal colors for consistent, Material-styled CLI experiences.
+
+**When to use**: Node.js CLI tools, developer tooling, interactive terminal applications where you want M3-consistent styling in the terminal.
+
+**Install**:
+```bash
+npm install ink react @inkjs/ui
+```
+
+**M3 theme setup**:
+```jsx
+// m3-theme.js — Map M3 tokens to terminal colors
+export const m3Theme = {
+  colors: {
+    primary: '#6750A4',
+    onPrimary: '#FFFFFF',
+    secondary: '#625B71',
+    tertiary: '#7D5260',
+    error: '#B3261E',
+    surface: '#FEF7FF',
+    onSurface: '#1D1B20',
+    outline: '#79747E',
+    // Terminal-friendly named colors (for broader compatibility)
+    primaryTerminal: 'magenta',
+    secondaryTerminal: 'gray',
+    errorTerminal: 'red',
+    successTerminal: 'green',
+  },
+};
+
+// For dark terminal backgrounds
+export const m3ThemeDark = {
+  colors: {
+    primary: '#D0BCFF',
+    onPrimary: '#381E72',
+    secondary: '#CCC2DC',
+    error: '#F2B8B5',
+    surface: '#141218',
+    onSurface: '#E6E0E9',
+    primaryTerminal: 'magentaBright',
+    errorTerminal: 'redBright',
+  },
+};
+```
+
+**Using M3 tokens with Ink components**:
+```jsx
+import React from 'react';
+import {render, Box, Text} from 'ink';
+import {TextInput, Select, Spinner, Badge} from '@inkjs/ui';
+import {m3Theme} from './m3-theme.js';
+
+function App() {
+  return (
+    <Box flexDirection="column" padding={1} gap={1}>
+      {/* M3 Primary colored heading */}
+      <Text color={m3Theme.colors.primary} bold>
+        ✦ Material Design 3 CLI
+      </Text>
+
+      {/* M3 Surface container */}
+      <Box
+        borderStyle="round"
+        borderColor={m3Theme.colors.outline}
+        paddingX={2}
+        paddingY={1}
+        flexDirection="column"
+        gap={1}
+      >
+        <Text color={m3Theme.colors.onSurface}>
+          Welcome to the M3-styled terminal
+        </Text>
+
+        <TextInput
+          placeholder="Enter your name..."
+          onSubmit={name => {}}
+        />
+
+        <Select
+          options={[
+            {label: 'Option 1', value: '1'},
+            {label: 'Option 2', value: '2'},
+          ]}
+          onChange={value => {}}
+        />
+      </Box>
+
+      {/* M3 Status indicators */}
+      <Box gap={1}>
+        <Badge color="green">Success</Badge>
+        <Badge color={m3Theme.colors.errorTerminal}>Error</Badge>
+      </Box>
+
+      <Spinner label="Loading..." />
+    </Box>
+  );
+}
+
+render(<App />);
+```
+
+**Using `@inkjs/ui` ThemeProvider for M3**:
+```jsx
+import {ThemeProvider, extendTheme} from '@inkjs/ui';
+
+const m3InkTheme = extendTheme({
+  components: {
+    TextInput: {
+      styles: {
+        focusColor: 'magenta', // M3 primary
+      },
+    },
+    Select: {
+      styles: {
+        highlightColor: 'magenta',
+      },
+    },
+    Spinner: {
+      styles: {
+        color: 'magenta',
+      },
+    },
+  },
+});
+
+function App() {
+  return (
+    <ThemeProvider theme={m3InkTheme}>
+      {/* All child components use M3-inspired theme */}
+    </ThemeProvider>
+  );
+}
+```
+
+**Terminal color considerations**:
+- Modern terminals support 24-bit (true color) via hex values — use full M3 hex tokens
+- For legacy terminals (256/16 color), map M3 roles to named ANSI colors:
+  - Primary → `magenta` (closest to M3 purple primary)
+  - Secondary → `gray`
+  - Tertiary → `cyan`
+  - Error → `red`
+  - Success → `green` (custom role for CLI)
+- Detect color support with `chalk.level` or `supports-color` package
+- Always provide fallback named colors for maximum compatibility
+
+**M3 component mapping for CLI**:
+
+| M3 Component | Ink/ink-ui Equivalent | Notes |
+|--------------|----------------------|-------|
+| Filled Button | `<Box>` + `<Text>` styled | Background color + text |
+| Text Field | `<TextInput>` | From `@inkjs/ui` |
+| Select / Menu | `<Select>` | From `@inkjs/ui` |
+| Multi-select | `<MultiSelect>` | From `@inkjs/ui` |
+| Progress Indicator | `<Spinner>`, `<ProgressBar>` | From `@inkjs/ui` |
+| Badge / Chip | `<Badge>` | From `@inkjs/ui` |
+| Confirm Dialog | `<ConfirmInput>` | From `@inkjs/ui` |
+| Card | `<Box borderStyle="round">` | Bordered container |
+| Divider | `<Text>{'─'.repeat(n)}</Text>` | Horizontal rule |
+| List | `<UnorderedList>`, `<OrderedList>` | From `@inkjs/ui` |
+| Alert / Snackbar | `<Alert>` | From `@inkjs/ui` |
+
+**Resources**:
+- Ink: https://github.com/vadimdemedes/ink
+- Ink UI components: https://github.com/vadimdemedes/ink-ui
+- npm (ink): https://www.npmjs.com/package/ink
+- npm (ink-ui): https://www.npmjs.com/package/@inkjs/ui
+
+---
+
 ### Android — Jetpack Compose Material 3
 
 Jetpack Compose has the most complete M3 implementation, including M3 Expressive components. Full dynamic color (Material You) support on Android 12+.
@@ -962,6 +1134,7 @@ MaterialTheme(
 | Any framework | `@material/web` | Official, framework-agnostic web components |
 | Flutter | Built-in `material` library | Official, cross-platform |
 | Android | Jetpack Compose Material 3 | Official, most complete M3 implementation |
+| Ink (CLI) | `ink` + `@inkjs/ui` | React-based, themeable, M3 token-compatible |
 
 **Tips for choosing**:
 1. **Angular projects**: Use `@angular/material` — it has the best official M3 support of any web framework
@@ -971,6 +1144,7 @@ MaterialTheme(
 5. **Prototype quickly**: Use Beer CSS (CSS-only) or `@material/web` via CDN
 6. **Need Tailwind**: Map M3 tokens to Tailwind config or use the plugin
 7. **Mobile + Web**: Use Flutter for cross-platform M3
+8. **CLI / Terminal**: Use Ink with `@inkjs/ui` and map M3 color tokens to terminal colors
 
 ## Resources
 

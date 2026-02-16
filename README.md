@@ -149,6 +149,7 @@ These skills include implementation guidance for:
 | Tailwind CSS | `tailwind-material-3` | Token-based M3 |
 | CSS Framework | Beer CSS | Full M3 |
 | Next.js | MUI + `@mui/material-nextjs` | M3 + SSR |
+| Ink (React CLI) | `ink` + `@inkjs/ui` | Token-based M3 |
 | Flutter | `material` / `m3e_design` | Full M3 |
 | Android | Jetpack Compose Material 3 | Full M3 + Expressive |
 

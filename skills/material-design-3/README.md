@@ -38,20 +38,16 @@ Dedicated skills for implementing M3 with specific frameworks:
 
 ## Installation
 
-### Install all M3 skills
-
 ```bash
-cp -r .github/skills/material-design-3/* ~/.copilot/skills/
+npx skills add shelbeely/Shelbeely-Agent-skills
 ```
 
-### Install a single skill
+Or manually:
 
 ```bash
-cp -r .github/skills/material-design-3/material-design-3-color ~/.copilot/skills/
-```
+# Install all M3 skills into your project
+cp -r skills/material-design-3/* /path/to/project/.github/skills/
 
-### Install into a project
-
-```bash
-cp -r .github/skills/material-design-3/* /path/to/project/.github/skills/
+# Install a single skill
+cp -r skills/material-design-3/material-design-3-color /path/to/project/.github/skills/
 ```

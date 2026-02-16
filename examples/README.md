@@ -95,7 +95,7 @@ npx skills add shelbeely/Shelbeely-Agent-skills
 When you prompt GitHub Copilot with Material Design 3 related requests:
 
 1. **Copilot analyzes your prompt** for keywords like "Material Design 3", "M3", "color palette", "animation", etc.
-2. **Copilot reads skill descriptions** in `.github/skills/*/SKILL.md` files (via symlinks into the `material-design-3/` group directory)
+2. **Copilot reads skill descriptions** in `.github/skills/*/SKILL.md` files (installed from this repo via `skills.sh`)
 3. **Copilot selects relevant skills** based on matching keywords and context
 4. **Copilot loads the skill instructions** into its context
 5. **Copilot generates code** following the guidelines in the loaded skills

@@ -8,27 +8,30 @@ license: Apache-2.0
 
 ## Overview
 
-This skill guides the implementation of Material Design 3 (M3) Expressive typography to create clear, readable, and emotionally engaging text hierarchies.
+This skill guides the implementation of Material Design 3 (M3) typography — from the baseline Material You type scale through to M3 Expressive's 30-style expanded type system — to create clear, readable, and emotionally engaging text hierarchies.
 
-**Keywords**: Material Design 3, M3, typography, type scale, variable fonts, text hierarchy, readability, font weights, line height, letter spacing
+**Keywords**: Material Design 3, M3, typography, type scale, variable fonts, text hierarchy, readability, font weights, line height, letter spacing, emphasized type, medium contrast, Material You
 
 ## Core Principles
 
 ### Typography Philosophy
 
-M3 Expressive typography focuses on:
+M3 typography focuses on:
 
 1. **Variable Fonts**: Support dynamic weight and width adjustments for expressive text
 2. **Clear Hierarchy**: Distinct type scales that guide users through content
 3. **Readability**: Optimized for legibility across devices and contexts
 4. **Flexibility**: Adaptable to different content needs and screen sizes
 5. **Expression**: Typography that conveys personality and emotion
+6. **Emphasis**: Baseline and emphasized variants for every type role (M3 Expressive)
 
 ## Type Scale
 
-M3 defines a comprehensive type scale with specific roles for different UI elements:
+### Baseline Type Scale (15 styles)
 
-### Display Styles (Large, attention-grabbing text)
+M3 defines a comprehensive type scale with specific roles for different UI elements. These 15 baseline styles form the foundation of all M3 typography:
+
+#### Display Styles (Large, attention-grabbing text)
 
 **Display Large**:
 - Font: Roboto (or brand font)
@@ -52,7 +55,7 @@ M3 defines a comprehensive type scale with specific roles for different UI eleme
 - Letter Spacing: 0
 - Use: Smaller headers, card titles
 
-### Headline Styles (Structural headings)
+#### Headline Styles (Structural headings)
 
 **Headline Large**:
 - Size: 32px / 2rem
@@ -75,7 +78,7 @@ M3 defines a comprehensive type scale with specific roles for different UI eleme
 - Letter Spacing: 0
 - Use: Component headers, dialog titles
 
-### Title Styles (Emphasis within components)
+#### Title Styles (Emphasis within components)
 
 **Title Large**:
 - Size: 22px / 1.375rem
@@ -98,7 +101,7 @@ M3 defines a comprehensive type scale with specific roles for different UI eleme
 - Letter Spacing: 0.1px
 - Use: Compact card titles, tabs
 
-### Body Styles (Main content)
+#### Body Styles (Main content)
 
 **Body Large**:
 - Size: 16px / 1rem
@@ -121,7 +124,7 @@ M3 defines a comprehensive type scale with specific roles for different UI eleme
 - Letter Spacing: 0.4px
 - Use: Captions, helper text
 
-### Label Styles (UI elements)
+#### Label Styles (UI elements)
 
 **Label Large**:
 - Size: 14px / 0.875rem
@@ -143,6 +146,47 @@ M3 defines a comprehensive type scale with specific roles for different UI eleme
 - Weight: 500
 - Letter Spacing: 0.5px
 - Use: Tiny labels, timestamps
+
+### Emphasized Type Scale (15 additional styles — M3 Expressive)
+
+M3 Expressive adds 15 emphasized variants — one for each baseline style. Emphasized styles are bolder, larger, or more dynamic for highlighting key moments, calls to action, and editorial emphasis:
+
+| Role | Baseline | Emphasized |
+|------|----------|------------|
+| Display Large | 57px / 400 | 57px / 700 |
+| Display Medium | 45px / 400 | 45px / 700 |
+| Display Small | 36px / 400 | 36px / 700 |
+| Headline Large | 32px / 400 | 32px / 700 |
+| Headline Medium | 28px / 400 | 28px / 700 |
+| Headline Small | 24px / 400 | 24px / 600 |
+| Title Large | 22px / 400 | 22px / 700 |
+| Title Medium | 16px / 500 | 16px / 700 |
+| Title Small | 14px / 500 | 14px / 700 |
+| Body Large | 16px / 400 | 16px / 700 |
+| Body Medium | 14px / 400 | 14px / 700 |
+| Body Small | 12px / 400 | 12px / 700 |
+| Label Large | 14px / 500 | 14px / 800 |
+| Label Medium | 12px / 500 | 12px / 800 |
+| Label Small | 11px / 500 | 11px / 800 |
+
+**When to use emphasized styles**:
+- Calls to action and primary buttons with strong visual weight
+- Important headlines or numbers that users should notice immediately
+- Editorial emphasis in content layouts
+- Key data points in dashboards or summaries
+- Onboarding screens and feature highlights
+
+**Pairing baseline and emphasized**:
+- Use emphasized sparingly alongside baseline styles to create rhythm and momentum
+- Never use all emphasized styles on a single screen — the contrast between baseline and emphasized is what creates hierarchy
+
+### Medium Contrast (M3 Expressive Default)
+
+M3 Expressive introduces "medium contrast" as the default typography approach:
+- Balances legibility with visual flair
+- More accessible than low-contrast approaches while more expressive than high-contrast
+- Ensures expressive type choices remain highly accessible across device types
+- Achieved through careful weight/size pairing in the baseline vs emphasized type scale
 
 ## Font Recommendations
 
@@ -195,7 +239,7 @@ Consider these characteristics when choosing brand fonts:
 
 ### CSS Type Tokens
 
-Define typography tokens using CSS custom properties:
+Define typography tokens using CSS custom properties. M3 Expressive adds emphasized variants alongside baseline:
 
 ```css
 :root {
@@ -203,41 +247,54 @@ Define typography tokens using CSS custom properties:
   --md-sys-typescale-font-family-brand: 'Roboto', sans-serif;
   --md-sys-typescale-font-family-plain: 'Roboto', sans-serif;
   
-  /* Display Large */
+  /* Display Large — Baseline */
   --md-sys-typescale-display-large-font: var(--md-sys-typescale-font-family-brand);
   --md-sys-typescale-display-large-size: 3.562rem;
   --md-sys-typescale-display-large-line-height: 4rem;
   --md-sys-typescale-display-large-weight: 400;
   --md-sys-typescale-display-large-tracking: -0.25px;
   
-  /* Headline Large */
+  /* Display Large — Emphasized (M3 Expressive) */
+  --md-sys-typescale-display-large-emphasized-weight: 700;
+  
+  /* Headline Large — Baseline */
   --md-sys-typescale-headline-large-font: var(--md-sys-typescale-font-family-brand);
   --md-sys-typescale-headline-large-size: 2rem;
   --md-sys-typescale-headline-large-line-height: 2.5rem;
   --md-sys-typescale-headline-large-weight: 400;
   --md-sys-typescale-headline-large-tracking: 0;
   
-  /* Body Large */
+  /* Headline Large — Emphasized (M3 Expressive) */
+  --md-sys-typescale-headline-large-emphasized-weight: 700;
+  
+  /* Body Large — Baseline */
   --md-sys-typescale-body-large-font: var(--md-sys-typescale-font-family-plain);
   --md-sys-typescale-body-large-size: 1rem;
   --md-sys-typescale-body-large-line-height: 1.5rem;
   --md-sys-typescale-body-large-weight: 400;
   --md-sys-typescale-body-large-tracking: 0.5px;
   
-  /* Label Large */
+  /* Body Large — Emphasized (M3 Expressive) */
+  --md-sys-typescale-body-large-emphasized-weight: 700;
+  
+  /* Label Large — Baseline */
   --md-sys-typescale-label-large-font: var(--md-sys-typescale-font-family-plain);
   --md-sys-typescale-label-large-size: 0.875rem;
   --md-sys-typescale-label-large-line-height: 1.25rem;
   --md-sys-typescale-label-large-weight: 500;
   --md-sys-typescale-label-large-tracking: 0.1px;
+  
+  /* Label Large — Emphasized (M3 Expressive) */
+  --md-sys-typescale-label-large-emphasized-weight: 800;
 }
 ```
 
 ### Type Classes
 
-Create reusable type classes:
+Create reusable type classes for both baseline and emphasized styles:
 
 ```css
+/* Baseline styles */
 .display-large {
   font-family: var(--md-sys-typescale-display-large-font);
   font-size: var(--md-sys-typescale-display-large-size);
@@ -260,6 +317,39 @@ Create reusable type classes:
   line-height: var(--md-sys-typescale-body-large-line-height);
   font-weight: var(--md-sys-typescale-body-large-weight);
   letter-spacing: var(--md-sys-typescale-body-large-tracking);
+}
+
+/* Emphasized styles (M3 Expressive) */
+.display-large-emphasized {
+  font-family: var(--md-sys-typescale-display-large-font);
+  font-size: var(--md-sys-typescale-display-large-size);
+  line-height: var(--md-sys-typescale-display-large-line-height);
+  font-weight: var(--md-sys-typescale-display-large-emphasized-weight);
+  letter-spacing: var(--md-sys-typescale-display-large-tracking);
+}
+
+.headline-large-emphasized {
+  font-family: var(--md-sys-typescale-headline-large-font);
+  font-size: var(--md-sys-typescale-headline-large-size);
+  line-height: var(--md-sys-typescale-headline-large-line-height);
+  font-weight: var(--md-sys-typescale-headline-large-emphasized-weight);
+  letter-spacing: var(--md-sys-typescale-headline-large-tracking);
+}
+
+.body-large-emphasized {
+  font-family: var(--md-sys-typescale-body-large-font);
+  font-size: var(--md-sys-typescale-body-large-size);
+  line-height: var(--md-sys-typescale-body-large-line-height);
+  font-weight: var(--md-sys-typescale-body-large-emphasized-weight);
+  letter-spacing: var(--md-sys-typescale-body-large-tracking);
+}
+
+.label-large-emphasized {
+  font-family: var(--md-sys-typescale-label-large-font);
+  font-size: var(--md-sys-typescale-label-large-size);
+  line-height: var(--md-sys-typescale-label-large-line-height);
+  font-weight: var(--md-sys-typescale-label-large-emphasized-weight);
+  letter-spacing: var(--md-sys-typescale-label-large-tracking);
 }
 ```
 
@@ -408,18 +498,21 @@ Create reusable type classes:
 
 When implementing M3 typography, ensure:
 
-- [ ] All type styles from the scale are defined as CSS tokens
+- [ ] All 15 baseline type styles from the scale are defined as CSS tokens
+- [ ] All 15 emphasized type styles are defined (M3 Expressive)
 - [ ] Roboto or appropriate brand font is loaded
 - [ ] Variable fonts are used when available
 - [ ] Font display swap is set to prevent blocking
 - [ ] All text uses semantic color tokens
 - [ ] Proper hierarchy is established (display > headline > title > body)
+- [ ] Emphasized styles are used sparingly for key moments and calls to action
 - [ ] Line height and letter spacing match the specification
 - [ ] Responsive scaling is implemented for different screen sizes
 - [ ] Relative units (rem/em) are used for all sizes
 - [ ] Text contrast meets WCAG requirements (4.5:1 minimum)
-- [ ] Font weights are used consistently (400 for body, 500 for labels)
+- [ ] Font weights are used consistently (400 baseline, 500 labels, 700+ emphasized)
 - [ ] Semantic HTML tags match visual hierarchy
 - [ ] Long-form content has appropriate line length (50-75 characters)
 - [ ] All text is readable at default and zoomed sizes
 - [ ] Performance is optimized (font subsetting, loading strategy)
+- [ ] Medium contrast approach is followed for balance of legibility and expression

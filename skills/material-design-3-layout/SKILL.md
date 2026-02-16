@@ -16,13 +16,15 @@ This skill guides the implementation of Material Design 3 (M3) Expressive layout
 
 ### Layout Philosophy
 
-M3 Expressive layout focuses on:
+M3 layout — from Material You foundations to M3 Expressive — focuses on:
 
 1. **Clear Hierarchy**: Size and spacing create visual importance
 2. **Responsive Adaptability**: Layouts work across all screen sizes
 3. **Strategic Spacing**: Consistent spacing creates rhythm and flow
 4. **Size-Based Emphasis**: Larger elements naturally draw attention
 5. **Elevation Depth**: Layered surfaces show relationships
+6. **Explicit and Implicit Containment**: Visual grouping through both borders and proximity
+7. **Background Blur and Layering**: Depth effects that guide focus (M3 Expressive)
 
 ## Spacing Scale System
 
@@ -471,6 +473,179 @@ Use for component-level responsiveness:
 }
 ```
 
+## Containment Principles
+
+### Explicit Containment
+
+Use visible boundaries to group related content:
+
+```css
+/* Card containment with outline */
+.contained-group {
+  border: 1px solid var(--md-sys-color-outline-variant);
+  border-radius: var(--md-sys-shape-corner-medium);
+  padding: var(--md-sys-spacing-4);
+  background: var(--md-sys-color-surface-container);
+}
+
+/* Elevated containment */
+.elevated-group {
+  box-shadow: var(--md-sys-elevation-1);
+  border-radius: var(--md-sys-shape-corner-medium);
+  padding: var(--md-sys-spacing-4);
+  background: var(--md-sys-color-surface-container-low);
+}
+```
+
+### Implicit Containment
+
+Use proximity, open space, and alignment to group items without visible borders:
+
+```css
+/* Implicit grouping through proximity */
+.implicit-group {
+  display: flex;
+  flex-direction: column;
+  gap: var(--md-sys-spacing-1); /* Tight spacing implies grouping */
+}
+
+/* Separated groups use larger spacing */
+.section-gap {
+  margin-bottom: var(--md-sys-spacing-8); /* Larger gap separates groups */
+}
+```
+
+### When to Use Each
+
+| Containment Type | Use When |
+|------------------|----------|
+| Explicit (borders/cards) | Interactive content, distinct sections, actionable groups |
+| Explicit (elevation) | Content that needs to feel "lifted" or modal |
+| Implicit (proximity) | Related text blocks, label-value pairs, sequential content |
+| Implicit (alignment) | Grid layouts, navigation items, consistent structure |
+
+## Background Blur and Depth Effects
+
+M3 Expressive introduces background blur and layering for improved depth and focus:
+
+### Background Blur
+
+Strategic blur behind overlays, modals, and navigation elements:
+
+```css
+/* Blur behind modal dialogs */
+.dialog-backdrop {
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  background-color: rgba(0, 0, 0, 0.32);
+}
+
+/* Blur behind floating toolbars */
+.floating-toolbar {
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  background-color: rgba(var(--md-sys-color-surface-rgb), 0.85);
+}
+
+/* Blur behind navigation drawers */
+.nav-drawer-scrim {
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+  background-color: var(--md-sys-color-scrim);
+  opacity: 0.32;
+}
+```
+
+### When to Use Blur
+
+1. **Behind modals and dialogs**: Creates focus on foreground content
+2. **Behind floating toolbars**: Separates toolbar from content without heavy elevation
+3. **Behind navigation drawers**: Softens the transition between drawer and content
+4. **Behind bottom sheets**: Creates depth without fully obscuring content
+5. **Never on content itself**: Blur is for scrims and backgrounds, not readable content
+
+### Depth Layering
+
+Combine elevation, blur, and surface tinting for clear layering:
+
+```css
+/* Layer 1: Base content */
+.base-layer {
+  background: var(--md-sys-color-surface);
+}
+
+/* Layer 2: Elevated content */
+.elevated-layer {
+  background: var(--md-sys-color-surface-container);
+  box-shadow: var(--md-sys-elevation-1);
+}
+
+/* Layer 3: Overlay with blur */
+.overlay-layer {
+  backdrop-filter: blur(16px);
+  background: rgba(var(--md-sys-color-surface-container-high-rgb), 0.9);
+  box-shadow: var(--md-sys-elevation-3);
+}
+```
+
+## Interaction States
+
+M3 defines consistent interaction states for all interactive elements:
+
+### State Layer System
+
+State layers are overlays using the content color at specific opacities:
+
+| State | Opacity | Description |
+|-------|---------|-------------|
+| Enabled | 0% | Default, no overlay |
+| Hovered | 8% | Pointer device hover |
+| Focused | 12% | Keyboard/accessibility focus |
+| Pressed | 12% | Touch/click press |
+| Dragged | 16% | Active drag operation |
+| Disabled | 0% | Non-interactive (content at 38%, background at 12%) |
+
+```css
+/* State layer implementation */
+.interactive-element {
+  position: relative;
+}
+
+.interactive-element::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  background: var(--md-sys-color-on-surface);
+  opacity: 0;
+  transition: opacity 200ms var(--md-sys-motion-easing-standard);
+  pointer-events: none;
+}
+
+.interactive-element:hover::before { opacity: 0.08; }
+.interactive-element:focus-visible::before { opacity: 0.12; }
+.interactive-element:active::before { opacity: 0.12; }
+
+/* Disabled state */
+.interactive-element:disabled {
+  opacity: 0.38;
+  pointer-events: none;
+}
+
+.interactive-element:disabled::before {
+  opacity: 0;
+}
+```
+
+### State Priority
+
+Only one state layer is visually applied at a time. Priority order:
+1. Dragged (highest)
+2. Pressed
+3. Focused
+4. Hovered
+5. Enabled (lowest)
+
 ## Touch Targets and Accessibility
 
 ### Minimum Touch Target Size
@@ -550,4 +725,9 @@ When implementing M3 layout, ensure:
 - [ ] Container queries are used for components
 - [ ] Maximum content width is set for readability
 - [ ] Elevation tinting is applied to raised surfaces
+- [ ] Containment principles are applied (explicit and implicit grouping)
+- [ ] Background blur is used for modals, drawers, and floating elements
+- [ ] Interaction states are implemented with correct opacity values
+- [ ] Disabled states use 38% content opacity and 12% background opacity
+- [ ] State layers use on-surface color at appropriate opacities
 - [ ] Performance is optimized (Grid/Flexbox, lazy loading)

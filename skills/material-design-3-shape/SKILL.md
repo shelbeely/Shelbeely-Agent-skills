@@ -43,9 +43,14 @@ M3 Expressive uses shape to:
 
 ## Shape Scale System
 
-M3 defines a shape scale with semantic naming:
+M3 Expressive defines an updated shape scale with semantic naming and expanded corner radius tokens:
 
 ### Shape Families
+
+**None** (0dp):
+- Full-bleed surfaces
+- App backgrounds
+- No rounding needed
 
 **Extra Small** (4dp):
 - Small buttons
@@ -61,21 +66,25 @@ M3 defines a shape scale with semantic naming:
 **Medium** (12dp):
 - Standard buttons
 - Cards
-- Dialogs
 - Bottom sheets
 
-**Large** (16dp):
+**Large** (20dp — updated from 16dp):
 - Large cards
 - Featured content
 - FABs (Floating Action Buttons)
 
-**Extra Large** (28dp):
+**Extra Large** (32dp — updated from 28dp):
 - Hero cards
 - Featured images
 - Special containers
-- Modal sheets
+- Dialogs
 
-**Full** (9999px / 50%):
+**Extra Extra Large** (48dp — new in M3 Expressive):
+- Modal sheets
+- Full-screen overlays
+- Major hero elements
+
+**Full** (100% of corner radius — now defined as 100% rather than 50%):
 - Pills
 - Circular buttons
 - Profile avatars
@@ -87,13 +96,14 @@ Define shape tokens using CSS custom properties:
 
 ```css
 :root {
-  /* Corner radii */
+  /* Corner radii — updated for M3 Expressive */
   --md-sys-shape-corner-none: 0px;
   --md-sys-shape-corner-extra-small: 4px;
   --md-sys-shape-corner-small: 8px;
   --md-sys-shape-corner-medium: 12px;
-  --md-sys-shape-corner-large: 16px;
-  --md-sys-shape-corner-extra-large: 28px;
+  --md-sys-shape-corner-large: 20px;
+  --md-sys-shape-corner-extra-large: 32px;
+  --md-sys-shape-corner-extra-extra-large: 48px;
   --md-sys-shape-corner-full: 9999px;
   
   /* Component-specific shapes */
@@ -103,6 +113,62 @@ Define shape tokens using CSS custom properties:
   --md-sys-shape-fab: var(--md-sys-shape-corner-large);
   --md-sys-shape-chip: var(--md-sys-shape-corner-small);
   --md-sys-shape-text-field: var(--md-sys-shape-corner-extra-small);
+  --md-sys-shape-bottom-sheet: var(--md-sys-shape-corner-extra-extra-large);
+}
+```
+
+## Expressive Shape Library
+
+M3 Expressive introduces a library of 35 decorative and functional shapes that go beyond simple rounded rectangles. These shapes can be applied to components, backgrounds, and decorative elements, and they support smooth morphing between one another.
+
+### Complete Shape Catalog
+
+**Geometric Shapes**:
+- Circle, Square, Slanted Square, Oval, Pill, Semi Circle, Triangle, Diamond, Pentagon, Gem, Arch
+
+**Organic and Playful Shapes**:
+- Flower, Puffy, Puffy Diamond, Clover 4, Clover 8, Bun, Heart, Ghostish, Clam Shell
+
+**Burst and Star Shapes**:
+- Sunny, Very Sunny, Burst, Soft Burst, Boom, Soft Boom, Fan, Arrow
+
+**Cookie Shapes** (scalloped edges):
+- Cookie 4, Cookie 6, Cookie 7, Cookie 9, Cookie 12
+
+**Pixel Shapes**:
+- Pixel Circle, Pixel Triangle
+
+### When to Use Expressive Shapes
+
+1. **Moments of Delight**: Use decorative shapes to create visual surprise (loading states, celebrations, onboarding)
+2. **Brand Expression**: Choose shapes that reflect brand personality
+3. **State Feedback**: Morph shapes to communicate state changes (e.g., a circle morphing into a burst on completion)
+4. **Visual Tension**: Combine sharp and rounded, symmetrical and asymmetrical forms for dynamic interest
+5. **Sparingly for Clarity**: Abstract shapes (Burst, Puffy, Flower) should be used for emphasis — not as primary containers for content
+
+### CSS Implementation of Expressive Shapes
+
+```css
+/* Using clip-path for expressive shapes */
+.shape-flower {
+  clip-path: polygon(
+    50% 0%, 61% 11%, 75% 0%, 80% 15%,
+    100% 15%, 90% 30%, 100% 50%, 85% 55%,
+    100% 75%, 80% 75%, 75% 100%, 61% 85%,
+    50% 100%, 39% 85%, 25% 100%, 20% 75%,
+    0% 75%, 15% 55%, 0% 50%, 10% 30%,
+    0% 15%, 20% 15%, 25% 0%, 39% 11%
+  );
+}
+
+/* Using border-radius for organic shapes */
+.shape-bun {
+  border-radius: 50% 50% 50% 50% / 60% 60% 40% 40%;
+}
+
+/* Heart shape */
+.shape-heart {
+  clip-path: path('M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z');
 }
 ```
 
@@ -134,9 +200,9 @@ Define shape tokens using CSS custom properties:
 - Slightly less padding
 
 **FABs** (Floating Action Buttons):
-- Small FAB: 40×40dp, 12dp radius
-- Regular FAB: 56×56dp, 16dp radius
-- Large FAB: 96×96dp, 28dp radius
+- Medium FAB: 40×40dp, 12dp radius (replaces deprecated Small FAB)
+- Regular FAB: 56×56dp, 20dp radius
+- Large FAB: 96×96dp, 32dp radius
 
 ### Cards
 
@@ -164,7 +230,7 @@ Define shape tokens using CSS custom properties:
 ### Dialogs and Sheets
 
 **Dialogs**:
-- Border radius: 28dp (extra-large)
+- Border radius: 32dp (extra-large — updated from 28dp)
 - Creates distinctive, modern appearance
 - Centered on screen
 
@@ -177,20 +243,20 @@ Define shape tokens using CSS custom properties:
 ```
 
 **Bottom Sheets**:
-- Top corners: 28dp (extra-large)
+- Top corners: 48dp (extra-extra-large — new)
 - Bottom corners: 0dp (none)
 - Slides up from bottom
 
 ```css
 .bottom-sheet {
-  border-radius: var(--md-sys-shape-corner-extra-large) 
-                 var(--md-sys-shape-corner-extra-large) 
+  border-radius: var(--md-sys-shape-corner-extra-extra-large) 
+                 var(--md-sys-shape-corner-extra-extra-large) 
                  0 0;
 }
 ```
 
 **Side Sheets**:
-- Leading corners: 28dp
+- Leading corners: 32dp
 - Trailing corners: 0dp
 
 ### Input Fields
@@ -339,11 +405,48 @@ Shapes can morph between states to show relationships:
 }
 
 .fab-to-sheet.expanded {
-  border-radius: var(--md-sys-shape-corner-extra-large);
+  border-radius: var(--md-sys-shape-corner-extra-extra-large);
   width: 100%;
   height: 400px;
 }
 ```
+
+### Expressive Shape Morphing
+
+M3 Expressive supports smooth morphing between any of the 35 expressive shapes. This creates moments of delight and communicates state changes visually:
+
+**Loading State Morph**:
+```css
+/* Circle morphing to burst on completion */
+.loading-indicator {
+  clip-path: circle(50%);
+  transition: clip-path 400ms cubic-bezier(0.05, 0.7, 0.1, 1.0);
+}
+
+.loading-indicator.complete {
+  clip-path: polygon(/* burst shape coordinates */);
+}
+```
+
+**Interactive Shape Feedback**:
+```javascript
+// Using Web Animations API for shape morphing
+element.animate([
+  { clipPath: 'circle(50%)' },
+  { clipPath: 'polygon(50% 0%, 100% 38%, 82% 100%, 18% 100%, 0% 38%)' }
+], {
+  duration: 400,
+  easing: 'cubic-bezier(0.05, 0.7, 0.1, 1.0)',
+  fill: 'forwards'
+});
+```
+
+**Guidelines for Expressive Shape Morphing**:
+1. Use morphing to connect user actions with interface feedback
+2. Shapes should not carry literal meanings — they add aesthetic variety and direct attention
+3. Combine sharp and rounded forms for dynamic visual tension
+4. Use abstract shapes sparingly to preserve clarity and usability
+5. Pair shape morphing with the M3 motion physics system for natural-feeling transitions
 
 ## Advanced Shape Techniques
 
@@ -494,17 +597,20 @@ Ensure shape is visible:
 
 When implementing M3 shape system, ensure:
 
-- [ ] All shape tokens are defined (extra-small through extra-large)
+- [ ] All shape tokens are defined (extra-small through extra-extra-large and full)
+- [ ] Updated corner radius values are used (Large: 20dp, XL: 32dp, XXL: 48dp)
 - [ ] Semantic shape tokens used (not hard-coded px values)
 - [ ] Buttons use full radius (pill shape)
 - [ ] Cards use medium radius (12dp)
-- [ ] Dialogs use extra-large radius (28dp)
+- [ ] Dialogs use extra-large radius (32dp)
+- [ ] Bottom sheets use extra-extra-large top radius (48dp)
 - [ ] Input fields use extra-small radius (4dp)
 - [ ] Chips use small radius (8dp)
-- [ ] FABs use appropriate radius for size
-- [ ] Bottom sheets have rounded top corners only
+- [ ] FABs use appropriate radius for size (Medium: 12dp, Regular: 20dp, Large: 32dp)
 - [ ] Grouped components handle shared edges correctly
 - [ ] Shape transitions are smooth and spring-based
+- [ ] Expressive shapes from the 35-shape library are used for moments of delight
+- [ ] Expressive shape morphing is applied for state feedback when appropriate
 - [ ] Touch targets meet 48×48dp minimum
 - [ ] Focus indicators respect rounded shapes
 - [ ] Performance is optimized (GPU acceleration)

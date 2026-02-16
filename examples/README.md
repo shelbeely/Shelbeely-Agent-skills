@@ -26,6 +26,50 @@ To test if the skills are working with GitHub Copilot:
 **Prompt**: "Create a Material Design 3 responsive grid layout"
 **Expected**: Copilot should load `material-design-3-layout` skill and create a responsive grid
 
+### Test 6: Components
+**Prompt**: "Create a Material Design 3 card component with proper shape, color, and elevation"
+**Expected**: Copilot should load `material-design-3-components` skill and reference specs for cards
+
+### Test 7: Icons
+**Prompt**: "Set up Material Symbols icons with fill transitions for navigation"
+**Expected**: Copilot should load `material-design-3-icons` skill and configure Material Symbols with FILL axis
+
+## Web Stack Testing Prompts
+
+Test that the skills provide correct framework-specific guidance:
+
+### Test 8: React / MUI
+**Prompt**: "Create a Material Design 3 themed React app using MUI with proper M3 color tokens"
+**Expected**: Copilot should load `material-design-3-guide` + `material-design-3-color` and create an MUI theme with `createTheme` using M3 color roles
+
+### Test 9: Angular Material
+**Prompt**: "Set up Angular Material with M3 theming using SCSS and design tokens"
+**Expected**: Copilot should load `material-design-3-guide` and create SCSS with `mat.define-theme()` using M3 colors
+
+### Test 10: Vue / Vuetify
+**Prompt**: "Create a Vuetify 3 theme with Material Design 3 colors and dark mode"
+**Expected**: Copilot should load `material-design-3-guide` + `material-design-3-color` and create a `createVuetify` config with M3 color tokens
+
+### Test 11: Web Components
+**Prompt**: "Create a form using @material/web components with M3 styling"
+**Expected**: Copilot should load `material-design-3-guide` + `material-design-3-components` and use `<md-filled-text-field>`, `<md-filled-button>`, etc.
+
+### Test 12: Tailwind CSS
+**Prompt**: "Map Material Design 3 color tokens to Tailwind CSS theme configuration"
+**Expected**: Copilot should load `material-design-3-guide` + `material-design-3-color` and create a tailwind.config.js with M3 token mappings
+
+### Test 13: Next.js
+**Prompt**: "Set up Material Design 3 in a Next.js App Router project with SSR support"
+**Expected**: Copilot should load `material-design-3-guide` and configure MUI with `AppRouterCacheProvider` for SSR
+
+### Test 14: Vanilla CSS
+**Prompt**: "Create a complete M3 design token system using only CSS custom properties"
+**Expected**: Copilot should load `material-design-3-color` + `material-design-3-typography` + `material-design-3-shape` and create `:root` variables
+
+### Test 15: Cross-Framework Components
+**Prompt**: "Show me how to create an M3 button in React, Angular, Vue, and Svelte"
+**Expected**: Copilot should load `material-design-3-components` and show MUI Button, mat-raised-button, v-btn, and SMUI Button examples
+
 ## Example Files
 
 Coming soon:
@@ -48,12 +92,14 @@ When you prompt GitHub Copilot with Material Design 3 related requests:
 
 | Skill | Keywords |
 |-------|----------|
-| material-design-3-guide | Material Design 3, M3, Material Design, design system |
+| material-design-3-guide | Material Design 3, M3, Material Design, design system, React, Angular, Vue, Svelte, web stack |
 | material-design-3-color | color, palette, theme, dynamic color, Material You, accessibility |
 | material-design-3-motion | animation, transition, motion, spring, micro-interaction |
 | material-design-3-typography | typography, type scale, font, text, Roboto, hierarchy |
 | material-design-3-shape | shape, border-radius, rounded corners, containment |
 | material-design-3-layout | layout, spacing, grid, responsive, breakpoint, elevation |
+| material-design-3-components | component, button, card, dialog, navigation, FAB, MUI, Vuetify, Angular Material |
+| material-design-3-icons | icon, Material Symbols, variable font, FILL, weight |
 
 ## Tips for Effective Prompts
 
@@ -62,6 +108,9 @@ When you prompt GitHub Copilot with Material Design 3 related requests:
 - ✅ "Add M3 spring animations"
 - ✅ "Create an M3 card with proper spacing"
 - ✅ "Set up Material Design 3 typography"
+- ✅ "Create an M3 button using MUI in React"
+- ✅ "Set up Vuetify 3 with M3 theming"
+- ✅ "Add Material Symbols icons to navigation"
 
 **Less effective prompts** (might not trigger skills):
 - ❌ "Make it look nice" (too vague)
@@ -76,6 +125,7 @@ When using GitHub Copilot:
 3. Animations should use spring-based easing curves
 4. Typography should use the M3 type scale
 5. Shapes should use the M3 border radius scale
+6. Framework-specific code should use the correct library APIs (MUI, Angular Material, Vuetify, etc.)
 
 ## Creating Your Own Examples
 

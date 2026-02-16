@@ -10,7 +10,7 @@ license: Apache-2.0
 
 This is the master guide for implementing Material Design 3 (M3) — covering the full specification from Material You foundations through M3 Expressive enhancements. It explains the overall system and directs you to specialized skills for each aspect.
 
-**Keywords**: Material Design 3, M3, Material Design, design system, Google design, Material You, expressive design, UI design, M3 Expressive
+**Keywords**: Material Design 3, M3, Material Design, design system, Google design, Material You, expressive design, UI design, M3 Expressive, React, MUI, Angular Material, Vue, Vuetify, Svelte, SMUI, Tailwind CSS, Next.js, Flutter, Jetpack Compose, web components, Beer CSS
 
 ## What is Material Design 3?
 
@@ -425,6 +425,553 @@ styles/
 7. ❌ **Don't forget motion** - Static M3 misses the "expressive" part
 8. ❌ **Don't skip icons** - Material Symbols are integral to the M3 visual language
 
+## Material Design 3 for Different Web Stacks
+
+M3 can be implemented across many web stacks. Each framework has different libraries, maturity levels, and approaches. Choose the right option for your project:
+
+### Web Stack Overview
+
+| Stack | Primary Library | M3 Support | Status |
+|-------|----------------|------------|--------|
+| **Vanilla CSS** | CSS custom properties | Full (manual) | Stable |
+| **Web Components** | `@material/web` (Lit) | Full M3 | Maintenance mode |
+| **React** | MUI (`@mui/material`) | M3 theming (evolving) | Active development |
+| **React** | `@material/web` + wrappers | Full M3 | Maintenance mode |
+| **Angular** | `@angular/material` | Full M3 | Active, official |
+| **Vue** | Vuetify 3 | Full M3 | Active development |
+| **Svelte** | SMUI (Svelte Material UI) | Partial M3 | Active, community |
+| **Tailwind CSS** | `tailwind-material-3` plugin | Token-based M3 | Community |
+| **CSS Framework** | Beer CSS | Full M3 | Active, lightweight |
+| **Next.js** | MUI + `@mui/material-nextjs` | M3 + SSR | Active |
+| **Flutter** | `material` / `m3e_design` | Full M3 | Official (Expressive paused) |
+| **Android** | Jetpack Compose Material 3 | Full M3 + Expressive | Official, active |
+
+---
+
+### Vanilla CSS / Custom Properties
+
+The most flexible approach — implement M3 using only CSS custom properties and semantic classes. No framework dependency. All other M3 skills in this repository use this approach as the canonical reference.
+
+**When to use**: Static sites, simple web apps, any project where you want zero dependencies, or when you need full control over every design token.
+
+**Setup**:
+```css
+/* Define M3 tokens as CSS custom properties */
+:root {
+  --md-sys-color-primary: #6750A4;
+  --md-sys-color-on-primary: #FFFFFF;
+  --md-sys-color-surface: #FEF7FF;
+  /* ... all tokens from material-design-3-color */
+}
+
+/* Apply to components */
+.md3-button-filled {
+  background: var(--md-sys-color-primary);
+  color: var(--md-sys-color-on-primary);
+  border-radius: var(--md-sys-shape-corner-full);
+  font: var(--md-sys-typescale-label-large-weight)
+        var(--md-sys-typescale-label-large-size)
+        var(--md-sys-typescale-label-large-font);
+}
+```
+
+**CSS-only frameworks**:
+- **Beer CSS** (`beercss`): First CSS framework fully based on M3. Zero dependencies, semantic HTML, very small bundle. All major M3 components styled. https://www.beercss.com/
+- **Material Design Light**: Lightweight SCSS framework compiled to plain CSS with M3 component styles. https://github.com/mdlightdev/material-design-light
+- **GMX.css**: Minimal-JS M3 CSS implementation with predefined color schemes. https://www.cssscript.com/material-design-framework-gmx/
+
+---
+
+### Web Components — `@material/web` (Official, Lit-based)
+
+Google's official M3 web component library. Framework-agnostic — works with any framework that supports Custom Elements. Built on Lit for small bundle size and interoperability.
+
+**When to use**: When you want Google's official M3 implementation, need cross-framework components, or want standardized web components.
+
+**Status**: Maintenance mode — stable but not receiving major new features. Consider for projects that value stability.
+
+**Install**:
+```bash
+npm install @material/web
+```
+
+**Usage**:
+```html
+<script type="module">
+  import '@material/web/button/filled-button.js';
+  import '@material/web/textfield/outlined-text-field.js';
+  import '@material/web/checkbox/checkbox.js';
+</script>
+
+<md-filled-button>Click me</md-filled-button>
+<md-outlined-text-field label="Email"></md-outlined-text-field>
+<md-checkbox></md-checkbox>
+```
+
+**Theming** (via CSS custom properties):
+```css
+:root {
+  --md-sys-color-primary: #6750A4;
+  --md-sys-color-on-primary: #FFFFFF;
+  --md-ref-typeface-brand: 'Roboto';
+  --md-ref-typeface-plain: 'Roboto';
+}
+```
+
+**Resources**:
+- Documentation: https://material-web.dev/
+- GitHub: https://github.com/material-components/material-web
+- npm: https://www.npmjs.com/package/@material/web
+
+---
+
+### React — MUI (Material UI)
+
+MUI (`@mui/material`) is the most popular React UI library. MUI v6 adds Pigment CSS engine for better performance. M3 theming support is evolving — MUI still primarily implements M2 component APIs but supports M3 color tokens and theming through customization.
+
+**When to use**: React projects where you want the largest ecosystem, most mature library, and best React/Next.js integration. Customize the theme to match M3 guidelines.
+
+**Install**:
+```bash
+npm install @mui/material @emotion/react @emotion/styled
+```
+
+**M3-aligned theming**:
+```jsx
+import { createTheme, ThemeProvider } from '@mui/material/styles';
+
+const m3Theme = createTheme({
+  palette: {
+    primary: { main: '#6750A4' },
+    secondary: { main: '#625B71' },
+    error: { main: '#B3261E' },
+    background: {
+      default: '#FEF7FF',
+      paper: '#F3EDF7',
+    },
+  },
+  shape: { borderRadius: 20 }, // M3 Large radius
+  typography: {
+    fontFamily: '"Roboto", sans-serif',
+  },
+});
+
+function App() {
+  return (
+    <ThemeProvider theme={m3Theme}>
+      {/* Your M3-styled components */}
+    </ThemeProvider>
+  );
+}
+```
+
+**Using `@material/web` in React** (alternative):
+```jsx
+// Client component (Next.js or Vite)
+'use client';
+import '@material/web/button/filled-button.js';
+
+export function M3Button({ children }) {
+  return <md-filled-button>{children}</md-filled-button>;
+}
+```
+
+React wrappers: `material-web-components-react` provides thin React abstractions over `@material/web`.
+
+**Resources**:
+- MUI: https://mui.com/material-ui/
+- MUI + Next.js: https://mui.com/material-ui/integrations/nextjs/
+- M3 adoption issue: https://github.com/mui/material-ui/issues/29345
+
+---
+
+### Angular — Angular Material (Official)
+
+Angular Material (`@angular/material`) has first-class M3 support since v17.2+. The Angular team works closely with Google's Material team. Full M3 theming via design tokens, SCSS mixins, and CLI schematics.
+
+**When to use**: Angular projects. This is the most official, well-integrated M3 implementation for any web framework.
+
+**Install**:
+```bash
+ng add @angular/material
+```
+
+**Generate M3 theme**:
+```bash
+ng generate @angular/material:m3-theme
+```
+
+**Theme setup** (SCSS):
+```scss
+@use '@angular/material' as mat;
+@include mat.core();
+
+$my-theme: mat.define-theme((
+  color: (
+    theme-type: light,
+    primary: #6750A4,
+    secondary: #625B71,
+    tertiary: #7D5260,
+  ),
+));
+
+:root {
+  @include mat.all-component-themes($my-theme);
+  color-scheme: light;
+}
+
+// Dark theme
+html.dark-theme {
+  @include mat.all-component-colors($dark-theme);
+  color-scheme: dark;
+}
+```
+
+**Component usage**:
+```html
+<button mat-raised-button color="primary">Filled Button</button>
+<mat-form-field>
+  <mat-label>Email</mat-label>
+  <input matInput />
+</mat-form-field>
+```
+
+**Resources**:
+- Guide: https://material.angular.dev/guide/theming
+- M3 migration: https://v17.material.angular.dev/guide/material-3
+- Design tokens: https://konstantin-denerz.com/angular-material-3-theming-design-tokens-and-system-variables/
+
+---
+
+### Vue — Vuetify 3
+
+Vuetify 3 is the leading Material Design library for Vue.js with strong M3 support. Dynamic color theming, M3-aligned components, design tokens, and accessibility are built in.
+
+**When to use**: Vue.js projects. Enterprise-ready M3 with excellent documentation, component library, and active development.
+
+**Install**:
+```bash
+npm install vuetify
+```
+
+**Setup**:
+```js
+// plugins/vuetify.js
+import { createVuetify } from 'vuetify';
+import 'vuetify/styles';
+
+export default createVuetify({
+  theme: {
+    defaultTheme: 'light',
+    themes: {
+      light: {
+        colors: {
+          primary: '#6750A4',
+          secondary: '#625B71',
+          'surface-variant': '#E7E0EC',
+          error: '#B3261E',
+          background: '#FEF7FF',
+          surface: '#FEF7FF',
+        },
+      },
+      dark: {
+        colors: {
+          primary: '#D0BCFF',
+          secondary: '#CCC2DC',
+          background: '#141218',
+          surface: '#141218',
+        },
+      },
+    },
+  },
+});
+```
+
+**Component usage**:
+```vue
+<template>
+  <v-btn color="primary" rounded="pill">Filled Button</v-btn>
+  <v-card rounded="lg" elevation="1">
+    <v-card-title>Card Title</v-card-title>
+    <v-card-text>Card content following M3 specs</v-card-text>
+  </v-card>
+  <v-text-field label="Email" variant="outlined" />
+</template>
+```
+
+**Resources**:
+- Documentation: https://vuetifyjs.com/
+- M3 adaptation guide: https://store.vuetifyjs.com/blogs/vuetify-blog/material-design-3-how-to-adapt-to-the-next-generation-of-interfaces
+
+---
+
+### Svelte — SMUI (Svelte Material UI)
+
+SMUI wraps Google's MDC-Web foundation logic in Svelte-native components. Evolving towards M3 with MDC v10 integration. Svelte 5 compatible (v8+).
+
+**When to use**: Svelte/SvelteKit projects. Best Material library for Svelte, though M3 coverage is not as complete as Angular Material or Vuetify.
+
+**Install**:
+```bash
+npm install svelte-material-ui
+```
+
+**Usage**:
+```svelte
+<script>
+  import Button from '@smui/button';
+  import Card from '@smui/card';
+  import Textfield from '@smui/textfield';
+</script>
+
+<Button variant="raised">Filled Button</Button>
+
+<Card>
+  <div class="card-content">
+    <h2>Card Title</h2>
+    <p>Card content</p>
+  </div>
+</Card>
+
+<Textfield variant="outlined" label="Email" />
+```
+
+**Alternative — use `@material/web` directly in Svelte**:
+```svelte
+<script>
+  import '@material/web/button/filled-button.js';
+</script>
+
+<md-filled-button>Click me</md-filled-button>
+```
+
+Svelte has excellent Custom Elements support, making `@material/web` components easy to use directly.
+
+**Resources**:
+- SMUI: https://sveltematerialui.com/
+- GitHub: https://github.com/hperrin/svelte-material-ui
+
+---
+
+### Tailwind CSS — M3 Tokens Integration
+
+Tailwind CSS can integrate M3 design tokens by mapping them to Tailwind's theme configuration. Use the `tailwind-material-3` plugin or manually map tokens.
+
+**When to use**: Projects already using Tailwind CSS where you want M3's design language without switching to a component library. Great for utility-first M3 styling.
+
+**Plugin approach**:
+```bash
+npm install tailwind-material-3
+```
+
+```js
+// tailwind.config.js
+const m3Plugin = require('tailwind-material-3');
+
+module.exports = {
+  plugins: [m3Plugin],
+  // M3 tokens are now available as Tailwind utilities
+};
+```
+
+**Manual token mapping**:
+```css
+/* globals.css */
+:root {
+  --color-primary: #6750A4;
+  --color-on-primary: #FFFFFF;
+  --color-surface: #FEF7FF;
+  --color-on-surface: #1D1B20;
+}
+```
+
+```js
+// tailwind.config.js
+module.exports = {
+  theme: {
+    extend: {
+      colors: {
+        primary: 'var(--color-primary)',
+        'on-primary': 'var(--color-on-primary)',
+        surface: 'var(--color-surface)',
+        'on-surface': 'var(--color-on-surface)',
+      },
+      borderRadius: {
+        'md3-sm': '8px',
+        'md3-md': '12px',
+        'md3-lg': '20px',
+        'md3-xl': '32px',
+        'md3-full': '9999px',
+      },
+    },
+  },
+};
+```
+
+**Usage**:
+```html
+<button class="bg-primary text-on-primary rounded-md3-full px-6 py-2.5 
+               text-sm font-medium tracking-wide">
+  Filled Button
+</button>
+```
+
+**Resources**:
+- Plugin: https://github.com/rinturaj/tailwind-material-3
+- Token mapping guide: https://nicolalazzari.ai/articles/integrating-design-tokens-with-tailwind-css
+
+---
+
+### Next.js — MUI + SSR
+
+For Next.js App Router with React Server Components, use MUI with the `@mui/material-nextjs` integration package for proper SSR/streaming support.
+
+**When to use**: Next.js projects that need M3 styling with server-side rendering and React Server Components.
+
+**Install**:
+```bash
+npm install @mui/material @emotion/react @emotion/styled @mui/material-nextjs
+```
+
+**Layout setup**:
+```tsx
+// app/layout.tsx
+import { AppRouterCacheProvider } from '@mui/material-nextjs/v14-appRouter';
+import { ThemeProvider } from '@mui/material/styles';
+import { m3Theme } from './theme';
+
+export default function RootLayout({ children }) {
+  return (
+    <html>
+      <body>
+        <AppRouterCacheProvider>
+          <ThemeProvider theme={m3Theme}>
+            {children}
+          </ThemeProvider>
+        </AppRouterCacheProvider>
+      </body>
+    </html>
+  );
+}
+```
+
+**Alternative — `@material/web` in Next.js**:
+```tsx
+// components/M3Button.tsx (client component)
+'use client';
+import '@material/web/button/filled-button.js';
+
+export function M3Button({ children }) {
+  return <md-filled-button>{children}</md-filled-button>;
+}
+
+// app/page.tsx (server component)
+import { M3Button } from '@/components/M3Button';
+
+export default function Page() {
+  return <M3Button>Click me</M3Button>;
+}
+```
+
+**Resources**:
+- MUI + Next.js: https://mui.com/material-ui/integrations/nextjs/
+
+---
+
+### Flutter
+
+Flutter has built-in M3 support since version 3.16. The `material` library provides M3 components, dynamic color, and theming. Full M3 Expressive support is being developed as modular packages (`m3e_design`).
+
+**When to use**: Cross-platform mobile/web/desktop apps using Flutter.
+
+**Setup**:
+```dart
+MaterialApp(
+  theme: ThemeData(
+    useMaterial3: true,
+    colorSchemeSeed: const Color(0xFF6750A4),
+  ),
+  darkTheme: ThemeData(
+    useMaterial3: true,
+    brightness: Brightness.dark,
+    colorSchemeSeed: const Color(0xFF6750A4),
+  ),
+  home: const MyApp(),
+);
+```
+
+**M3 Expressive package**:
+```yaml
+# pubspec.yaml
+dependencies:
+  m3e_design: ^latest
+```
+
+**Resources**:
+- Flutter M3 guide: https://docs.flutter.dev/ui/design/material
+- M3 for Flutter: https://m3.material.io/develop/flutter
+- M3 Expressive tracking: https://github.com/flutter/flutter/issues/168813
+
+---
+
+### Android — Jetpack Compose Material 3
+
+Jetpack Compose has the most complete M3 implementation, including M3 Expressive components. Full dynamic color (Material You) support on Android 12+.
+
+**When to use**: Native Android development.
+
+**Setup**:
+```kotlin
+// build.gradle
+implementation("androidx.compose.material3:material3:1.4.0")
+```
+
+```kotlin
+MaterialTheme(
+    colorScheme = dynamicLightColorScheme(context),
+    typography = Typography,
+    shapes = Shapes
+) {
+    // Your Compose UI
+}
+```
+
+**M3 Expressive components** (Android 16+):
+- `ExpressiveButton`, `SplitButton`, `FloatingToolbar`, `FABMenu`
+- Enhanced progress indicators, animated sliders, carousel
+
+**Resources**:
+- Guide: https://developer.android.com/develop/ui/compose/designsystems/material3
+- M3 Compose: https://m3.material.io/develop/android/jetpack-compose
+- Compose Material 3 releases: https://developer.android.com/jetpack/androidx/releases/compose-material3
+
+---
+
+### Choosing the Right Stack
+
+**Decision guide**:
+
+| If your project uses... | Recommended M3 library | Why |
+|-------------------------|----------------------|-----|
+| No framework (vanilla) | CSS custom properties | Full control, zero dependencies |
+| React | MUI v6 (or `@material/web` via wrappers) | Largest ecosystem, best SSR support with Next.js |
+| Angular | `@angular/material` | Official, best M3 integration of any web framework |
+| Vue | Vuetify 3 | Enterprise-ready, excellent documentation |
+| Svelte | SMUI or `@material/web` directly | Best available for Svelte ecosystem |
+| Tailwind CSS | `tailwind-material-3` plugin | Keeps utility-first approach with M3 tokens |
+| Any framework | `@material/web` | Official, framework-agnostic web components |
+| Flutter | Built-in `material` library | Official, cross-platform |
+| Android | Jetpack Compose Material 3 | Official, most complete M3 implementation |
+
+**Tips for choosing**:
+1. **Angular projects**: Use `@angular/material` — it has the best official M3 support of any web framework
+2. **React projects**: Use MUI for the best React experience, or `@material/web` for official Google components
+3. **Vue projects**: Use Vuetify 3 — mature, well-documented, actively developed
+4. **Framework-agnostic**: Use `@material/web` or vanilla CSS custom properties
+5. **Prototype quickly**: Use Beer CSS (CSS-only) or `@material/web` via CDN
+6. **Need Tailwind**: Map M3 tokens to Tailwind config or use the plugin
+7. **Mobile + Web**: Use Flutter for cross-platform M3
+
 ## Resources
 
 ### Material Design 3 Skills Available
@@ -446,9 +993,15 @@ styles/
 - **Material Theme Builder**: https://m3.material.io/theme-builder
 - **Material Symbols**: https://fonts.google.com/icons
 - **Figma M3 Kit**: Official design resources
-- **M3 for Android**: Material 3 implementation for Jetpack Compose
-- **M3 for Flutter**: Material 3 implementation for Flutter
-- **M3 for Web**: Material Web Components
+- **M3 for Android**: https://m3.material.io/develop/android/jetpack-compose
+- **M3 for Flutter**: https://m3.material.io/develop/flutter
+- **M3 for Web**: https://material-web.dev/
+- **Beer CSS** (CSS-only M3): https://www.beercss.com/
+- **MUI** (React): https://mui.com/material-ui/
+- **Angular Material**: https://material.angular.dev/
+- **Vuetify** (Vue): https://vuetifyjs.com/
+- **SMUI** (Svelte): https://sveltematerialui.com/
+- **Tailwind M3 Plugin**: https://github.com/rinturaj/tailwind-material-3
 
 ## Checklist for Material Design 3 Projects
 

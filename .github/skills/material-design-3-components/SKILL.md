@@ -1078,6 +1078,174 @@ All M3 components follow consistent interaction state patterns:
 | Dragged | 16% state layer overlay |
 | Disabled | 38% content opacity, 12% background opacity |
 
+## Framework-Specific Component Usage
+
+M3 components can be implemented using different libraries depending on your web stack. Below are quick-reference examples showing how the same component looks across frameworks.
+
+### Button — Cross-Framework Examples
+
+**Vanilla CSS / HTML**:
+```html
+<button class="md3-button-filled">Click me</button>
+```
+
+**Web Components (`@material/web`)**:
+```html
+<md-filled-button>Click me</md-filled-button>
+<md-outlined-button>Secondary</md-outlined-button>
+<md-text-button>Text</md-text-button>
+```
+
+**React (MUI)**:
+```jsx
+import Button from '@mui/material/Button';
+
+<Button variant="contained">Filled</Button>
+<Button variant="outlined">Outlined</Button>
+<Button variant="text">Text</Button>
+```
+
+**Angular Material**:
+```html
+<button mat-raised-button color="primary">Filled</button>
+<button mat-stroked-button>Outlined</button>
+<button mat-button>Text</button>
+```
+
+**Vue (Vuetify 3)**:
+```vue
+<v-btn color="primary">Filled</v-btn>
+<v-btn variant="outlined">Outlined</v-btn>
+<v-btn variant="text">Text</v-btn>
+```
+
+**Svelte (SMUI)**:
+```svelte
+<Button variant="raised">Filled</Button>
+<Button variant="outlined">Outlined</Button>
+<Button>Text</Button>
+```
+
+**Tailwind CSS (with M3 tokens)**:
+```html
+<button class="bg-primary text-on-primary rounded-full px-6 py-2.5 
+               text-sm font-medium tracking-wide">
+  Filled
+</button>
+```
+
+### Card — Cross-Framework Examples
+
+**Web Components (`@material/web`)**:
+```html
+<!-- @material/web does not include a card component — build with tokens -->
+<div class="md3-card-elevated">
+  <h3 class="md3-title-medium">Title</h3>
+  <p class="md3-body-medium">Content</p>
+</div>
+```
+
+**React (MUI)**:
+```jsx
+import Card from '@mui/material/Card';
+import CardContent from '@mui/material/CardContent';
+
+<Card elevation={1}>
+  <CardContent>
+    <Typography variant="h6">Title</Typography>
+    <Typography variant="body2">Content</Typography>
+  </CardContent>
+</Card>
+```
+
+**Angular Material**:
+```html
+<mat-card appearance="raised">
+  <mat-card-header>
+    <mat-card-title>Title</mat-card-title>
+  </mat-card-header>
+  <mat-card-content>Content</mat-card-content>
+</mat-card>
+```
+
+**Vue (Vuetify 3)**:
+```vue
+<v-card elevation="1" rounded="lg">
+  <v-card-title>Title</v-card-title>
+  <v-card-text>Content</v-card-text>
+</v-card>
+```
+
+### Text Field — Cross-Framework Examples
+
+**Web Components (`@material/web`)**:
+```html
+<md-outlined-text-field label="Email"></md-outlined-text-field>
+<md-filled-text-field label="Name"></md-filled-text-field>
+```
+
+**React (MUI)**:
+```jsx
+<TextField label="Email" variant="outlined" />
+<TextField label="Name" variant="filled" />
+```
+
+**Angular Material**:
+```html
+<mat-form-field appearance="outline">
+  <mat-label>Email</mat-label>
+  <input matInput />
+</mat-form-field>
+```
+
+**Vue (Vuetify 3)**:
+```vue
+<v-text-field label="Email" variant="outlined" />
+<v-text-field label="Name" variant="filled" />
+```
+
+### Navigation — Cross-Framework Examples
+
+**Web Components (`@material/web`)**:
+```html
+<md-navigation-bar>
+  <md-navigation-tab label="Home">
+    <md-icon slot="active-icon">home</md-icon>
+    <md-icon slot="inactive-icon">home</md-icon>
+  </md-navigation-tab>
+</md-navigation-bar>
+```
+
+**React (MUI)**:
+```jsx
+<BottomNavigation value={value} onChange={handleChange}>
+  <BottomNavigationAction label="Home" icon={<HomeIcon />} />
+  <BottomNavigationAction label="Search" icon={<SearchIcon />} />
+</BottomNavigation>
+```
+
+**Vue (Vuetify 3)**:
+```vue
+<v-bottom-navigation v-model="value">
+  <v-btn value="home"><v-icon>mdi-home</v-icon>Home</v-btn>
+  <v-btn value="search"><v-icon>mdi-magnify</v-icon>Search</v-btn>
+</v-bottom-navigation>
+```
+
+### Framework Selection for Components
+
+| Component Type | Best Framework Support |
+|---------------|----------------------|
+| Buttons (all types) | All frameworks — equally mature |
+| Cards | MUI, Vuetify, Angular Material |
+| Navigation (bar, rail, drawer) | Angular Material, Vuetify, `@material/web` |
+| Text Fields | All frameworks — equally mature |
+| Dialogs | All frameworks |
+| Chips | MUI, Vuetify, Angular Material |
+| FABs | All frameworks |
+| Tabs | All frameworks |
+| M3 Expressive (split buttons, toolbars) | Custom CSS or `@material/web` (framework support evolving) |
+
 ## Accessibility Guidelines for Components
 
 1. **Touch targets**: Minimum 48×48dp for all interactive components
@@ -1103,3 +1271,4 @@ When implementing M3 components, ensure:
 - [ ] ARIA attributes are correctly applied
 - [ ] Component is fully keyboard navigable
 - [ ] M3 Expressive additions (FAB menu, split buttons, button groups, toolbars) are used where appropriate
+- [ ] Framework-specific best practices are followed (see material-design-3-guide for stack-specific guidance)

@@ -92,15 +92,16 @@ cp -r .github/skills /path/to/your/repo/.github/
 ## Quick Start with Material Design 3
 
 1. **Start with the guide**: Read [material-design-3-guide](/.github/skills/material-design-3-guide/SKILL.md)
-2. **Set up foundations** in order:
+2. **Choose your web stack**: The guide covers M3 implementation for React (MUI), Angular Material, Vue (Vuetify), Svelte (SMUI), Web Components (`@material/web`), vanilla CSS, Tailwind CSS, Next.js, Flutter, and Android (Jetpack Compose)
+3. **Set up foundations** in order:
    - Color system (`material-design-3-color`)
    - Typography (`material-design-3-typography`)
    - Shape system (`material-design-3-shape`)
    - Icons (`material-design-3-icons`)
    - Layout and spacing (`material-design-3-layout`)
-3. **Build components**: Follow specs from (`material-design-3-components`)
-4. **Add motion**: Implement animations (`material-design-3-motion`)
-5. **Go expressive**: Add M3 Expressive enhancements (emphasized type, expressive shapes, spring physics)
+4. **Build components**: Follow specs from (`material-design-3-components`) — includes cross-framework examples
+5. **Add motion**: Implement animations (`material-design-3-motion`)
+6. **Go expressive**: Add M3 Expressive enhancements (emphasized type, expressive shapes, spring physics)
 
 ## Skill Structure
 
@@ -132,6 +133,26 @@ Material Design 3 is Google's open-source design system, covering the full speci
 - **Material Symbols**: Variable font icon system with 2,500+ icons
 
 Learn more at [m3.material.io](https://m3.material.io/)
+
+### Supported Web Stacks
+
+These skills include implementation guidance for:
+
+| Stack | Library | M3 Support |
+|-------|---------|------------|
+| Vanilla CSS | CSS custom properties | Full (manual) |
+| Web Components | `@material/web` | Full M3 (official) |
+| React | MUI (`@mui/material`) | M3 theming |
+| Angular | `@angular/material` | Full M3 (official) |
+| Vue | Vuetify 3 | Full M3 |
+| Svelte | SMUI | Partial M3 |
+| Tailwind CSS | `tailwind-material-3` | Token-based M3 |
+| CSS Framework | Beer CSS | Full M3 |
+| Next.js | MUI + `@mui/material-nextjs` | M3 + SSR |
+| Flutter | `material` / `m3e_design` | Full M3 |
+| Android | Jetpack Compose Material 3 | Full M3 + Expressive |
+
+See the [material-design-3-guide](/.github/skills/material-design-3-guide/SKILL.md) for detailed setup instructions per stack.
 
 ## Contributing
 

@@ -1,195 +1,132 @@
 # Shelbeely Agent Skills
 
-A collection of agent skills for GitHub Copilot and other AI agents, focusing on Material Design 3 design principles — covering the full specification from Material You through M3 Expressive.
+A collection of agent skills for GitHub Copilot and other AI agents. Skills are organized into groups by topic, with each group in its own directory.
 
-## What are Agent Skills?
+## Install
 
-Agent skills are folders of instructions, scripts, and resources that AI agents can discover and use to perform better at specialized tasks. They work with:
-- GitHub Copilot coding agent
-- GitHub Copilot CLI  
-- Claude (via `.claude/skills`)
-- Other AI systems supporting the [Agent Skills specification](https://github.com/agentskills/agentskills)
+```bash
+npx skills add shelbeely/Shelbeely-Agent-skills
+```
 
-## Available Skills
+Or install with any agent that supports [skills.sh](https://skills.sh/).
 
-### Material Design 3 — Core Skills
+## Skill Groups
 
-General-purpose M3 skills that apply to Material Design 3 regardless of framework or library:
+Skills are organized into directories by topic. Each directory contains related skills that can be installed together or individually.
 
-#### 🎨 [material-design-3-guide](/.github/skills/material-design-3-guide)
-**Master guide** that explains when to use each Material Design 3 skill subset. Start here if you're new to Material Design 3 or need to understand which skill to apply.
+### 📐 [Material Design 3](.github/skills/material-design-3/)
 
-#### 🌈 [material-design-3-color](/.github/skills/material-design-3-color)
-Color palettes, dynamic theming, and accessibility. Covers 26+ color roles, fixed accent colors, surface container hierarchy, and three contrast levels.
+The full Material Design 3 specification — from Material You through M3 Expressive — with 18 skills covering core design principles and library-specific implementations.
 
-#### ✨ [material-design-3-motion](/.github/skills/material-design-3-motion)
-Physics-based spring animations, transitions, and micro-interactions. Covers expressive vs standard motion modes, haptics integration, and spring parameters.
+**Core Skills** (general-purpose, framework-agnostic):
 
-#### 📝 [material-design-3-typography](/.github/skills/material-design-3-typography)
-Type scales (30 styles: 15 baseline + 15 emphasized), variable fonts, and text hierarchy.
+| Skill | Description |
+|-------|-------------|
+| [material-design-3-guide](.github/skills/material-design-3/material-design-3-guide) | Master guide — start here |
+| [material-design-3-color](.github/skills/material-design-3/material-design-3-color) | Color palettes, dynamic theming, 26+ color roles, accessibility |
+| [material-design-3-typography](.github/skills/material-design-3/material-design-3-typography) | 30-style type scale, variable fonts, text hierarchy |
+| [material-design-3-shape](.github/skills/material-design-3/material-design-3-shape) | 35 expressive shapes, corner radii, morphing, containment |
+| [material-design-3-motion](.github/skills/material-design-3/material-design-3-motion) | Spring animations, transitions, haptics |
+| [material-design-3-layout](.github/skills/material-design-3/material-design-3-layout) | Spacing, grids, blur, depth, interaction states |
+| [material-design-3-components](.github/skills/material-design-3/material-design-3-components) | Complete component catalog — buttons, cards, FABs, navigation, etc. |
+| [material-design-3-icons](.github/skills/material-design-3/material-design-3-icons) | Material Symbols variable font icon system (2,500+ icons) |
 
-#### 🔲 [material-design-3-shape](/.github/skills/material-design-3-shape)
-Rounded corners, 35 expressive shapes, morphing shapes, and containment. Covers updated corner radii (Large: 20dp, XL: 32dp, XXL: 48dp).
+**Library-Specific Skills** (framework setup, theming, components):
 
-#### 📐 [material-design-3-layout](/.github/skills/material-design-3-layout)
-Spacing systems, responsive grids, size hierarchy, background blur, depth effects, containment, and interaction states.
+| Skill | Stack | Library |
+|-------|-------|---------|
+| [m3-web-vanilla](.github/skills/material-design-3/m3-web-vanilla) | Vanilla CSS | CSS custom properties |
+| [m3-web-webcomponents](.github/skills/material-design-3/m3-web-webcomponents) | Web Components | `@material/web` |
+| [m3-web-react](.github/skills/material-design-3/m3-web-react) | React / Next.js | MUI (`@mui/material`) |
+| [m3-web-angular](.github/skills/material-design-3/m3-web-angular) | Angular | `@angular/material` |
+| [m3-web-vue](.github/skills/material-design-3/m3-web-vue) | Vue | Vuetify 3 |
+| [m3-web-svelte](.github/skills/material-design-3/m3-web-svelte) | Svelte | SMUI |
+| [m3-web-tailwind](.github/skills/material-design-3/m3-web-tailwind) | Tailwind CSS | `tailwind-material-3` |
+| [m3-web-ink](.github/skills/material-design-3/m3-web-ink) | Ink (React CLI) | `ink` + `@inkjs/ui` |
+| [m3-web-flutter](.github/skills/material-design-3/m3-web-flutter) | Flutter | `material` / `m3e_design` |
+| [m3-web-android](.github/skills/material-design-3/m3-web-android) | Android | Jetpack Compose Material 3 |
 
-#### 🧩 [material-design-3-components](/.github/skills/material-design-3-components)
-Complete component catalog — buttons, cards, dialogs, navigation, FABs, chips, text fields, tabs, menus, and M3 Expressive additions (split buttons, button groups, floating toolbars, FAB menus).
+## How It Works
 
-#### 🔣 [material-design-3-icons](/.github/skills/material-design-3-icons)
-Material Symbols variable font icon system — 2,500+ icons with four customizable axes (fill, weight, grade, optical size).
+### With [skills.sh](https://skills.sh/)
 
-### Material Design 3 — Library-Specific Skills
+Install all skills from this repo into your project:
 
-Dedicated skills for implementing M3 with specific frameworks and libraries. Each contains setup, theming, component examples, and best practices for that stack:
+```bash
+npx skills add shelbeely/Shelbeely-Agent-skills
+```
 
-#### 🌐 [m3-web-vanilla](/.github/skills/m3-web-vanilla)
-M3 with vanilla CSS custom properties. Zero dependencies. Includes Beer CSS and other CSS-only frameworks.
+The CLI recursively scans for `SKILL.md` files across all skill groups and lets you pick which ones to install.
 
-#### ⚙️ [m3-web-webcomponents](/.github/skills/m3-web-webcomponents)
-Google's official `@material/web` Lit-based web components. Framework-agnostic.
+### With GitHub Copilot
 
-#### ⚛️ [m3-web-react](/.github/skills/m3-web-react)
-React with MUI (`@mui/material`), M3-aligned theming, and Next.js SSR integration.
-
-#### 🅰️ [m3-web-angular](/.github/skills/m3-web-angular)
-Angular Material (`@angular/material`) with first-class M3 theming, SCSS mixins, and CLI schematics.
-
-#### 💚 [m3-web-vue](/.github/skills/m3-web-vue)
-Vue.js with Vuetify 3, M3 theming, dynamic color, and components.
-
-#### 🔥 [m3-web-svelte](/.github/skills/m3-web-svelte)
-Svelte/SvelteKit with SMUI or `@material/web` directly.
-
-#### 🎨 [m3-web-tailwind](/.github/skills/m3-web-tailwind)
-Tailwind CSS with M3 token integration via plugin or manual mapping.
-
-#### 💻 [m3-web-ink](/.github/skills/m3-web-ink)
-Ink (React CLI) with `@inkjs/ui` M3 theming for terminal interfaces.
-
-#### 📱 [m3-web-flutter](/.github/skills/m3-web-flutter)
-Flutter M3 theming, dynamic color (Material You), and M3 Expressive packages.
-
-#### 🤖 [m3-web-android](/.github/skills/m3-web-android)
-Jetpack Compose Material 3 with dynamic color and M3 Expressive components.
-
-## How to Use These Skills
-
-### For GitHub Copilot Users
-
-These skills are automatically discovered when you work in this repository. Simply mention Material Design 3 concepts in your prompts and Copilot will load the relevant skills.
+Skills in `.github/skills/` are automatically discovered when you work in this repository. Symlinks at the root of `.github/skills/` point into each group directory, so Copilot finds them at the top level as required.
 
 **Examples**:
 - "Apply Material Design 3 colors to this button" → Loads `material-design-3-color`
-- "Add Material Design animations" → Loads `material-design-3-motion`  
-- "Create a Material Design 3 card component" → Loads multiple skills
+- "Add M3 spring animations" → Loads `material-design-3-motion`
+- "Create an M3 card using MUI" → Loads `m3-web-react` + `material-design-3-components`
 
-### For Personal Use Across Projects
-
-Copy the skills directory to your home directory:
+### Manual Install
 
 ```bash
-# For GitHub Copilot
-mkdir -p ~/.copilot/skills
-cp -r .github/skills/* ~/.copilot/skills/
+# Install all M3 skills into your project
+cp -r .github/skills/material-design-3/* /path/to/project/.github/skills/
 
-# For Claude
-mkdir -p ~/.claude/skills
-cp -r .github/skills/* ~/.claude/skills/
+# Install a single skill
+cp -r .github/skills/material-design-3/material-design-3-color /path/to/project/.github/skills/
+
+# Install globally for all projects
+cp -r .github/skills/material-design-3/* ~/.copilot/skills/
 ```
 
-### For Other Repositories
+## Repository Structure
 
-Copy the `.github/skills` directory to any repository where you want to use these skills:
-
-```bash
-cp -r .github/skills /path/to/your/repo/.github/
 ```
+.github/skills/
+├── material-design-3/          ← Skill group directory (actual files)
+│   ├── README.md
+│   ├── material-design-3-guide/
+│   ├── material-design-3-color/
+│   ├── material-design-3-typography/
+│   ├── ...
+│   ├── m3-web-react/
+│   ├── m3-web-angular/
+│   └── ...
+├── material-design-3-guide -> material-design-3/material-design-3-guide  ← symlink
+├── material-design-3-color -> material-design-3/material-design-3-color  ← symlink
+├── m3-web-react -> material-design-3/m3-web-react                        ← symlink
+└── ...
+```
+
+**Why symlinks?** GitHub Copilot only scans direct children of `.github/skills/`. The symlinks ensure Copilot discovers all skills while keeping files organized in group directories. Tools like `skills.sh` scan recursively, so they find skills in the group directories directly.
 
 ## Quick Start with Material Design 3
 
-1. **Start with the guide**: Read [material-design-3-guide](/.github/skills/material-design-3-guide/SKILL.md)
-2. **Choose your library skill**: Pick the right one for your stack (e.g., `m3-web-react`, `m3-web-angular`, `m3-web-vue`, `m3-web-ink`, etc.)
-3. **Set up foundations** in order:
-   - Color system (`material-design-3-color`)
-   - Typography (`material-design-3-typography`)
-   - Shape system (`material-design-3-shape`)
-   - Icons (`material-design-3-icons`)
-   - Layout and spacing (`material-design-3-layout`)
-4. **Build components**: Follow specs from `material-design-3-components` + your library skill
-5. **Add motion**: Implement animations (`material-design-3-motion`)
-6. **Go expressive**: Add M3 Expressive enhancements (emphasized type, expressive shapes, spring physics)
-
-## Skill Structure
-
-Each skill contains:
-- `SKILL.md` - Main instructions and guidelines
-- Supporting resources (when applicable)
-
-All skills follow the [Agent Skills specification](https://github.com/agentskills/agentskills) and work with GitHub Copilot, Claude, and other compatible AI agents.
-
-## Material Design 3
-
-Material Design 3 is Google's open-source design system, covering the full specification from Material You through M3 Expressive:
-
-### Material You (M3 Baseline)
-- **Dynamic Color**: Adaptive themes based on user preferences
-- **Token System**: CSS custom properties for consistent theming
-- **Component Library**: Complete set of accessible, themed components
-- **Type Scale**: 15 baseline type styles across five roles
-- **Shape System**: Semantic corner radius scale
-- **Elevation System**: Five levels with tinting for depth
-
-### M3 Expressive (Latest Evolution)
-- **Expressive Motion**: Physics-based spring animations with haptics
-- **Flexible Typography**: 30-style type scale with emphasized variants
-- **Distinctive Shapes**: 35 expressive shapes with smooth morphing
-- **Enhanced Color**: Fixed accent colors, contrast levels, surface containers
-- **New Components**: Split buttons, button groups, floating toolbars, FAB menus
-- **Background Blur**: Depth effects for overlays and navigation
-- **Material Symbols**: Variable font icon system with 2,500+ icons
-
-Learn more at [m3.material.io](https://m3.material.io/)
-
-### Supported Web Stacks
-
-Each web stack has its own dedicated library skill:
-
-| Stack | Library | Skill |
-|-------|---------|-------|
-| Vanilla CSS | CSS custom properties | `m3-web-vanilla` |
-| Web Components | `@material/web` | `m3-web-webcomponents` |
-| React / Next.js | MUI (`@mui/material`) | `m3-web-react` |
-| Angular | `@angular/material` | `m3-web-angular` |
-| Vue | Vuetify 3 | `m3-web-vue` |
-| Svelte | SMUI | `m3-web-svelte` |
-| Tailwind CSS | `tailwind-material-3` | `m3-web-tailwind` |
-| Ink (React CLI) | `ink` + `@inkjs/ui` | `m3-web-ink` |
-| Flutter | `material` / `m3e_design` | `m3-web-flutter` |
-| Android | Jetpack Compose Material 3 | `m3-web-android` |
+1. **Install**: `npx skills add shelbeely/Shelbeely-Agent-skills`
+2. **Start with the guide**: Read [material-design-3-guide](.github/skills/material-design-3/material-design-3-guide/SKILL.md)
+3. **Choose your stack**: Pick a library skill (e.g., `m3-web-react`, `m3-web-vue`, `m3-web-ink`)
+4. **Set up foundations**: Color → Typography → Shape → Icons → Layout
+5. **Build components**: Follow `material-design-3-components` + your library skill
+6. **Add motion**: Implement animations with `material-design-3-motion`
 
 ## Contributing
 
-Contributions are welcome! To add new skills or improve existing ones:
+To add a new skill group:
 
-1. Follow the [Agent Skills specification](https://github.com/agentskills/agentskills)
-2. Create a new directory in `.github/skills/`
-3. Add a `SKILL.md` file with proper frontmatter
-4. Update this README with your new skill
+1. Create a directory in `.github/skills/` (e.g., `.github/skills/my-topic/`)
+2. Add skill subdirectories with `SKILL.md` files following the [Agent Skills spec](https://agentskills.io/specification)
+3. Create symlinks at `.github/skills/` root for each skill (for Copilot discovery)
+4. Update this README with your new skill group
 5. Submit a pull request
 
 ## License
 
-This repository is licensed under the Apache License 2.0. See [LICENSE](LICENSE) for details.
+Apache License 2.0. See [LICENSE](LICENSE).
 
 ## Resources
 
-- [Agent Skills Specification](https://github.com/agentskills/agentskills)
+- [skills.sh — The Open Agent Skills Ecosystem](https://skills.sh/)
+- [Agent Skills Specification](https://agentskills.io/specification)
 - [GitHub Copilot Skills Documentation](https://docs.github.com/en/copilot/concepts/agents/about-agent-skills)
 - [Material Design 3](https://m3.material.io/)
-- [Example Skills Repository](https://github.com/anthropics/skills)
-
-## Acknowledgments
-
-These skills are based on [Material Design 3](https://m3.material.io/) by Google and follow the [Agent Skills specification](https://github.com/agentskills/agentskills).

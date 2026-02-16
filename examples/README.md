@@ -82,12 +82,20 @@ Coming soon:
 - `theme.css` - Complete M3 theme implementation
 - `animations.html` - M3 motion examples
 
+## Installing Skills
+
+Install all M3 skills into your project with [skills.sh](https://skills.sh/):
+
+```bash
+npx skills add shelbeely/Shelbeely-Agent-skills
+```
+
 ## How Skills Work
 
 When you prompt GitHub Copilot with Material Design 3 related requests:
 
 1. **Copilot analyzes your prompt** for keywords like "Material Design 3", "M3", "color palette", "animation", etc.
-2. **Copilot reads skill descriptions** in `.github/skills/*/SKILL.md` files
+2. **Copilot reads skill descriptions** in `.github/skills/*/SKILL.md` files (via symlinks into the `material-design-3/` group directory)
 3. **Copilot selects relevant skills** based on matching keywords and context
 4. **Copilot loads the skill instructions** into its context
 5. **Copilot generates code** following the guidelines in the loaded skills

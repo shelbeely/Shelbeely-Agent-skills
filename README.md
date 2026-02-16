@@ -12,49 +12,67 @@ Agent skills are folders of instructions, scripts, and resources that AI agents 
 
 ## Available Skills
 
-### Material Design 3 Skills
+### Material Design 3 — Core Skills
 
-This repository contains a comprehensive set of skills for implementing Google's Material Design 3 design system — from Material You foundations through M3 Expressive enhancements:
+General-purpose M3 skills that apply to Material Design 3 regardless of framework or library:
 
 #### 🎨 [material-design-3-guide](/.github/skills/material-design-3-guide)
 **Master guide** that explains when to use each Material Design 3 skill subset. Start here if you're new to Material Design 3 or need to understand which skill to apply.
 
-**Use this skill when**: Starting an M3 project, understanding the M3 system, or deciding which specific M3 skill to use.
-
 #### 🌈 [material-design-3-color](/.github/skills/material-design-3-color)
-Color palettes, dynamic theming, and accessibility for Material Design 3. Covers 26+ color roles, fixed accent colors, surface container hierarchy, and three contrast levels.
-
-**Use this skill when**: Setting up color systems, implementing themes, working with Material You dynamic colors, ensuring color accessibility, adding fixed accent colors for branding.
+Color palettes, dynamic theming, and accessibility. Covers 26+ color roles, fixed accent colors, surface container hierarchy, and three contrast levels.
 
 #### ✨ [material-design-3-motion](/.github/skills/material-design-3-motion)
 Physics-based spring animations, transitions, and micro-interactions. Covers expressive vs standard motion modes, haptics integration, and spring parameters.
 
-**Use this skill when**: Adding animations, implementing transitions, creating micro-interactions, making interfaces feel alive and responsive.
-
 #### 📝 [material-design-3-typography](/.github/skills/material-design-3-typography)
 Type scales (30 styles: 15 baseline + 15 emphasized), variable fonts, and text hierarchy.
-
-**Use this skill when**: Setting up typography systems, implementing type scales, working with Roboto or custom fonts, ensuring text readability, adding emphasized type for key moments.
 
 #### 🔲 [material-design-3-shape](/.github/skills/material-design-3-shape)
 Rounded corners, 35 expressive shapes, morphing shapes, and containment. Covers updated corner radii (Large: 20dp, XL: 32dp, XXL: 48dp).
 
-**Use this skill when**: Defining component shapes, working with border radius, creating rounded corners, morphing shapes between states, using expressive decorative shapes.
-
 #### 📐 [material-design-3-layout](/.github/skills/material-design-3-layout)
 Spacing systems, responsive grids, size hierarchy, background blur, depth effects, containment, and interaction states.
-
-**Use this skill when**: Creating layouts, implementing spacing, building responsive designs, working with grids and elevation, adding background blur for overlays.
 
 #### 🧩 [material-design-3-components](/.github/skills/material-design-3-components)
 Complete component catalog — buttons, cards, dialogs, navigation, FABs, chips, text fields, tabs, menus, and M3 Expressive additions (split buttons, button groups, floating toolbars, FAB menus).
 
-**Use this skill when**: Building or styling any UI component following M3 guidelines, looking up component specifications, implementing new M3 Expressive components.
-
 #### 🔣 [material-design-3-icons](/.github/skills/material-design-3-icons)
 Material Symbols variable font icon system — 2,500+ icons with four customizable axes (fill, weight, grade, optical size).
 
-**Use this skill when**: Adding icons to an interface, configuring Material Symbols, implementing icon accessibility, using icon fill transitions.
+### Material Design 3 — Library-Specific Skills
+
+Dedicated skills for implementing M3 with specific frameworks and libraries. Each contains setup, theming, component examples, and best practices for that stack:
+
+#### 🌐 [m3-web-vanilla](/.github/skills/m3-web-vanilla)
+M3 with vanilla CSS custom properties. Zero dependencies. Includes Beer CSS and other CSS-only frameworks.
+
+#### ⚙️ [m3-web-webcomponents](/.github/skills/m3-web-webcomponents)
+Google's official `@material/web` Lit-based web components. Framework-agnostic.
+
+#### ⚛️ [m3-web-react](/.github/skills/m3-web-react)
+React with MUI (`@mui/material`), M3-aligned theming, and Next.js SSR integration.
+
+#### 🅰️ [m3-web-angular](/.github/skills/m3-web-angular)
+Angular Material (`@angular/material`) with first-class M3 theming, SCSS mixins, and CLI schematics.
+
+#### 💚 [m3-web-vue](/.github/skills/m3-web-vue)
+Vue.js with Vuetify 3, M3 theming, dynamic color, and components.
+
+#### 🔥 [m3-web-svelte](/.github/skills/m3-web-svelte)
+Svelte/SvelteKit with SMUI or `@material/web` directly.
+
+#### 🎨 [m3-web-tailwind](/.github/skills/m3-web-tailwind)
+Tailwind CSS with M3 token integration via plugin or manual mapping.
+
+#### 💻 [m3-web-ink](/.github/skills/m3-web-ink)
+Ink (React CLI) with `@inkjs/ui` M3 theming for terminal interfaces.
+
+#### 📱 [m3-web-flutter](/.github/skills/m3-web-flutter)
+Flutter M3 theming, dynamic color (Material You), and M3 Expressive packages.
+
+#### 🤖 [m3-web-android](/.github/skills/m3-web-android)
+Jetpack Compose Material 3 with dynamic color and M3 Expressive components.
 
 ## How to Use These Skills
 
@@ -92,14 +110,14 @@ cp -r .github/skills /path/to/your/repo/.github/
 ## Quick Start with Material Design 3
 
 1. **Start with the guide**: Read [material-design-3-guide](/.github/skills/material-design-3-guide/SKILL.md)
-2. **Choose your web stack**: The guide covers M3 implementation for React (MUI), Angular Material, Vue (Vuetify), Svelte (SMUI), Web Components (`@material/web`), vanilla CSS, Tailwind CSS, Next.js, Flutter, and Android (Jetpack Compose)
+2. **Choose your library skill**: Pick the right one for your stack (e.g., `m3-web-react`, `m3-web-angular`, `m3-web-vue`, `m3-web-ink`, etc.)
 3. **Set up foundations** in order:
    - Color system (`material-design-3-color`)
    - Typography (`material-design-3-typography`)
    - Shape system (`material-design-3-shape`)
    - Icons (`material-design-3-icons`)
    - Layout and spacing (`material-design-3-layout`)
-4. **Build components**: Follow specs from (`material-design-3-components`) — includes cross-framework examples
+4. **Build components**: Follow specs from `material-design-3-components` + your library skill
 5. **Add motion**: Implement animations (`material-design-3-motion`)
 6. **Go expressive**: Add M3 Expressive enhancements (emphasized type, expressive shapes, spring physics)
 
@@ -136,24 +154,20 @@ Learn more at [m3.material.io](https://m3.material.io/)
 
 ### Supported Web Stacks
 
-These skills include implementation guidance for:
+Each web stack has its own dedicated library skill:
 
-| Stack | Library | M3 Support |
-|-------|---------|------------|
-| Vanilla CSS | CSS custom properties | Full (manual) |
-| Web Components | `@material/web` | Full M3 (official) |
-| React | MUI (`@mui/material`) | M3 theming |
-| Angular | `@angular/material` | Full M3 (official) |
-| Vue | Vuetify 3 | Full M3 |
-| Svelte | SMUI | Partial M3 |
-| Tailwind CSS | `tailwind-material-3` | Token-based M3 |
-| CSS Framework | Beer CSS | Full M3 |
-| Next.js | MUI + `@mui/material-nextjs` | M3 + SSR |
-| Ink (React CLI) | `ink` + `@inkjs/ui` | Token-based M3 |
-| Flutter | `material` / `m3e_design` | Full M3 |
-| Android | Jetpack Compose Material 3 | Full M3 + Expressive |
-
-See the [material-design-3-guide](/.github/skills/material-design-3-guide/SKILL.md) for detailed setup instructions per stack.
+| Stack | Library | Skill |
+|-------|---------|-------|
+| Vanilla CSS | CSS custom properties | `m3-web-vanilla` |
+| Web Components | `@material/web` | `m3-web-webcomponents` |
+| React / Next.js | MUI (`@mui/material`) | `m3-web-react` |
+| Angular | `@angular/material` | `m3-web-angular` |
+| Vue | Vuetify 3 | `m3-web-vue` |
+| Svelte | SMUI | `m3-web-svelte` |
+| Tailwind CSS | `tailwind-material-3` | `m3-web-tailwind` |
+| Ink (React CLI) | `ink` + `@inkjs/ui` | `m3-web-ink` |
+| Flutter | `material` / `m3e_design` | `m3-web-flutter` |
+| Android | Jetpack Compose Material 3 | `m3-web-android` |
 
 ## Contributing
 

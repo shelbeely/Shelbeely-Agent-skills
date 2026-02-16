@@ -36,43 +36,43 @@ To test if the skills are working with GitHub Copilot:
 
 ## Web Stack Testing Prompts
 
-Test that the skills provide correct framework-specific guidance:
+Test that the library-specific skills provide correct framework-specific guidance:
 
 ### Test 8: React / MUI
 **Prompt**: "Create a Material Design 3 themed React app using MUI with proper M3 color tokens"
-**Expected**: Copilot should load `material-design-3-guide` + `material-design-3-color` and create an MUI theme with `createTheme` using M3 color roles
+**Expected**: Copilot should load `m3-web-react` + `material-design-3-color` and create an MUI theme with `createTheme` using M3 color roles
 
 ### Test 9: Angular Material
 **Prompt**: "Set up Angular Material with M3 theming using SCSS and design tokens"
-**Expected**: Copilot should load `material-design-3-guide` and create SCSS with `mat.define-theme()` using M3 colors
+**Expected**: Copilot should load `m3-web-angular` and create SCSS with `mat.define-theme()` using M3 colors
 
 ### Test 10: Vue / Vuetify
 **Prompt**: "Create a Vuetify 3 theme with Material Design 3 colors and dark mode"
-**Expected**: Copilot should load `material-design-3-guide` + `material-design-3-color` and create a `createVuetify` config with M3 color tokens
+**Expected**: Copilot should load `m3-web-vue` + `material-design-3-color` and create a `createVuetify` config with M3 color tokens
 
 ### Test 11: Web Components
 **Prompt**: "Create a form using @material/web components with M3 styling"
-**Expected**: Copilot should load `material-design-3-guide` + `material-design-3-components` and use `<md-filled-text-field>`, `<md-filled-button>`, etc.
+**Expected**: Copilot should load `m3-web-webcomponents` + `material-design-3-components` and use `<md-filled-text-field>`, `<md-filled-button>`, etc.
 
 ### Test 12: Tailwind CSS
 **Prompt**: "Map Material Design 3 color tokens to Tailwind CSS theme configuration"
-**Expected**: Copilot should load `material-design-3-guide` + `material-design-3-color` and create a tailwind.config.js with M3 token mappings
+**Expected**: Copilot should load `m3-web-tailwind` + `material-design-3-color` and create a tailwind.config.js with M3 token mappings
 
 ### Test 13: Next.js
 **Prompt**: "Set up Material Design 3 in a Next.js App Router project with SSR support"
-**Expected**: Copilot should load `material-design-3-guide` and configure MUI with `AppRouterCacheProvider` for SSR
+**Expected**: Copilot should load `m3-web-react` and configure MUI with `AppRouterCacheProvider` for SSR
 
 ### Test 14: Vanilla CSS
 **Prompt**: "Create a complete M3 design token system using only CSS custom properties"
-**Expected**: Copilot should load `material-design-3-color` + `material-design-3-typography` + `material-design-3-shape` and create `:root` variables
+**Expected**: Copilot should load `m3-web-vanilla` + `material-design-3-color` + `material-design-3-typography` + `material-design-3-shape` and create `:root` variables
 
 ### Test 15: Cross-Framework Components
 **Prompt**: "Show me how to create an M3 button in React, Angular, Vue, and Svelte"
-**Expected**: Copilot should load `material-design-3-components` and show MUI Button, mat-raised-button, v-btn, and SMUI Button examples
+**Expected**: Copilot should load `m3-web-react`, `m3-web-angular`, `m3-web-vue`, and `m3-web-svelte` for framework-specific button examples
 
 ### Test 16: Ink (React CLI)
 **Prompt**: "Create a Material Design 3 themed CLI app using Ink with M3 color tokens and @inkjs/ui components"
-**Expected**: Copilot should load `material-design-3-guide` + `material-design-3-color` and create an Ink app with M3 color token mapping, ThemeProvider, and styled Box/Text components
+**Expected**: Copilot should load `m3-web-ink` + `material-design-3-color` and create an Ink app with M3 color token mapping, ThemeProvider, and styled Box/Text components
 
 ## Example Files
 
@@ -94,16 +94,31 @@ When you prompt GitHub Copilot with Material Design 3 related requests:
 
 ## Skill Keywords Reference
 
+### Core Skills
 | Skill | Keywords |
 |-------|----------|
-| material-design-3-guide | Material Design 3, M3, Material Design, design system, React, Angular, Vue, Svelte, Ink, CLI, terminal, web stack |
+| material-design-3-guide | Material Design 3, M3, Material Design, design system, web stack |
 | material-design-3-color | color, palette, theme, dynamic color, Material You, accessibility |
 | material-design-3-motion | animation, transition, motion, spring, micro-interaction |
 | material-design-3-typography | typography, type scale, font, text, Roboto, hierarchy |
 | material-design-3-shape | shape, border-radius, rounded corners, containment |
 | material-design-3-layout | layout, spacing, grid, responsive, breakpoint, elevation |
-| material-design-3-components | component, button, card, dialog, navigation, FAB, MUI, Vuetify, Angular Material, Ink, CLI |
+| material-design-3-components | component, button, card, dialog, navigation, FAB |
 | material-design-3-icons | icon, Material Symbols, variable font, FILL, weight |
+
+### Library-Specific Skills
+| Skill | Keywords |
+|-------|----------|
+| m3-web-vanilla | vanilla CSS, CSS custom properties, Beer CSS, no framework |
+| m3-web-webcomponents | web components, @material/web, Lit, custom elements |
+| m3-web-react | React, MUI, Material UI, Next.js, SSR |
+| m3-web-angular | Angular, Angular Material, SCSS, schematics |
+| m3-web-vue | Vue, Vuetify, Vuetify 3 |
+| m3-web-svelte | Svelte, SMUI, SvelteKit |
+| m3-web-tailwind | Tailwind CSS, utility-first, tailwind-material-3 |
+| m3-web-ink | Ink, CLI, terminal, @inkjs/ui, command-line |
+| m3-web-flutter | Flutter, Dart, mobile, cross-platform |
+| m3-web-android | Android, Jetpack Compose, Kotlin, Material You |
 
 ## Tips for Effective Prompts
 

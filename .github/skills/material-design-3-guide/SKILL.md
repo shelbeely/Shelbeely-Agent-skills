@@ -444,7 +444,7 @@ M3 can be implemented across many web stacks. Each framework has different libra
 | **CSS Framework** | Beer CSS | Full M3 | Active, lightweight |
 | **Next.js** | MUI + `@mui/material-nextjs` | M3 + SSR | Active |
 | **Flutter** | `material` / `m3e_design` | Full M3 | Official (Expressive paused) |
-| **Android** | Jetpack Compose Material 3 | Full M3 + Expressive | Official, active |
+| **Android** | Jetpack Compose Material 3 | Full M3, Expressive (Android 16+) | Official, active |
 
 ---
 

@@ -198,7 +198,9 @@ Build a navigation component following M3 guidelines
 
 ## Figma MCP Server
 
-This repository includes a [Figma MCP server](https://developers.figma.com/docs/figma-mcp-server/remote-server-installation/) configuration for the [GitHub Copilot coding agent](https://docs.github.com/en/copilot/how-tos/use-copilot-agents/coding-agent/extend-coding-agent-with-mcp). The configuration is in [`.github/copilot/mcp.json`](.github/copilot/mcp.json) and connects to Figma's remote MCP server.
+This repository includes a [Figma MCP server](https://developers.figma.com/docs/figma-mcp-server/remote-server-installation/) configuration for the [GitHub Copilot coding agent](https://docs.github.com/en/copilot/how-tos/use-copilot-agents/coding-agent/extend-coding-agent-with-mcp). The configuration is in [`.github/copilot/mcp.json`](.github/copilot/mcp.json) and uses the [`figma-developer-mcp`](https://www.npmjs.com/package/figma-developer-mcp) local server with a Figma Personal Access Token.
+
+> **Note:** The Copilot coding agent [does not support OAuth-based remote MCP servers](https://docs.github.com/en/copilot/how-tos/use-copilot-agents/coding-agent/extend-coding-agent-with-mcp), so this configuration uses the local `figma-developer-mcp` package with a Personal Access Token instead of Figma's remote OAuth endpoint.
 
 With the Figma MCP server enabled, the coding agent can:
 - Generate code from Figma design frames
@@ -207,10 +209,10 @@ With the Figma MCP server enabled, the coding agent can:
 
 ### Setup
 
-1. Copy the MCP configuration from `.github/copilot/mcp.json` into your repository's **Settings > Copilot > Coding agent > MCP configuration**.
-2. When prompted, authenticate with your Figma account to allow access.
-
-For VS Code, you can also use the configuration directly by referencing it in your workspace MCP settings.
+1. Generate a Personal Access Token in Figma (**Account Settings > Security > Personal Access Tokens**).
+2. In your repository, go to **Settings > Environments** and create a `copilot` environment (if it doesn't exist).
+3. Add an environment secret named `COPILOT_MCP_FIGMA_API_KEY` with your Figma PAT as the value.
+4. Copy the MCP configuration from `.github/copilot/mcp.json` into your repository's **Settings > Copilot > Coding agent > MCP configuration**.
 
 ## Skill Structure
 

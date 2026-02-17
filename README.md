@@ -219,10 +219,42 @@ With the Figma MCP server enabled, the coding agent can:
 
 ### Setup
 
+> **Important:** The `.github/copilot/mcp.json` file is a reference template only — it is **not** automatically read by the coding agent. You must copy the configuration into the repository settings UI for it to take effect.
+
 1. Generate a Personal Access Token in Figma (**Account Settings > Security > Personal Access Tokens**).
 2. In your repository, go to **Settings > Environments** and create a `copilot` environment (if it doesn't exist).
 3. Add an environment secret named `COPILOT_MCP_FIGMA_API_KEY` with your Figma PAT as the value.
-4. Copy the MCP configuration from `.github/copilot/mcp.json` into your repository's **Settings > Copilot > Coding agent > MCP configuration**.
+4. Go to **Settings > Copilot > Coding agent > MCP configuration** and paste the following:
+
+```json
+{
+  "mcpServers": {
+    "figma": {
+      "type": "local",
+      "command": "npx",
+      "args": ["-y", "figma-developer-mcp", "--stdio"],
+      "env": {
+        "FIGMA_API_KEY": "COPILOT_MCP_FIGMA_API_KEY"
+      },
+      "tools": ["*"]
+    }
+  }
+}
+```
+
+### Verification
+
+After setup, verify the Figma MCP server is working:
+
+1. Create or assign an issue to Copilot.
+2. Open the pull request Copilot creates and click **View session**.
+3. Expand the **Start MCP Servers** step — you should see the Figma server's tools listed.
+
+If no tools appear, check that:
+- The `COPILOT_MCP_FIGMA_API_KEY` secret is set in the `copilot` environment.
+- The MCP configuration is saved in **Settings > Copilot > Coding agent** (not just in the `mcp.json` file).
+- The Figma PAT has not expired.
+
 ## Official M3 Resources
 
 - M3 specification: https://m3.material.io/

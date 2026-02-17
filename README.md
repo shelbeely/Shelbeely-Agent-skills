@@ -175,6 +175,16 @@ Android Jetpack Compose Material 3 implementation. `MaterialTheme`, dynamic colo
 - "Set up Compose Material 3"
 - Using `androidx.compose.material3`
 
+### material-theme-builder
+
+Generate complete M3 color themes programmatically from any source color using `@material/material-color-utilities`. Includes a ready-to-run script.
+
+**Use when:**
+- "Generate an M3 theme from my brand color"
+- "Create color tokens from #FF9800"
+- Generating light/dark palettes programmatically
+- Exporting M3 tokens as CSS or JSON
+
 ## Installation
 
 ```bash
@@ -200,6 +210,7 @@ Build a navigation component following M3 guidelines
 
 Each skill contains:
 - `SKILL.md` — Instructions for the agent (YAML frontmatter + Markdown)
+- Optional scripts, examples, or config files referenced by the instructions
 
 Skills are authored in `skills/` and symlinked into `.github/skills/` for [Copilot coding agent](https://docs.github.com/en/copilot/how-tos/use-copilot-agents/coding-agent/create-skills) discovery.
 

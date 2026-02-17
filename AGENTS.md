@@ -12,6 +12,7 @@ A collection of Material Design 3 agent skills covering the full specification f
 skills/
   {skill-name}/           # kebab-case directory name
     SKILL.md              # Required: skill definition with YAML frontmatter
+    *.mjs, *.css, *.ts    # Optional: scripts, examples, config files
 .github/
   skills/
     {skill-name} -> ../../skills/{skill-name}   # Symlinks for Copilot discovery
@@ -53,6 +54,7 @@ General-purpose M3 skills that apply regardless of framework:
 - `material-design-3-layout` — Responsive layout, containment, spacing
 - `material-design-3-components` — Component catalog and specs
 - `material-design-3-icons` — Material Symbols implementation
+- `material-theme-builder` — Programmatic M3 theme generation from source colors
 
 ### Library-Specific Skills
 

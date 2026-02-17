@@ -352,7 +352,9 @@ When generating color schemes from a source color:
 
 ## Tools and Resources
 
-- **Material Theme Builder**: Use to generate complete color schemes from source colors (now supports fixed accents and contrast levels)
+- **`tokens.css`**: Ready-to-use M3 color tokens (light + dark) based on the orange baseline palette (#FF9800), included in this skill's directory. Copy into your project and customize.
+- **`material-theme-builder` skill**: Use to generate a complete token set from any source color programmatically.
+- **Material Theme Builder**: https://material-foundation.github.io/material-theme-builder/ — interactive web tool for generating color schemes
 - **Color Contrast Checker**: Validate WCAG compliance for all text and interactive elements
 - **HCT Color Space**: Leverage for perceptually uniform color generation
 - **CSS Custom Properties**: Implement dynamic theming with CSS variables and data attributes

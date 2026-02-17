@@ -196,6 +196,22 @@ Set up M3 color theming with dark mode
 Build a navigation component following M3 guidelines
 ```
 
+## Figma MCP Server
+
+This repository includes a [Figma MCP server](https://developers.figma.com/docs/figma-mcp-server/remote-server-installation/) configuration for the [GitHub Copilot coding agent](https://docs.github.com/en/copilot/how-tos/use-copilot-agents/coding-agent/extend-coding-agent-with-mcp). The configuration is in [`.github/copilot/mcp.json`](.github/copilot/mcp.json) and connects to Figma's remote MCP server.
+
+With the Figma MCP server enabled, the coding agent can:
+- Generate code from Figma design frames
+- Extract design context (variables, components, layout data)
+- Keep design system components consistent with Code Connect
+
+### Setup
+
+1. Copy the MCP configuration from `.github/copilot/mcp.json` into your repository's **Settings > Copilot > Coding agent > MCP configuration**.
+2. When prompted, authenticate with your Figma account to allow access.
+
+For VS Code, you can also use the configuration directly by referencing it in your workspace MCP settings.
+
 ## Skill Structure
 
 Each skill contains:

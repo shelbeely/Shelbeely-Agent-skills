@@ -3,6 +3,9 @@ name: Export SVG from Figma
 on:
   workflow_dispatch:
 
+permissions:
+  contents: write
+
 jobs:
   figma-export:
     name: Figma Export
@@ -17,8 +20,10 @@ jobs:
           FIGMA_FILE_URL: "https://www.figma.com/file/lC2BGHfMdhAmcEFhx9S6df/Material-3-Design-Kit--Community-"
           FIGMA_TOKEN: ${{ secrets.COPILOT_MCP_FIGMA_API_KEY }}
 
-      - name: Upload exported assets
-        uses: actions/upload-artifact@v4
-        with:
-          name: figma-export
-          path: ./figma-export/
+      - name: Commit exported assets
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add figma-export/
+          git diff --cached --quiet || git commit -m "Update Figma export assets"
+          git push

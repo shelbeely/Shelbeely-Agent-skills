@@ -232,7 +232,7 @@ This repository includes a GitHub Actions workflow ([`.github/workflows/figma-ex
 1. Add a repository secret named `COPILOT_MCP_FIGMA_API_KEY` with your Figma Personal Access Token.
 2. Go to **Actions > Export SVG from Figma** and click **Run workflow**.
 
-Exported components are uploaded as a workflow artifact named `figma-export`.
+Exported components are committed to the `figma-export/` directory in the repository.
 
 ## Official M3 Resources
 

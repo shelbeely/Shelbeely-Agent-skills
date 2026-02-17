@@ -5,10 +5,18 @@
  * 
  * Handles large Figma files by batching component export requests
  * to avoid HTTP 414 (URI Too Long) errors.
+ * 
+ * Rate limiting is handled per Figma's official documentation:
+ * https://developers.figma.com/docs/rest-api/rate-limits/
+ * 
+ * - Respects the Retry-After header in 429 responses
+ * - Falls back to exponential backoff if header is missing
+ * - GET /v1/files/{file_key} is Tier 2 (file metadata)
+ * - GET /v1/images/{file_key} is Tier 1 (image exports)
  */
 
 import { writeFile, mkdir } from 'fs/promises';
-import { join } from 'path';
+import { join, dirname } from 'path';
 
 // Configuration
 const FIGMA_FILE_URL = process.env.FIGMA_FILE_URL;
@@ -16,6 +24,9 @@ const FIGMA_TOKEN = process.env.FIGMA_TOKEN;
 const OUTPUT_DIR = process.env.OUTPUT_DIR || './figma-export';
 const BATCH_SIZE = parseInt(process.env.BATCH_SIZE || '50', 10); // Max components per API request
 const FILTER_PATTERN = process.env.FILTER_PATTERN || ''; // Optional: filter components by name
+const MAX_RETRIES = 3; // Maximum retry attempts for rate-limited requests
+const INITIAL_RETRY_DELAY = 2000; // Initial delay in ms before retrying (exponential backoff)
+const BATCH_DELAY = 1000; // Delay between batches to avoid rate limiting
 
 // Validate batch size
 if (!Number.isInteger(BATCH_SIZE) || BATCH_SIZE <= 0) {
@@ -31,68 +42,154 @@ function extractFileKey(url) {
   return match[1];
 }
 
+// Sleep utility for delays
+function sleep(ms) {
+  return new Promise(resolve => setTimeout(resolve, ms));
+}
+
 // Fetch file metadata to get all components
 async function getFileComponents(fileKey) {
   console.log(`Fetching file metadata for ${fileKey}...`);
-  const response = await fetch(
-    `https://api.figma.com/v1/files/${fileKey}`,
-    {
-      headers: {
-        'X-Figma-Token': FIGMA_TOKEN,
-      },
-    }
-  );
+  
+  let lastError;
+  for (let attempt = 0; attempt <= MAX_RETRIES; attempt++) {
+    try {
+      const response = await fetch(
+        `https://api.figma.com/v1/files/${fileKey}`,
+        {
+          headers: {
+            'X-Figma-Token': FIGMA_TOKEN,
+          },
+        }
+      );
 
-  if (!response.ok) {
-    throw new Error(`Failed to fetch file: ${response.status} ${response.statusText}`);
+      if (!response.ok) {
+        // Handle rate limiting per Figma's documentation
+        if (response.status === 429) {
+          if (attempt < MAX_RETRIES) {
+            // Use Retry-After header if available, otherwise fallback to exponential backoff
+            const retryAfter = response.headers.get('Retry-After');
+            const retryDelay = retryAfter 
+              ? parseInt(retryAfter, 10) * 1000 
+              : INITIAL_RETRY_DELAY * Math.pow(2, attempt);
+            
+            // Log additional rate limit info if available
+            const planTier = response.headers.get('X-Figma-Plan-Tier');
+            const rateLimitType = response.headers.get('X-Figma-Rate-Limit-Type');
+            
+            console.log(`  ⚠ Rate limited (429). Retry in ${retryDelay}ms (attempt ${attempt + 1}/${MAX_RETRIES})`);
+            if (planTier) console.log(`  Plan: ${planTier}, Limit Type: ${rateLimitType}`);
+            
+            await sleep(retryDelay);
+            continue;
+          }
+        }
+        
+        throw new Error(`Failed to fetch file: ${response.status} ${response.statusText}`);
+      }
+
+      const data = await response.json();
+      const components = [];
+
+      // Recursively find all components
+      function traverse(node) {
+        if (node.type === 'COMPONENT' || node.type === 'COMPONENT_SET') {
+          components.push({
+            id: node.id,
+            name: node.name,
+            type: node.type,
+          });
+        }
+        if (node.children) {
+          node.children.forEach(traverse);
+        }
+      }
+
+      traverse(data.document);
+      return components;
+    } catch (error) {
+      lastError = error;
+      
+      // Only retry on network errors
+      if (attempt < MAX_RETRIES && (error.name === 'TypeError' || error.message.includes('fetch failed'))) {
+        const retryDelay = INITIAL_RETRY_DELAY * Math.pow(2, attempt);
+        console.log(`  ⚠ Network error. Retrying in ${retryDelay}ms... (attempt ${attempt + 1}/${MAX_RETRIES})`);
+        await sleep(retryDelay);
+        continue;
+      }
+      
+      throw error;
+    }
   }
-
-  const data = await response.json();
-  const components = [];
-
-  // Recursively find all components
-  function traverse(node) {
-    if (node.type === 'COMPONENT' || node.type === 'COMPONENT_SET') {
-      components.push({
-        id: node.id,
-        name: node.name,
-        type: node.type,
-      });
-    }
-    if (node.children) {
-      node.children.forEach(traverse);
-    }
-  }
-
-  traverse(data.document);
-  return components;
+  
+  throw lastError;
 }
 
-// Export components in batches
+// Export components in batches with retry logic
 async function exportComponentsBatch(fileKey, componentIds, format = 'svg') {
   const ids = componentIds.join(',');
   const url = `https://api.figma.com/v1/images/${fileKey}?ids=${ids}&format=${format}`;
 
   console.log(`Exporting batch of ${componentIds.length} components...`);
   
-  const response = await fetch(url, {
-    headers: {
-      'X-Figma-Token': FIGMA_TOKEN,
-    },
-  });
+  let lastError;
+  for (let attempt = 0; attempt <= MAX_RETRIES; attempt++) {
+    try {
+      const response = await fetch(url, {
+        headers: {
+          'X-Figma-Token': FIGMA_TOKEN,
+        },
+      });
 
-  if (!response.ok) {
-    const errorText = await response.text();
-    throw new Error(`Failed to export components: ${response.status} ${response.statusText}\n${errorText}`);
+      if (!response.ok) {
+        // Handle rate limiting per Figma's documentation
+        if (response.status === 429) {
+          if (attempt < MAX_RETRIES) {
+            // Use Retry-After header if available, otherwise fallback to exponential backoff
+            const retryAfter = response.headers.get('Retry-After');
+            const retryDelay = retryAfter 
+              ? parseInt(retryAfter, 10) * 1000 
+              : INITIAL_RETRY_DELAY * Math.pow(2, attempt);
+            
+            // Log additional rate limit info if available
+            const planTier = response.headers.get('X-Figma-Plan-Tier');
+            const rateLimitType = response.headers.get('X-Figma-Rate-Limit-Type');
+            
+            console.log(`  ⚠ Rate limited (429). Retry in ${retryDelay}ms (attempt ${attempt + 1}/${MAX_RETRIES})`);
+            if (planTier) console.log(`  Plan: ${planTier}, Limit Type: ${rateLimitType}`);
+            
+            await sleep(retryDelay);
+            continue;
+          }
+        }
+        
+        const errorText = await response.text();
+        throw new Error(`Failed to export components: ${response.status} ${response.statusText}\n${errorText}`);
+      }
+
+      const data = await response.json();
+      
+      if (data.err) {
+        throw new Error(`Figma API error: ${data.err}`);
+      }
+
+      return data.images;
+    } catch (error) {
+      lastError = error;
+      
+      // Only retry on network errors, not on API errors
+      if (attempt < MAX_RETRIES && (error.name === 'TypeError' || error.message.includes('fetch failed'))) {
+        const retryDelay = INITIAL_RETRY_DELAY * Math.pow(2, attempt);
+        console.log(`  ⚠ Network error. Retrying in ${retryDelay}ms... (attempt ${attempt + 1}/${MAX_RETRIES})`);
+        await sleep(retryDelay);
+        continue;
+      }
+      
+      throw error;
+    }
   }
-
-  const data = await response.json();
   
-  if (data.err) {
-    throw new Error(`Figma API error: ${data.err}`);
-  }
-
-  return data.images;
+  throw lastError;
 }
 
 // Download and save SVG
@@ -195,7 +292,7 @@ async function exportFigmaAssets() {
 
       // Rate limiting: wait between batches
       if (i < batches.length - 1) {
-        await new Promise(resolve => setTimeout(resolve, 500));
+        await sleep(BATCH_DELAY);
       }
     } catch (error) {
       console.error(`  ✗ Batch failed: ${error.message}`);

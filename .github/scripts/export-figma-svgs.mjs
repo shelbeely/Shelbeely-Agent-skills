@@ -5,6 +5,14 @@
  * 
  * Handles large Figma files by batching component export requests
  * to avoid HTTP 414 (URI Too Long) errors.
+ * 
+ * Rate limiting is handled per Figma's official documentation:
+ * https://developers.figma.com/docs/rest-api/rate-limits/
+ * 
+ * - Respects the Retry-After header in 429 responses
+ * - Falls back to exponential backoff if header is missing
+ * - GET /v1/files/{file_key} is Tier 2 (file metadata)
+ * - GET /v1/images/{file_key} is Tier 1 (image exports)
  */
 
 import { writeFile, mkdir } from 'fs/promises';
@@ -42,38 +50,79 @@ function sleep(ms) {
 // Fetch file metadata to get all components
 async function getFileComponents(fileKey) {
   console.log(`Fetching file metadata for ${fileKey}...`);
-  const response = await fetch(
-    `https://api.figma.com/v1/files/${fileKey}`,
-    {
-      headers: {
-        'X-Figma-Token': FIGMA_TOKEN,
-      },
-    }
-  );
+  
+  let lastError;
+  for (let attempt = 0; attempt <= MAX_RETRIES; attempt++) {
+    try {
+      const response = await fetch(
+        `https://api.figma.com/v1/files/${fileKey}`,
+        {
+          headers: {
+            'X-Figma-Token': FIGMA_TOKEN,
+          },
+        }
+      );
 
-  if (!response.ok) {
-    throw new Error(`Failed to fetch file: ${response.status} ${response.statusText}`);
+      if (!response.ok) {
+        // Handle rate limiting per Figma's documentation
+        if (response.status === 429) {
+          if (attempt < MAX_RETRIES) {
+            // Use Retry-After header if available, otherwise fallback to exponential backoff
+            const retryAfter = response.headers.get('Retry-After');
+            const retryDelay = retryAfter 
+              ? parseInt(retryAfter, 10) * 1000 
+              : INITIAL_RETRY_DELAY * Math.pow(2, attempt);
+            
+            // Log additional rate limit info if available
+            const planTier = response.headers.get('X-Figma-Plan-Tier');
+            const rateLimitType = response.headers.get('X-Figma-Rate-Limit-Type');
+            
+            console.log(`  ⚠ Rate limited (429). Retry in ${retryDelay}ms (attempt ${attempt + 1}/${MAX_RETRIES})`);
+            if (planTier) console.log(`  Plan: ${planTier}, Limit Type: ${rateLimitType}`);
+            
+            await sleep(retryDelay);
+            continue;
+          }
+        }
+        
+        throw new Error(`Failed to fetch file: ${response.status} ${response.statusText}`);
+      }
+
+      const data = await response.json();
+      const components = [];
+
+      // Recursively find all components
+      function traverse(node) {
+        if (node.type === 'COMPONENT' || node.type === 'COMPONENT_SET') {
+          components.push({
+            id: node.id,
+            name: node.name,
+            type: node.type,
+          });
+        }
+        if (node.children) {
+          node.children.forEach(traverse);
+        }
+      }
+
+      traverse(data.document);
+      return components;
+    } catch (error) {
+      lastError = error;
+      
+      // Only retry on network errors
+      if (attempt < MAX_RETRIES && (error.name === 'TypeError' || error.message.includes('fetch failed'))) {
+        const retryDelay = INITIAL_RETRY_DELAY * Math.pow(2, attempt);
+        console.log(`  ⚠ Network error. Retrying in ${retryDelay}ms... (attempt ${attempt + 1}/${MAX_RETRIES})`);
+        await sleep(retryDelay);
+        continue;
+      }
+      
+      throw error;
+    }
   }
-
-  const data = await response.json();
-  const components = [];
-
-  // Recursively find all components
-  function traverse(node) {
-    if (node.type === 'COMPONENT' || node.type === 'COMPONENT_SET') {
-      components.push({
-        id: node.id,
-        name: node.name,
-        type: node.type,
-      });
-    }
-    if (node.children) {
-      node.children.forEach(traverse);
-    }
-  }
-
-  traverse(data.document);
-  return components;
+  
+  throw lastError;
 }
 
 // Export components in batches with retry logic
@@ -93,11 +142,22 @@ async function exportComponentsBatch(fileKey, componentIds, format = 'svg') {
       });
 
       if (!response.ok) {
-        // Handle rate limiting with exponential backoff
+        // Handle rate limiting per Figma's documentation
         if (response.status === 429) {
           if (attempt < MAX_RETRIES) {
-            const retryDelay = INITIAL_RETRY_DELAY * Math.pow(2, attempt);
-            console.log(`  ⚠ Rate limited (429). Retrying in ${retryDelay}ms... (attempt ${attempt + 1}/${MAX_RETRIES})`);
+            // Use Retry-After header if available, otherwise fallback to exponential backoff
+            const retryAfter = response.headers.get('Retry-After');
+            const retryDelay = retryAfter 
+              ? parseInt(retryAfter, 10) * 1000 
+              : INITIAL_RETRY_DELAY * Math.pow(2, attempt);
+            
+            // Log additional rate limit info if available
+            const planTier = response.headers.get('X-Figma-Plan-Tier');
+            const rateLimitType = response.headers.get('X-Figma-Rate-Limit-Type');
+            
+            console.log(`  ⚠ Rate limited (429). Retry in ${retryDelay}ms (attempt ${attempt + 1}/${MAX_RETRIES})`);
+            if (planTier) console.log(`  Plan: ${planTier}, Limit Type: ${rateLimitType}`);
+            
             await sleep(retryDelay);
             continue;
           }

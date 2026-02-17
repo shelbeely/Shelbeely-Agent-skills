@@ -223,16 +223,35 @@ With the Figma MCP server enabled, the coding agent can:
 2. In your repository, go to **Settings > Environments** and create a `copilot` environment (if it doesn't exist).
 3. Add an environment secret named `COPILOT_MCP_FIGMA_API_KEY` with your Figma PAT as the value.
 4. Copy the MCP configuration from `.github/copilot/mcp.json` into your repository's **Settings > Copilot > Coding agent > MCP configuration**.
-## Figma Export Action
+## Figma SVG Export
 
-This repository includes a GitHub Actions workflow ([`.github/workflows/figma-export.yml`](.github/workflows/figma-export.yml)) that exports SVG components from the [Material 3 Design Kit](https://www.figma.com/design/lC2BGHfMdhAmcEFhx9S6df/Material-3-Design-Kit--Community-) Figma file using [`primer/figma-action`](https://github.com/primer/figma-action).
+This repository includes a custom GitHub Actions workflow ([`.github/workflows/figma-export.yml`](.github/workflows/figma-export.yml)) that exports SVG components from the [Material 3 Design Kit](https://www.figma.com/design/lC2BGHfMdhAmcEFhx9S6df/Material-3-Design-Kit--Community-) Figma file.
 
-### Setup
+The workflow uses a custom Node.js script ([`.github/scripts/export-figma-svgs.mjs`](.github/scripts/export-figma-svgs.mjs)) that implements **batched exports** to handle the 5,597+ components in the M3 Design Kit without hitting Figma API URL length limits.
 
-1. Add a repository secret named `COPILOT_MCP_FIGMA_API_KEY` with your Figma Personal Access Token.
+### Features
+
+- **Batched requests**: Exports components in configurable batches (default: 50 per batch) to avoid HTTP 414 errors
+- **Filtering**: Use regex patterns to export only specific components (e.g., shape patterns, icons)
+- **Progress tracking**: Real-time console output showing export progress
+- **Error resilience**: Continues exporting even if individual components fail
+
+### Usage
+
+1. Ensure the `COPILOT_MCP_FIGMA_API_KEY` secret is set in the `copilot` environment (see [Figma MCP Server](#figma-mcp-server) setup).
 2. Go to **Actions > Export SVG from Figma** and click **Run workflow**.
+3. Optionally configure:
+   - **Filter pattern**: Regex to match component names (e.g., `shape.*expressive` for expressive shapes)
+   - **Batch size**: Number of components per API request (default: 50)
 
-Exported components are committed to the `figma-export/` directory in the repository.
+Exported SVGs are committed to the `figma-export/` directory.
+
+### Example Filters
+
+- `shape.*expressive` — Export only expressive shape components
+- `icon` — Export components with "icon" in the name
+- `^Button` — Export components starting with "Button"
+- Leave empty to export all components (may take 10+ minutes for the full M3 Design Kit)
 
 ## Official M3 Resources
 

@@ -8,7 +8,7 @@
  */
 
 import { writeFile, mkdir } from 'fs/promises';
-import { join } from 'path';
+import { join, dirname } from 'path';
 
 // Configuration
 const FIGMA_FILE_URL = process.env.FIGMA_FILE_URL;
@@ -16,6 +16,9 @@ const FIGMA_TOKEN = process.env.FIGMA_TOKEN;
 const OUTPUT_DIR = process.env.OUTPUT_DIR || './figma-export';
 const BATCH_SIZE = parseInt(process.env.BATCH_SIZE || '50', 10); // Max components per API request
 const FILTER_PATTERN = process.env.FILTER_PATTERN || ''; // Optional: filter components by name
+const MAX_RETRIES = 3; // Maximum retry attempts for rate-limited requests
+const INITIAL_RETRY_DELAY = 2000; // Initial delay in ms before retrying (exponential backoff)
+const BATCH_DELAY = 1000; // Delay between batches to avoid rate limiting
 
 // Validate batch size
 if (!Number.isInteger(BATCH_SIZE) || BATCH_SIZE <= 0) {
@@ -29,6 +32,11 @@ function extractFileKey(url) {
     throw new Error(`Invalid Figma file URL: ${url}`);
   }
   return match[1];
+}
+
+// Sleep utility for delays
+function sleep(ms) {
+  return new Promise(resolve => setTimeout(resolve, ms));
 }
 
 // Fetch file metadata to get all components
@@ -68,31 +76,60 @@ async function getFileComponents(fileKey) {
   return components;
 }
 
-// Export components in batches
+// Export components in batches with retry logic
 async function exportComponentsBatch(fileKey, componentIds, format = 'svg') {
   const ids = componentIds.join(',');
   const url = `https://api.figma.com/v1/images/${fileKey}?ids=${ids}&format=${format}`;
 
   console.log(`Exporting batch of ${componentIds.length} components...`);
   
-  const response = await fetch(url, {
-    headers: {
-      'X-Figma-Token': FIGMA_TOKEN,
-    },
-  });
+  let lastError;
+  for (let attempt = 0; attempt <= MAX_RETRIES; attempt++) {
+    try {
+      const response = await fetch(url, {
+        headers: {
+          'X-Figma-Token': FIGMA_TOKEN,
+        },
+      });
 
-  if (!response.ok) {
-    const errorText = await response.text();
-    throw new Error(`Failed to export components: ${response.status} ${response.statusText}\n${errorText}`);
+      if (!response.ok) {
+        // Handle rate limiting with exponential backoff
+        if (response.status === 429) {
+          if (attempt < MAX_RETRIES) {
+            const retryDelay = INITIAL_RETRY_DELAY * Math.pow(2, attempt);
+            console.log(`  ⚠ Rate limited (429). Retrying in ${retryDelay}ms... (attempt ${attempt + 1}/${MAX_RETRIES})`);
+            await sleep(retryDelay);
+            continue;
+          }
+        }
+        
+        const errorText = await response.text();
+        throw new Error(`Failed to export components: ${response.status} ${response.statusText}\n${errorText}`);
+      }
+
+      const data = await response.json();
+      
+      if (data.err) {
+        throw new Error(`Figma API error: ${data.err}`);
+      }
+
+      return data.images;
+    } catch (error) {
+      lastError = error;
+      
+      // Only retry on network errors, not on API errors
+      if (attempt < MAX_RETRIES && (error.name === 'TypeError' || error.message.includes('fetch failed'))) {
+        const retryDelay = INITIAL_RETRY_DELAY * Math.pow(2, attempt);
+        console.log(`  ⚠ Network error. Retrying in ${retryDelay}ms... (attempt ${attempt + 1}/${MAX_RETRIES})`);
+        await sleep(retryDelay);
+        continue;
+      }
+      
+      throw error;
+    }
   }
-
-  const data = await response.json();
   
-  if (data.err) {
-    throw new Error(`Figma API error: ${data.err}`);
-  }
-
-  return data.images;
+  throw lastError;
 }
 
 // Download and save SVG
@@ -195,7 +232,7 @@ async function exportFigmaAssets() {
 
       // Rate limiting: wait between batches
       if (i < batches.length - 1) {
-        await new Promise(resolve => setTimeout(resolve, 500));
+        await sleep(BATCH_DELAY);
       }
     } catch (error) {
       console.error(`  ✗ Batch failed: ${error.message}`);

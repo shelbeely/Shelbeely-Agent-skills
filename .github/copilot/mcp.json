@@ -1,0 +1,13 @@
+{
+  "mcpServers": {
+    "figma": {
+      "type": "local",
+      "command": "npx",
+      "args": ["-y", "figma-developer-mcp", "--stdio"],
+      "env": {
+        "FIGMA_API_KEY": "COPILOT_MCP_FIGMA_API_KEY"
+      },
+      "tools": ["*"]
+    }
+  }
+}

@@ -1,0 +1,264 @@
+<!DOCTYPE html>
+<!--
+  M3 Type Scale Example — Complete M3 typography hierarchy
+
+  Demonstrates all M3 type scale levels (display, headline, title,
+  body, label) with the correct size, weight, and line-height values.
+
+  Usage: Open in a browser or reference as a visual guide for M3
+  typography hierarchy. Copy CSS custom properties into your project.
+
+  See: https://m3.material.io/styles/typography/overview
+  License: Apache-2.0
+-->
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>M3 Type Scale</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --md-ref-typeface-brand: 'Roboto', system-ui, sans-serif;
+      --md-ref-typeface-plain: 'Roboto', system-ui, sans-serif;
+      --md-ref-typeface-weight-regular: 400;
+      --md-ref-typeface-weight-medium: 500;
+      --md-ref-typeface-weight-bold: 700;
+
+      /* M3 surface colors (orange palette) */
+      --md-sys-color-surface: #FFF8F4;
+      --md-sys-color-on-surface: #211A13;
+      --md-sys-color-on-surface-variant: #51443A;
+      --md-sys-color-primary: #8B5000;
+      --md-sys-color-outline-variant: #D7C3B5;
+    }
+
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+
+    body {
+      font-family: var(--md-ref-typeface-plain);
+      background: var(--md-sys-color-surface);
+      color: var(--md-sys-color-on-surface);
+      padding: 32px;
+      max-width: 900px;
+      margin: 0 auto;
+    }
+
+    h1 {
+      font-size: 22px;
+      font-weight: var(--md-ref-typeface-weight-medium);
+      color: var(--md-sys-color-primary);
+      margin-bottom: 24px;
+    }
+
+    .scale-group {
+      margin-bottom: 32px;
+    }
+
+    .group-label {
+      font-size: 11px;
+      font-weight: var(--md-ref-typeface-weight-medium);
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      color: var(--md-sys-color-on-surface-variant);
+      margin-bottom: 12px;
+      padding-bottom: 4px;
+      border-bottom: 1px solid var(--md-sys-color-outline-variant);
+    }
+
+    .type-sample {
+      display: flex;
+      align-items: baseline;
+      gap: 16px;
+      margin-bottom: 8px;
+      padding: 8px 0;
+    }
+
+    .type-meta {
+      min-width: 180px;
+      font-size: 11px;
+      color: var(--md-sys-color-on-surface-variant);
+      font-family: 'Roboto Mono', monospace;
+    }
+
+    /* ─── Display ──────────────────────────── */
+    .display-large {
+      font-family: var(--md-ref-typeface-brand);
+      font-size: 57px; line-height: 64px;
+      font-weight: var(--md-ref-typeface-weight-regular);
+      letter-spacing: -0.25px;
+    }
+    .display-medium {
+      font-family: var(--md-ref-typeface-brand);
+      font-size: 45px; line-height: 52px;
+      font-weight: var(--md-ref-typeface-weight-regular);
+    }
+    .display-small {
+      font-family: var(--md-ref-typeface-brand);
+      font-size: 36px; line-height: 44px;
+      font-weight: var(--md-ref-typeface-weight-regular);
+    }
+
+    /* ─── Headline ─────────────────────────── */
+    .headline-large {
+      font-family: var(--md-ref-typeface-brand);
+      font-size: 32px; line-height: 40px;
+      font-weight: var(--md-ref-typeface-weight-regular);
+    }
+    .headline-medium {
+      font-family: var(--md-ref-typeface-brand);
+      font-size: 28px; line-height: 36px;
+      font-weight: var(--md-ref-typeface-weight-regular);
+    }
+    .headline-small {
+      font-family: var(--md-ref-typeface-brand);
+      font-size: 24px; line-height: 32px;
+      font-weight: var(--md-ref-typeface-weight-regular);
+    }
+
+    /* ─── Title ────────────────────────────── */
+    .title-large {
+      font-family: var(--md-ref-typeface-brand);
+      font-size: 22px; line-height: 28px;
+      font-weight: var(--md-ref-typeface-weight-regular);
+    }
+    .title-medium {
+      font-family: var(--md-ref-typeface-plain);
+      font-size: 16px; line-height: 24px;
+      font-weight: var(--md-ref-typeface-weight-medium);
+      letter-spacing: 0.15px;
+    }
+    .title-small {
+      font-family: var(--md-ref-typeface-plain);
+      font-size: 14px; line-height: 20px;
+      font-weight: var(--md-ref-typeface-weight-medium);
+      letter-spacing: 0.1px;
+    }
+
+    /* ─── Body ─────────────────────────────── */
+    .body-large {
+      font-family: var(--md-ref-typeface-plain);
+      font-size: 16px; line-height: 24px;
+      font-weight: var(--md-ref-typeface-weight-regular);
+      letter-spacing: 0.5px;
+    }
+    .body-medium {
+      font-family: var(--md-ref-typeface-plain);
+      font-size: 14px; line-height: 20px;
+      font-weight: var(--md-ref-typeface-weight-regular);
+      letter-spacing: 0.25px;
+    }
+    .body-small {
+      font-family: var(--md-ref-typeface-plain);
+      font-size: 12px; line-height: 16px;
+      font-weight: var(--md-ref-typeface-weight-regular);
+      letter-spacing: 0.4px;
+    }
+
+    /* ─── Label ────────────────────────────── */
+    .label-large {
+      font-family: var(--md-ref-typeface-plain);
+      font-size: 14px; line-height: 20px;
+      font-weight: var(--md-ref-typeface-weight-medium);
+      letter-spacing: 0.1px;
+    }
+    .label-medium {
+      font-family: var(--md-ref-typeface-plain);
+      font-size: 12px; line-height: 16px;
+      font-weight: var(--md-ref-typeface-weight-medium);
+      letter-spacing: 0.5px;
+    }
+    .label-small {
+      font-family: var(--md-ref-typeface-plain);
+      font-size: 11px; line-height: 16px;
+      font-weight: var(--md-ref-typeface-weight-medium);
+      letter-spacing: 0.5px;
+    }
+  </style>
+</head>
+<body>
+  <h1>M3 Type Scale</h1>
+
+  <div class="scale-group">
+    <div class="group-label">Display</div>
+    <div class="type-sample">
+      <span class="type-meta">display-large 57/64 400</span>
+      <span class="display-large">Display Large</span>
+    </div>
+    <div class="type-sample">
+      <span class="type-meta">display-medium 45/52 400</span>
+      <span class="display-medium">Display Medium</span>
+    </div>
+    <div class="type-sample">
+      <span class="type-meta">display-small 36/44 400</span>
+      <span class="display-small">Display Small</span>
+    </div>
+  </div>
+
+  <div class="scale-group">
+    <div class="group-label">Headline</div>
+    <div class="type-sample">
+      <span class="type-meta">headline-large 32/40 400</span>
+      <span class="headline-large">Headline Large</span>
+    </div>
+    <div class="type-sample">
+      <span class="type-meta">headline-medium 28/36 400</span>
+      <span class="headline-medium">Headline Medium</span>
+    </div>
+    <div class="type-sample">
+      <span class="type-meta">headline-small 24/32 400</span>
+      <span class="headline-small">Headline Small</span>
+    </div>
+  </div>
+
+  <div class="scale-group">
+    <div class="group-label">Title</div>
+    <div class="type-sample">
+      <span class="type-meta">title-large 22/28 400</span>
+      <span class="title-large">Title Large</span>
+    </div>
+    <div class="type-sample">
+      <span class="type-meta">title-medium 16/24 500</span>
+      <span class="title-medium">Title Medium</span>
+    </div>
+    <div class="type-sample">
+      <span class="type-meta">title-small 14/20 500</span>
+      <span class="title-small">Title Small</span>
+    </div>
+  </div>
+
+  <div class="scale-group">
+    <div class="group-label">Body</div>
+    <div class="type-sample">
+      <span class="type-meta">body-large 16/24 400</span>
+      <span class="body-large">Body Large — The quick brown fox jumps over the lazy dog.</span>
+    </div>
+    <div class="type-sample">
+      <span class="type-meta">body-medium 14/20 400</span>
+      <span class="body-medium">Body Medium — The quick brown fox jumps over the lazy dog.</span>
+    </div>
+    <div class="type-sample">
+      <span class="type-meta">body-small 12/16 400</span>
+      <span class="body-small">Body Small — The quick brown fox jumps over the lazy dog.</span>
+    </div>
+  </div>
+
+  <div class="scale-group">
+    <div class="group-label">Label</div>
+    <div class="type-sample">
+      <span class="type-meta">label-large 14/20 500</span>
+      <span class="label-large">Label Large (buttons, tabs)</span>
+    </div>
+    <div class="type-sample">
+      <span class="type-meta">label-medium 12/16 500</span>
+      <span class="label-medium">Label Medium (badges, chips)</span>
+    </div>
+    <div class="type-sample">
+      <span class="type-meta">label-small 11/16 500</span>
+      <span class="label-small">Label Small (captions, footnotes)</span>
+    </div>
+  </div>
+</body>
+</html>

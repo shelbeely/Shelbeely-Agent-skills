@@ -615,3 +615,9 @@ When implementing M3 shape system, ensure:
 - [ ] Focus indicators respect rounded shapes
 - [ ] Performance is optimized (GPU acceleration)
 - [ ] Responsive adjustments for different screen sizes
+
+## Resources
+
+- `examples/shape-corners.svg` — Visual reference SVG showing the complete M3 shape system: corner radius scale (None → Full), corner styles (rounded, cut, squircle, asymmetric), expressive shape library samples, and component shape mapping. Based on https://m3.material.io/styles/shape/overview-principles.
+- M3 shape overview: https://m3.material.io/styles/shape/overview
+- Material Design Tokens (shape): https://github.com/material-foundation/material-tokens

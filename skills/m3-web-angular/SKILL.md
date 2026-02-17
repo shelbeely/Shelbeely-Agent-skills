@@ -149,7 +149,12 @@ openDialog() {
 
 ## Resources
 
+- `m3-theme.scss` — Ready-to-use Angular Material M3 theme SCSS (orange palette, light + dark) included in this skill's directory. Copy into your project and customize.
+- `material-theme-builder` skill — Generate a custom palette from any source color.
+- Available palettes: `$red-palette`, `$green-palette`, `$blue-palette`, `$yellow-palette`, `$cyan-palette`, `$magenta-palette`, `$orange-palette`, `$chartreuse-palette`, `$spring-green-palette`, `$azure-palette`, `$violet-palette`, `$rose-palette`
+- GitHub: https://github.com/angular/components
 - Theming guide: https://material.angular.dev/guide/theming
 - M3 migration: https://v17.material.angular.dev/guide/material-3
 - Design tokens: https://konstantin-denerz.com/angular-material-3-theming-design-tokens-and-system-variables/
 - Component catalog: https://material.angular.dev/components/categories
+- SCSS API reference: https://github.com/angular/components/blob/main/src/material/_index.scss

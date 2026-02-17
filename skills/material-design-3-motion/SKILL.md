@@ -474,3 +474,9 @@ When implementing M3 motion, ensure:
 - [ ] Ripple effects are implemented for touch targets
 - [ ] Haptic feedback is coordinated with spring animations where appropriate
 - [ ] Shape morphing animations use expressive easing
+
+## Resources
+
+- `examples/motion-patterns.css` — Ready-to-use CSS animation patterns using M3 motion tokens (fade, scale, slide, shared axis, state layer, elevation, and theme transitions). Copy the relevant @keyframes and classes into your project.
+- M3 motion overview: https://m3.material.io/styles/motion/overview
+- Material Design Tokens (motion): https://github.com/material-foundation/material-tokens

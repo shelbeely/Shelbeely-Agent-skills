@@ -13,7 +13,13 @@
  *   npm install @material/material-color-utilities
  *   node generate-theme.mjs "#FF9800"
  *   node generate-theme.mjs "#FF9800" --json
+ *   node generate-theme.mjs "#FF9800" --scheme expressive
  *
+ * Available schemes:
+ *   tonal-spot (default), content, expressive, fidelity,
+ *   fruit-salad, monochrome, neutral, rainbow, vibrant
+ *
+ * Source: https://github.com/material-foundation/material-color-utilities
  * License: Apache-2.0
  */
 
@@ -21,13 +27,53 @@ import {
   argbFromHex,
   hexFromArgb,
   themeFromSourceColor,
+  Hct,
+  SchemeContent,
+  SchemeExpressive,
+  SchemeFidelity,
+  SchemeFruitSalad,
+  SchemeMonochrome,
+  SchemeNeutral,
+  SchemeRainbow,
+  SchemeTonalSpot,
+  SchemeVibrant,
 } from "@material/material-color-utilities";
+
+const SCHEME_MAP = {
+  "tonal-spot": SchemeTonalSpot,
+  "content": SchemeContent,
+  "expressive": SchemeExpressive,
+  "fidelity": SchemeFidelity,
+  "fruit-salad": SchemeFruitSalad,
+  "monochrome": SchemeMonochrome,
+  "neutral": SchemeNeutral,
+  "rainbow": SchemeRainbow,
+  "vibrant": SchemeVibrant,
+};
 
 const args = process.argv.slice(2);
 const sourceHex = args.find((a) => a.startsWith("#")) || "#FF9800";
 const outputJson = args.includes("--json");
 
+// Parse --scheme flag
+const schemeIdx = args.indexOf("--scheme");
+const schemeName = schemeIdx !== -1 && args[schemeIdx + 1] ? args[schemeIdx + 1] : "tonal-spot";
+
+if (!(schemeName in SCHEME_MAP)) {
+  console.error(`Unknown scheme: ${schemeName}`);
+  console.error(`Available: ${Object.keys(SCHEME_MAP).join(", ")}`);
+  process.exit(1);
+}
+
 const theme = themeFromSourceColor(argbFromHex(sourceHex));
+
+// If a non-default scheme is requested, generate custom light/dark schemes
+const SchemeClass = SCHEME_MAP[schemeName];
+if (schemeName !== "tonal-spot") {
+  const hct = Hct.fromInt(argbFromHex(sourceHex));
+  theme.schemes.light = new SchemeClass(hct, false, 0.0);
+  theme.schemes.dark = new SchemeClass(hct, true, 0.0);
+}
 
 const neutral = theme.palettes.neutral;
 const primary = theme.palettes.primary;
@@ -104,12 +150,13 @@ const darkTokens = buildTokens(theme.schemes.dark, darkSurfaces);
 
 if (outputJson) {
   // JSON output
-  const json = { source: sourceHex, light: lightTokens, dark: darkTokens };
+  const json = { source: sourceHex, scheme: schemeName, light: lightTokens, dark: darkTokens };
   console.log(JSON.stringify(json, null, 2));
 } else {
   // CSS output
+  const schemeLabel = schemeName !== "tonal-spot" ? ` (scheme: ${schemeName})` : "";
   console.log(`/*`);
-  console.log(` * M3 Color Tokens — generated from source: ${sourceHex}`);
+  console.log(` * M3 Color Tokens — generated from source: ${sourceHex}${schemeLabel}`);
   console.log(` * Material Theme Builder (https://github.com/material-foundation/material-theme-builder)`);
   console.log(` */\n`);
 

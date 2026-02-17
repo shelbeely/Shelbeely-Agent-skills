@@ -157,9 +157,13 @@ Theme via CSS custom properties:
 
 ## Resources
 
+- `m3-theme.css` — Complete @material/web theme template (color, typography, shape, elevation, state, motion tokens) included in this skill's directory. Copy into your project and customize.
+- `material-theme-builder` skill — Generate a custom token set from any source color.
 - M3 for Web: https://m3.material.io/develop/web
 - Documentation: https://material-web.dev/
 - Quick start: https://material-web.dev/about/quick-start/
 - Theming: https://material-web.dev/theming/material-theming/
+- SCSS color API: https://github.com/material-components/material-web/blob/main/color/_color.scss
+- Token reference: https://github.com/material-components/material-web/tree/main/tokens
 - GitHub: https://github.com/material-components/material-web
 - npm: https://www.npmjs.com/package/@material/web

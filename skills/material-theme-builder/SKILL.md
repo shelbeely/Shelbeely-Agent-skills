@@ -41,7 +41,29 @@ npm install @material/material-color-utilities
 
 ## Generate a Theme
 
-Use the `generate-theme.mjs` script in this skill's directory, or follow the pattern below.
+Use the `generate-theme.mjs` script in this skill's directory:
+
+```bash
+node generate-theme.mjs "#FF9800"                     # CSS output (default tonal-spot)
+node generate-theme.mjs "#FF9800" --json               # JSON output
+node generate-theme.mjs "#FF9800" --scheme expressive   # Expressive scheme variant
+```
+
+### Available Scheme Variants
+
+The `--scheme` flag selects from 9 dynamic color strategies defined in [material-color-utilities](https://github.com/material-foundation/material-color-utilities/tree/main/typescript/scheme):
+
+| Scheme | Description |
+|--------|-------------|
+| `tonal-spot` | Default — balanced, versatile (used by Android Material You) |
+| `content` | Colors derived with fidelity to the source, good for photo-based themes |
+| `expressive` | Intentionally detached from source for bold, playful palettes |
+| `fidelity` | High fidelity to source hue, chroma-capped for accessibility |
+| `fruit-salad` | Vibrant, playful secondary and tertiary from offset hues |
+| `monochrome` | Achromatic — all palettes have zero chroma |
+| `neutral` | Near-achromatic — very low chroma for subtle, muted themes |
+| `rainbow` | Wide hue spread across primary, secondary, and tertiary |
+| `vibrant` | Saturated, colorful variant of tonal-spot |
 
 ### Quick Start (Node.js)
 

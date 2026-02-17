@@ -1122,6 +1122,7 @@ When implementing M3 components, ensure:
 
 ## Resources
 
+- `component-tokens.md` — Quick reference for all @material/web component CSS custom property prefixes, included in this skill's directory.
 - M3 component specs: https://m3.material.io/components
 - M3 for Web: https://m3.material.io/develop/web
 - @material/web: https://github.com/material-components/material-web

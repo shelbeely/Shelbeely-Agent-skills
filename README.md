@@ -210,6 +210,7 @@ Build a navigation component following M3 guidelines
 
 - M3 specification: https://m3.material.io/
 - M3 for Web: https://m3.material.io/develop/web
+- M3 Design Kit (Figma): https://www.figma.com/community/file/1035203688168086460
 - Material Web Components (@material/web): https://github.com/material-components/material-web
 - Material Color Utilities: https://github.com/material-foundation/material-color-utilities
 - Material Theme Builder: https://github.com/material-foundation/material-theme-builder
@@ -224,6 +225,7 @@ Build a navigation component following M3 guidelines
 Each skill contains:
 - `SKILL.md` — Instructions for the agent (YAML frontmatter + Markdown)
 - Optional scripts, examples, or config files referenced by the instructions
+- Optional `examples/` directory with SVG images, HTML demos, and CSS patterns
 
 Skills are authored in `skills/` and symlinked into `.github/skills/` for [Copilot coding agent](https://docs.github.com/en/copilot/how-tos/use-copilot-agents/coding-agent/create-skills) discovery.
 

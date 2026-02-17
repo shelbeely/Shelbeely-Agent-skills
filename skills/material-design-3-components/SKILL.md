@@ -1123,6 +1123,7 @@ When implementing M3 components, ensure:
 ## Resources
 
 - `component-tokens.md` — Quick reference for all @material/web component CSS custom property prefixes, included in this skill's directory.
+- `examples/component-anatomy.svg` — Visual reference SVG showing M3 component anatomy: button variants, card variants, FAB sizes, and interactive state layers with token mappings.
 - M3 component specs: https://m3.material.io/components
 - M3 for Web: https://m3.material.io/develop/web
 - @material/web: https://github.com/material-components/material-web

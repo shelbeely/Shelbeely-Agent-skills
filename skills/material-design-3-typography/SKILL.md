@@ -519,6 +519,7 @@ When implementing M3 typography, ensure:
 
 ## Resources
 
+- `examples/type-scale.html` — Interactive HTML example showing the complete M3 type scale (display, headline, title, body, label) with correct sizes, weights, and line heights. Open in a browser to preview the hierarchy.
 - M3 typography overview: https://m3.material.io/styles/typography/overview
 - Material Design Tokens (typography): https://github.com/material-foundation/material-tokens
 - Google Fonts: https://fonts.google.com/

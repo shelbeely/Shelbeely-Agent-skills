@@ -13,6 +13,8 @@ skills/
   {skill-name}/           # kebab-case directory name
     SKILL.md              # Required: skill definition with YAML frontmatter
     *.mjs, *.css, *.ts    # Optional: scripts, examples, config files
+    *.svg, *.html, *.md   # Optional: images (SVG), visual examples, reference docs
+    examples/             # Optional: example files and visual references
 .github/
   skills/
     {skill-name} -> ../../skills/{skill-name}   # Symlinks for Copilot discovery

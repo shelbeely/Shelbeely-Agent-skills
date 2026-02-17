@@ -36,6 +36,7 @@ npx skills add shelbeely/Shelbeely-Agent-skills
 | 15 | "Show me how to create an M3 button in React, Angular, Vue, and Svelte" | `m3-web-react` + `m3-web-angular` + `m3-web-vue` + `m3-web-svelte` |
 | 16 | "Create an M3 themed CLI app using Ink" | `m3-web-ink` |
 | 17 | "Generate M3 color tokens from my brand color #FF9800" | `material-theme-builder` |
+| 18 | "Use the Figma MCP to extract components from the M3 Design Kit" | Figma MCP + `material-design-3-components` |
 
 ## Verifying Skills Are Loaded
 

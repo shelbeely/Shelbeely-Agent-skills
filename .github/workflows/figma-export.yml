@@ -1,0 +1,24 @@
+name: Export SVG from Figma
+
+on:
+  workflow_dispatch:
+
+jobs:
+  figma-export:
+    name: Figma Export
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: primer/figma-action@v1.0.0-alpha.3
+        with:
+          args: "format=svg outputDir=./figma-export/"
+        env:
+          FIGMA_FILE_URL: "https://www.figma.com/file/lC2BGHfMdhAmcEFhx9S6df/Material-3-Design-Kit--Community-"
+          FIGMA_TOKEN: ${{ secrets.COPILOT_MCP_FIGMA_API_KEY }}
+
+      - name: Upload exported assets
+        uses: actions/upload-artifact@v4
+        with:
+          name: figma-export
+          path: ./figma-export/

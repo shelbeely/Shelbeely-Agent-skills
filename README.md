@@ -223,6 +223,17 @@ With the Figma MCP server enabled, the coding agent can:
 2. In your repository, go to **Settings > Environments** and create a `copilot` environment (if it doesn't exist).
 3. Add an environment secret named `COPILOT_MCP_FIGMA_API_KEY` with your Figma PAT as the value.
 4. Copy the MCP configuration from `.github/copilot/mcp.json` into your repository's **Settings > Copilot > Coding agent > MCP configuration**.
+## Figma Export Action
+
+This repository includes a GitHub Actions workflow ([`.github/workflows/figma-export.yml`](.github/workflows/figma-export.yml)) that exports SVG components from the [Material 3 Design Kit](https://www.figma.com/design/lC2BGHfMdhAmcEFhx9S6df/Material-3-Design-Kit--Community-) Figma file using [`primer/figma-action`](https://github.com/primer/figma-action).
+
+### Setup
+
+1. Add a repository secret named `COPILOT_MCP_FIGMA_API_KEY` with your Figma Personal Access Token.
+2. Go to **Actions > Export SVG from Figma** and click **Run workflow**.
+
+Exported components are uploaded as a workflow artifact named `figma-export`.
+
 ## Official M3 Resources
 
 - M3 specification: https://m3.material.io/

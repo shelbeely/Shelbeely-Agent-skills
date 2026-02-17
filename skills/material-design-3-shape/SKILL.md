@@ -124,10 +124,10 @@ M3 Expressive introduces a library of 35 decorative and functional shapes that g
 ### Complete Shape Catalog
 
 **Geometric Shapes**:
-- Circle, Square, Slanted Square, Oval, Pill, Semi Circle, Triangle, Diamond, Pentagon, Gem, Arch
+- Circle, Square, Slanted Square, Oval, Pill, Semi Circle, Triangle, Diamond, Pentagon, Hexagon, Gem, Arch
 
 **Organic and Playful Shapes**:
-- Flower, Puffy, Puffy Diamond, Clover 4, Clover 8, Bun, Heart, Ghostish, Clam Shell
+- Flower, Puffy, Puffy Diamond, Clover 4, Clover 8, Bun, Heart, Ghost-ish
 
 **Burst and Star Shapes**:
 - Sunny, Very Sunny, Burst, Soft Burst, Boom, Soft Boom, Fan, Arrow
@@ -668,8 +668,6 @@ Individual SVG path definitions for each of the 35 M3 Expressive shapes, exporte
 **Pixel Shapes**:
 - `examples/shape-pixel-circle.svg` — Pixel Circle
 - `examples/shape-pixel-triangle.svg` — Pixel Triangle
-
-### External References
 
 - M3 shape overview: https://m3.material.io/styles/shape/overview
 - Material Design Tokens (shape): https://github.com/material-foundation/material-tokens

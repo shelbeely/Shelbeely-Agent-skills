@@ -176,8 +176,8 @@ React wrappers: `material-web-components-react` provides thin React abstractions
 
 ## Resources
 
-- **`theme.ts`**: Ready-to-use MUI theme config with M3 orange palette (light + dark) included in this skill's directory. Copy into your project and customize.
-- **`material-theme-builder` skill**: Generate a custom palette from any source color.
+- `theme.ts` — Ready-to-use MUI theme config with M3 orange palette (light + dark) included in this skill's directory. Copy into your project and customize.
+- `material-theme-builder` skill — Generate a custom palette from any source color.
 - MUI: https://mui.com/material-ui/
 - MUI + Next.js: https://mui.com/material-ui/integrations/nextjs/
 - MUI Theming: https://mui.com/material-ui/customization/theming/

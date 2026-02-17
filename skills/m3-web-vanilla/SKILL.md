@@ -192,8 +192,8 @@ If you want M3 styling without writing all the CSS yourself:
 
 ## Resources
 
-- **`m3-tokens.css`**: Complete M3 token foundation (color, shape, typography, motion, spacing, elevation) included in this skill's directory. Copy into your project as a starting point.
-- **`material-theme-builder` skill**: Generate a custom token set from any source color.
+- `m3-tokens.css` — Complete M3 token foundation (color, shape, typography, motion, spacing, elevation) included in this skill's directory. Copy into your project as a starting point.
+- `material-theme-builder` skill — Generate a custom token set from any source color.
 - Material Theme Builder: https://material-foundation.github.io/material-theme-builder/
 - M3 Design Tokens: https://m3.material.io/foundations/design-tokens/overview
 - Beer CSS: https://www.beercss.com/

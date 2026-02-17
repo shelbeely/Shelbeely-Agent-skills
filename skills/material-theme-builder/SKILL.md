@@ -220,6 +220,8 @@ for (const custom of theme.customColors) {
 - Material Theme Builder (web): https://material-foundation.github.io/material-theme-builder/
 - Material Theme Builder (repo): https://github.com/material-foundation/material-theme-builder
 - Material Color Utilities: https://github.com/material-foundation/material-color-utilities
+- Official M3 CSS tokens (baseline): https://github.com/material-foundation/material-tokens
 - npm: https://www.npmjs.com/package/@material/material-color-utilities
-- HCT color space: https://material.io/blog/science-of-color-design
+- M3 design tokens overview: https://m3.material.io/foundations/design-tokens/overview
 - M3 color system: https://m3.material.io/styles/color/overview
+- HCT color space: https://material.io/blog/science-of-color-design

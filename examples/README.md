@@ -35,6 +35,7 @@ npx skills add shelbeely/Shelbeely-Agent-skills
 | 14 | "Create M3 design tokens using only CSS custom properties" | `m3-web-vanilla` |
 | 15 | "Show me how to create an M3 button in React, Angular, Vue, and Svelte" | `m3-web-react` + `m3-web-angular` + `m3-web-vue` + `m3-web-svelte` |
 | 16 | "Create an M3 themed CLI app using Ink" | `m3-web-ink` |
+| 17 | "Generate M3 color tokens from my brand color #FF9800" | `material-theme-builder` |
 
 ## Verifying Skills Are Loaded
 

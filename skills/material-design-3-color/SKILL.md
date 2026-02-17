@@ -355,6 +355,8 @@ When generating color schemes from a source color:
 - **`tokens.css`**: Ready-to-use M3 color tokens (light + dark) based on the orange baseline palette (#FF9800), included in this skill's directory. Copy into your project and customize.
 - **`material-theme-builder` skill**: Use to generate a complete token set from any source color programmatically.
 - **Material Theme Builder**: https://material-foundation.github.io/material-theme-builder/ — interactive web tool for generating color schemes
+- **Official M3 CSS tokens**: https://github.com/material-foundation/material-tokens — baseline CSS token files (colors, typography, shape, motion, state, elevation)
+- **M3 design tokens overview**: https://m3.material.io/foundations/design-tokens/overview
 - **Color Contrast Checker**: Validate WCAG compliance for all text and interactive elements
 - **HCT Color Space**: Leverage for perceptually uniform color generation
 - **CSS Custom Properties**: Implement dynamic theming with CSS variables and data attributes

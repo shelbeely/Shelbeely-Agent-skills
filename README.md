@@ -228,6 +228,7 @@ With the Figma MCP server enabled, the coding agent can:
 - M3 specification: https://m3.material.io/
 - M3 for Web: https://m3.material.io/develop/web
 - M3 Design Kit (Figma): https://www.figma.com/community/file/1035203688168086460
+- M3 Design Kit (Figma file): https://www.figma.com/design/lC2BGHfMdhAmcEFhx9S6df/Material-3-Design-Kit--Community-
 - Material Web Components (@material/web): https://github.com/material-components/material-web
 - Material Color Utilities: https://github.com/material-foundation/material-color-utilities
 - Material Theme Builder: https://github.com/material-foundation/material-theme-builder

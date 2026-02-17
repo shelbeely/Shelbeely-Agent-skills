@@ -8,10 +8,7 @@
  */
 
 import { writeFile, mkdir } from 'fs/promises';
-import { dirname, join } from 'path';
-import { fileURLToPath } from 'url';
-
-const __dirname = dirname(fileURLToPath(import.meta.url));
+import { join } from 'path';
 
 // Configuration
 const FIGMA_FILE_URL = process.env.FIGMA_FILE_URL;
@@ -19,6 +16,11 @@ const FIGMA_TOKEN = process.env.FIGMA_TOKEN;
 const OUTPUT_DIR = process.env.OUTPUT_DIR || './figma-export';
 const BATCH_SIZE = parseInt(process.env.BATCH_SIZE || '50', 10); // Max components per API request
 const FILTER_PATTERN = process.env.FILTER_PATTERN || ''; // Optional: filter components by name
+
+// Validate batch size
+if (!Number.isInteger(BATCH_SIZE) || BATCH_SIZE <= 0) {
+  throw new Error(`BATCH_SIZE must be a positive integer, got: ${process.env.BATCH_SIZE}`);
+}
 
 // Extract file key from URL
 function extractFileKey(url) {

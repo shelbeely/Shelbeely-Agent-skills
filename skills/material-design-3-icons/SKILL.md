@@ -377,3 +377,8 @@ When implementing M3 icons, ensure:
 - [ ] Icons use M3 color tokens (on-surface, primary, error, etc.)
 - [ ] Only one icon style is used throughout the interface
 - [ ] Icons are supplemented with text labels where clarity demands it
+
+## Resources
+
+- Material Symbols: https://fonts.google.com/icons
+- M3 icons overview: https://m3.material.io/styles/icons/overview

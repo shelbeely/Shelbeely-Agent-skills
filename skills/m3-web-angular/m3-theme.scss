@@ -1,0 +1,118 @@
+// Material Design 3 — Angular Material Theme Setup
+//
+// Ready-to-use SCSS for Angular Material M3 theming.
+// Uses the M3 baseline orange palette (source: #FF9800).
+//
+// Usage: Copy into your Angular project (e.g., src/styles.scss)
+// and customize the palette colors to match your brand.
+//
+// Prerequisites:
+//   ng add @angular/material
+//
+// To generate a fresh theme interactively:
+//   ng generate @angular/material:m3-theme
+//
+// Available pre-defined palettes (from @angular/material):
+//   $red-palette, $green-palette, $blue-palette,
+//   $yellow-palette, $cyan-palette, $magenta-palette,
+//   $orange-palette, $chartreuse-palette, $spring-green-palette,
+//   $azure-palette, $violet-palette, $rose-palette
+//
+// You can also pass a custom hex color directly as the primary value
+// (e.g., primary: #FF9800) and Angular Material will generate HCT
+// tonal palettes automatically.
+//
+// Reference: https://github.com/angular/components
+// Theming guide: https://material.angular.dev/guide/theming
+//
+// License: Apache-2.0
+
+@use '@angular/material' as mat;
+
+// Initialize core styles (call once at the root)
+@include mat.core();
+
+// ─── Light Theme ────────────────────────────────────────────────────
+
+$light-theme: mat.define-theme((
+  color: (
+    theme-type: light,
+    primary: mat.$orange-palette,
+    tertiary: mat.$green-palette,
+  ),
+  typography: (
+    brand-family: 'Roboto, sans-serif',
+    plain-family: 'Roboto, sans-serif',
+  ),
+  density: (
+    scale: 0,
+  ),
+));
+
+// ─── Dark Theme ─────────────────────────────────────────────────────
+
+$dark-theme: mat.define-theme((
+  color: (
+    theme-type: dark,
+    primary: mat.$orange-palette,
+    tertiary: mat.$green-palette,
+  ),
+  typography: (
+    brand-family: 'Roboto, sans-serif',
+    plain-family: 'Roboto, sans-serif',
+  ),
+  density: (
+    scale: 0,
+  ),
+));
+
+// ─── Apply Themes ───────────────────────────────────────────────────
+
+// Light theme (default)
+:root {
+  @include mat.all-component-themes($light-theme);
+  color-scheme: light;
+}
+
+// Dark theme (via class toggle)
+html.dark-theme {
+  @include mat.all-component-colors($dark-theme);
+  color-scheme: dark;
+}
+
+// Dark theme (via system preference)
+@media (prefers-color-scheme: dark) {
+  html:not(.light-theme) {
+    @include mat.all-component-colors($dark-theme);
+    color-scheme: dark;
+  }
+}
+
+// ─── Per-Component Overrides (optional) ──────────────────────────────
+//
+// For granular theming, override individual components:
+//
+//   @include mat.button-theme($light-theme);
+//   @include mat.card-theme($light-theme);
+//   @include mat.checkbox-theme($light-theme);
+//   @include mat.dialog-theme($light-theme);
+//   @include mat.tabs-theme($light-theme);
+//
+// Available component theme mixins:
+//   autocomplete, badge, bottom-sheet, button, button-toggle,
+//   card, checkbox, chips, datepicker, dialog, divider, expansion,
+//   form-field, grid-list, icon, icon-button, input, list, menu,
+//   paginator, progress-bar, progress-spinner, radio, select,
+//   sidenav, slide-toggle, slider, snack-bar, sort, stepper,
+//   table, tabs, timepicker, toolbar, tooltip, tree
+//
+// Each component has: -theme, -color, -typography, -density, -base
+
+// ─── System Token Access (optional) ──────────────────────────────────
+//
+// Read theme values in your SCSS:
+//
+//   $primary: mat.get-theme-color($light-theme, primary);
+//   $on-primary: mat.get-theme-color($light-theme, on-primary);
+//   $headline-font: mat.get-theme-typography($light-theme, headline-large, font);
+//   $is-dark: mat.get-theme-type($light-theme);

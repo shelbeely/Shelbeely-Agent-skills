@@ -1,0 +1,175 @@
+/*
+ * M3 Motion Examples — CSS Animations & Transitions
+ *
+ * Ready-to-use CSS animation patterns using M3 motion tokens.
+ * Copy the relevant @keyframes and classes into your project.
+ *
+ * Token reference:
+ *   --md-sys-motion-easing-emphasized: cubic-bezier(0.2, 0, 0, 1)
+ *   --md-sys-motion-easing-emphasized-decelerate: cubic-bezier(0.05, 0.7, 0.1, 1)
+ *   --md-sys-motion-easing-emphasized-accelerate: cubic-bezier(0.3, 0, 0.8, 0.15)
+ *   --md-sys-motion-easing-standard: cubic-bezier(0.2, 0, 0, 1)
+ *   --md-sys-motion-easing-standard-decelerate: cubic-bezier(0, 0, 0, 1)
+ *   --md-sys-motion-easing-standard-accelerate: cubic-bezier(0.3, 0, 1, 1)
+ *
+ * See: https://m3.material.io/styles/motion/overview
+ * License: Apache-2.0
+ */
+
+/* ─── M3 Motion Tokens ─────────────────────────────────────────────── */
+:root {
+  --md-sys-motion-easing-emphasized: cubic-bezier(0.2, 0, 0, 1);
+  --md-sys-motion-easing-emphasized-decelerate: cubic-bezier(0.05, 0.7, 0.1, 1);
+  --md-sys-motion-easing-emphasized-accelerate: cubic-bezier(0.3, 0, 0.8, 0.15);
+  --md-sys-motion-easing-standard: cubic-bezier(0.2, 0, 0, 1);
+  --md-sys-motion-easing-standard-decelerate: cubic-bezier(0, 0, 0, 1);
+  --md-sys-motion-easing-standard-accelerate: cubic-bezier(0.3, 0, 1, 1);
+
+  --md-sys-motion-duration-short1: 50ms;
+  --md-sys-motion-duration-short2: 100ms;
+  --md-sys-motion-duration-short3: 150ms;
+  --md-sys-motion-duration-short4: 200ms;
+  --md-sys-motion-duration-medium1: 250ms;
+  --md-sys-motion-duration-medium2: 300ms;
+  --md-sys-motion-duration-medium3: 350ms;
+  --md-sys-motion-duration-medium4: 400ms;
+  --md-sys-motion-duration-long1: 450ms;
+  --md-sys-motion-duration-long2: 500ms;
+}
+
+/* ─── Fade In (entrance) ───────────────────────────────────────────── */
+@keyframes m3-fade-in {
+  from { opacity: 0; }
+  to   { opacity: 1; }
+}
+
+.m3-fade-in {
+  animation: m3-fade-in var(--md-sys-motion-duration-medium2)
+    var(--md-sys-motion-easing-emphasized-decelerate);
+}
+
+/* ─── Fade Out (exit) ──────────────────────────────────────────────── */
+@keyframes m3-fade-out {
+  from { opacity: 1; }
+  to   { opacity: 0; }
+}
+
+.m3-fade-out {
+  animation: m3-fade-out var(--md-sys-motion-duration-short4)
+    var(--md-sys-motion-easing-emphasized-accelerate);
+}
+
+/* ─── Scale Up (container transform — entrance) ────────────────────── */
+@keyframes m3-scale-up {
+  from {
+    opacity: 0;
+    transform: scale(0.8);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+.m3-scale-up {
+  animation: m3-scale-up var(--md-sys-motion-duration-medium4)
+    var(--md-sys-motion-easing-emphasized-decelerate);
+}
+
+/* ─── Slide Up (bottom sheet / snackbar entrance) ──────────────────── */
+@keyframes m3-slide-up {
+  from {
+    opacity: 0;
+    transform: translateY(100%);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.m3-slide-up {
+  animation: m3-slide-up var(--md-sys-motion-duration-medium2)
+    var(--md-sys-motion-easing-emphasized-decelerate);
+}
+
+/* ─── Slide Down (exit) ────────────────────────────────────────────── */
+@keyframes m3-slide-down {
+  from {
+    opacity: 1;
+    transform: translateY(0);
+  }
+  to {
+    opacity: 0;
+    transform: translateY(100%);
+  }
+}
+
+.m3-slide-down {
+  animation: m3-slide-down var(--md-sys-motion-duration-short4)
+    var(--md-sys-motion-easing-emphasized-accelerate);
+}
+
+/* ─── Shared Axis (navigation transitions) ─────────────────────────── */
+
+/* Forward (e.g., navigate deeper) */
+@keyframes m3-shared-axis-forward-out {
+  from {
+    opacity: 1;
+    transform: translateX(0);
+  }
+  to {
+    opacity: 0;
+    transform: translateX(-30px);
+  }
+}
+
+@keyframes m3-shared-axis-forward-in {
+  from {
+    opacity: 0;
+    transform: translateX(30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+.m3-shared-axis-forward-out {
+  animation: m3-shared-axis-forward-out var(--md-sys-motion-duration-medium2)
+    var(--md-sys-motion-easing-emphasized-accelerate);
+}
+
+.m3-shared-axis-forward-in {
+  animation: m3-shared-axis-forward-in var(--md-sys-motion-duration-medium2)
+    var(--md-sys-motion-easing-emphasized-decelerate);
+}
+
+/* ─── State Layer (hover/press ripple) ─────────────────────────────── */
+.m3-state-layer-transition {
+  transition: background-color var(--md-sys-motion-duration-short2)
+    var(--md-sys-motion-easing-standard);
+}
+
+/* ─── Elevation Transition ─────────────────────────────────────────── */
+.m3-elevation-transition {
+  transition: box-shadow var(--md-sys-motion-duration-medium1)
+    var(--md-sys-motion-easing-emphasized);
+}
+
+/* ─── Color Transition (theme switch) ──────────────────────────────── */
+.m3-theme-transition {
+  transition:
+    color var(--md-sys-motion-duration-medium2) var(--md-sys-motion-easing-standard),
+    background-color var(--md-sys-motion-duration-medium2) var(--md-sys-motion-easing-standard),
+    border-color var(--md-sys-motion-duration-medium2) var(--md-sys-motion-easing-standard);
+}
+
+/* ─── Reduced Motion ───────────────────────────────────────────────── */
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+}

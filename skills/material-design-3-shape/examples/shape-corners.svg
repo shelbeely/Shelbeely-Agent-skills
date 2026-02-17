@@ -1,0 +1,214 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 720" width="800" height="720">
+  <!--
+    M3 Shape System — Complete visual reference
+    Based on https://m3.material.io/styles/shape/overview-principles
+
+    Row 1: Shape Scale (corner radius tokens from None → Full)
+    Row 2: Corner Styles (Rounded, Cut, Squircle)
+    Row 3: M3 Expressive Shape Library samples
+    Row 4: Component shape mapping
+
+    Usage: Reference this SVG as a visual guide when explaining M3
+    shape tokens, corner styles, or the Expressive shape library.
+
+    License: Apache-2.0
+  -->
+  <style>
+    text { font-family: 'Roboto', 'Google Sans', system-ui, sans-serif; }
+    .label { font-size: 12px; font-weight: 500; fill: #211A13; }
+    .token { font-size: 9px; fill: #51443A; font-family: 'Roboto Mono', monospace; }
+    .value { font-size: 10px; fill: #847468; }
+    .heading { font-size: 16px; font-weight: 700; fill: #211A13; }
+    .section { font-size: 13px; font-weight: 600; fill: #211A13; }
+  </style>
+
+  <!-- Background -->
+  <rect width="800" height="720" fill="#FFF8F4"/>
+
+  <!-- ═══ ROW 1: Shape Scale ═══ -->
+  <text x="400" y="28" text-anchor="middle" class="heading">M3 Shape Scale — Corner Radius Tokens</text>
+
+  <!-- None (0dp) -->
+  <rect x="12" y="45" width="82" height="82" rx="0" fill="#FFDCB8" stroke="#8B5000" stroke-width="1.5"/>
+  <text x="53" y="145" text-anchor="middle" class="label">None</text>
+  <text x="53" y="158" text-anchor="middle" class="value">0dp</text>
+  <text x="53" y="171" text-anchor="middle" class="token">corner-none</text>
+
+  <!-- Extra Small (4dp) -->
+  <rect x="108" y="45" width="82" height="82" rx="4" fill="#FFDCB8" stroke="#8B5000" stroke-width="1.5"/>
+  <text x="149" y="145" text-anchor="middle" class="label">Extra Small</text>
+  <text x="149" y="158" text-anchor="middle" class="value">4dp</text>
+  <text x="149" y="171" text-anchor="middle" class="token">corner-extra-small</text>
+
+  <!-- Small (8dp) -->
+  <rect x="204" y="45" width="82" height="82" rx="8" fill="#FFDCB8" stroke="#8B5000" stroke-width="1.5"/>
+  <text x="245" y="145" text-anchor="middle" class="label">Small</text>
+  <text x="245" y="158" text-anchor="middle" class="value">8dp</text>
+  <text x="245" y="171" text-anchor="middle" class="token">corner-small</text>
+
+  <!-- Medium (12dp) -->
+  <rect x="300" y="45" width="82" height="82" rx="12" fill="#FFDCB8" stroke="#8B5000" stroke-width="1.5"/>
+  <text x="341" y="145" text-anchor="middle" class="label">Medium</text>
+  <text x="341" y="158" text-anchor="middle" class="value">12dp</text>
+  <text x="341" y="171" text-anchor="middle" class="token">corner-medium</text>
+
+  <!-- Large (20dp — M3 Expressive update) -->
+  <rect x="396" y="45" width="82" height="82" rx="20" fill="#FFDCB8" stroke="#8B5000" stroke-width="1.5"/>
+  <text x="437" y="145" text-anchor="middle" class="label">Large</text>
+  <text x="437" y="158" text-anchor="middle" class="value">20dp</text>
+  <text x="437" y="171" text-anchor="middle" class="token">corner-large</text>
+
+  <!-- Extra Large (32dp — M3 Expressive update) -->
+  <rect x="492" y="45" width="82" height="82" rx="32" fill="#FFDCB8" stroke="#8B5000" stroke-width="1.5"/>
+  <text x="533" y="145" text-anchor="middle" class="label">Extra Large</text>
+  <text x="533" y="158" text-anchor="middle" class="value">32dp</text>
+  <text x="533" y="171" text-anchor="middle" class="token">corner-extra-large</text>
+
+  <!-- Extra Extra Large (48dp — new in Expressive) -->
+  <rect x="588" y="45" width="82" height="82" rx="41" fill="#FFDCB8" stroke="#8B5000" stroke-width="1.5"/>
+  <text x="629" y="145" text-anchor="middle" class="label">XX-Large</text>
+  <text x="629" y="158" text-anchor="middle" class="value">48dp</text>
+  <text x="629" y="171" text-anchor="middle" class="token">corner-xx-large</text>
+
+  <!-- Full -->
+  <rect x="684" y="45" width="82" height="82" rx="41" fill="#FFDCB8" stroke="#8B5000" stroke-width="1.5"/>
+  <text x="725" y="145" text-anchor="middle" class="label">Full</text>
+  <text x="725" y="158" text-anchor="middle" class="value">100%</text>
+  <text x="725" y="171" text-anchor="middle" class="token">corner-full</text>
+
+  <!-- ═══ ROW 2: Corner Styles ═══ -->
+  <text x="400" y="205" text-anchor="middle" class="heading">Corner Styles</text>
+
+  <!-- Rounded (default) -->
+  <rect x="80" y="220" width="120" height="80" rx="20" fill="#FFDCB8" stroke="#8B5000" stroke-width="1.5"/>
+  <text x="140" y="320" text-anchor="middle" class="label">Rounded</text>
+  <text x="140" y="335" text-anchor="middle" class="token">border-radius: 20px</text>
+  <text x="140" y="348" text-anchor="middle" class="value">Default M3 style</text>
+
+  <!-- Cut (angled corners) -->
+  <polygon points="240,240 340,220 360,300 240,300" fill="#FFDCB8" stroke="#8B5000" stroke-width="1.5"/>
+  <text x="300" y="320" text-anchor="middle" class="label">Cut</text>
+  <text x="300" y="335" text-anchor="middle" class="token">clip-path: polygon(...)</text>
+  <text x="300" y="348" text-anchor="middle" class="value">Geometric, bold</text>
+
+  <!-- Squircle (superellipse) — approximated with cubic bezier -->
+  <path d="M500,220 C530,220 540,220 540,250 L540,270 C540,300 530,300 500,300 L460,300 C430,300 420,300 420,270 L420,250 C420,220 430,220 460,220 Z" fill="#FFDCB8" stroke="#8B5000" stroke-width="1.5"/>
+  <text x="480" y="320" text-anchor="middle" class="label">Squircle</text>
+  <text x="480" y="335" text-anchor="middle" class="token">superellipse / smooth corners</text>
+  <text x="480" y="348" text-anchor="middle" class="value">Organic, app icons</text>
+
+  <!-- Asymmetric (mixed radii) -->
+  <rect x="580" y="220" width="120" height="80" rx="0" fill="#FFDCB8" stroke="#8B5000" stroke-width="1.5"/>
+  <rect x="580" y="220" width="120" height="80" rx="0" fill="none" stroke="none"/>
+  <path d="M580,220 L680,220 C700,220 700,220 700,240 L700,300 L600,300 C580,300 580,300 580,280 Z" fill="#FFDCB8" stroke="#8B5000" stroke-width="1.5"/>
+  <text x="640" y="320" text-anchor="middle" class="label">Asymmetric</text>
+  <text x="640" y="335" text-anchor="middle" class="token">mixed corner radii</text>
+  <text x="640" y="348" text-anchor="middle" class="value">Emphasis, tension</text>
+
+  <!-- ═══ ROW 3: Expressive Shape Library ═══ -->
+  <text x="400" y="385" text-anchor="middle" class="heading">M3 Expressive Shape Library (samples from 35 shapes)</text>
+
+  <!-- Circle -->
+  <circle cx="60" cy="435" r="35" fill="#DCE8B4" stroke="#586339" stroke-width="1.5"/>
+  <text x="60" y="485" text-anchor="middle" class="label">Circle</text>
+
+  <!-- Oval -->
+  <ellipse cx="155" cy="435" rx="45" ry="28" fill="#DCE8B4" stroke="#586339" stroke-width="1.5"/>
+  <text x="155" y="485" text-anchor="middle" class="label">Oval</text>
+
+  <!-- Pill -->
+  <rect x="215" y="415" width="90" height="40" rx="20" fill="#DCE8B4" stroke="#586339" stroke-width="1.5"/>
+  <text x="260" y="485" text-anchor="middle" class="label">Pill</text>
+
+  <!-- Diamond -->
+  <polygon points="365,400 400,435 365,470 330,435" fill="#DCE8B4" stroke="#586339" stroke-width="1.5"/>
+  <text x="365" y="485" text-anchor="middle" class="label">Diamond</text>
+
+  <!-- Pentagon -->
+  <polygon points="455,402 485,420 475,455 435,455 425,420" fill="#DCE8B4" stroke="#586339" stroke-width="1.5"/>
+  <text x="455" y="485" text-anchor="middle" class="label">Pentagon</text>
+
+  <!-- Heart -->
+  <path d="M555,425 C555,415 545,405 535,405 C525,405 515,415 515,425 C515,445 555,465 555,465 C555,465 595,445 595,425 C595,415 585,405 575,405 C565,405 555,415 555,425Z" fill="#DCE8B4" stroke="#586339" stroke-width="1.5"/>
+  <text x="555" y="485" text-anchor="middle" class="label">Heart</text>
+
+  <!-- Arch -->
+  <path d="M620,470 L620,430 C620,410 640,400 660,400 C680,400 700,410 700,430 L700,470 Z" fill="#DCE8B4" stroke="#586339" stroke-width="1.5"/>
+  <text x="660" y="485" text-anchor="middle" class="label">Arch</text>
+
+  <!-- Semi Circle -->
+  <path d="M745,470 L745,435 C745,415 760,400 780,400 C800,400 800,415 800,435 L800,470 Z" fill="#DCE8B4" stroke="#586339" stroke-width="1.5" transform="translate(-35,0)"/>
+  <text x="765" y="485" text-anchor="middle" class="label">Semi Circle</text>
+
+  <!-- Row 3b: More expressive shapes -->
+
+  <!-- Flower (4 petal) -->
+  <path d="M60,530 C70,510 80,510 80,520 C90,510 100,510 100,530 C110,530 110,540 100,545 C110,555 100,565 90,555 C80,565 70,565 80,555 C60,565 60,555 60,545 C50,545 50,530 60,530Z" fill="#FFDDBB" stroke="#735B40" stroke-width="1.5"/>
+  <text x="80" y="580" text-anchor="middle" class="label">Flower</text>
+
+  <!-- Clover 4 -->
+  <path d="M155,525 Q170,510 185,525 Q200,510 200,530 Q215,540 200,555 Q200,570 185,555 Q170,570 155,555 Q140,555 155,540 Q140,530 155,525Z" fill="#FFDDBB" stroke="#735B40" stroke-width="1.5"/>
+  <text x="175" y="580" text-anchor="middle" class="label">Clover 4</text>
+
+  <!-- Sunny (star burst 8pt) -->
+  <polygon points="270,505 278,525 260,515 280,515 262,525 270,505 278,545 260,535 280,535 262,545 270,565 265,540 275,540" fill="#FFDDBB" stroke="#735B40" stroke-width="1.5"/>
+  <path d="M270,505 L275,522 L290,515 L280,530 L298,530 L283,540 L295,555 L278,548 L270,565 L262,548 L245,555 L257,540 L242,530 L260,530 L250,515 L265,522Z" fill="#FFDDBB" stroke="#735B40" stroke-width="1.5"/>
+  <text x="270" y="580" text-anchor="middle" class="label">Sunny</text>
+
+  <!-- Soft Burst -->
+  <path d="M365,510 C370,520 380,518 385,510 C388,520 395,525 400,520 C398,530 405,535 410,530 C405,540 408,548 415,548 C408,555 408,562 415,565 C405,562 400,568 400,575 C395,568 385,568 385,575 C382,565 375,562 365,565 C370,558 365,548 358,548 C365,545 365,535 355,530 C363,530 368,522 365,510Z" fill="#FFDDBB" stroke="#735B40" stroke-width="1.5"/>
+  <text x="385" y="580" text-anchor="middle" class="label">Soft Burst</text>
+
+  <!-- Cookie 6 (scalloped hexagon) -->
+  <path d="M485,510 C495,518 505,512 510,520 C520,518 525,525 520,535 C528,538 528,548 520,550 C525,558 520,565 510,562 C505,570 495,568 490,560 C480,565 475,558 478,550 C470,548 468,538 478,535 C472,525 478,518 485,520 C480,512 485,510 485,510Z" fill="#FFDDBB" stroke="#735B40" stroke-width="1.5"/>
+  <text x="498" y="580" text-anchor="middle" class="label">Cookie 6</text>
+
+  <!-- Pixel Circle -->
+  <path d="M580,525 L590,525 L590,515 L610,515 L610,525 L620,525 L620,545 L610,545 L610,555 L590,555 L590,545 L580,545Z" fill="#FFDDBB" stroke="#735B40" stroke-width="1.5"/>
+  <text x="600" y="580" text-anchor="middle" class="label">Pixel Circle</text>
+
+  <!-- Puffy (blobby organic) -->
+  <path d="M685,520 C700,508 720,515 725,530 C738,530 740,545 730,552 C735,565 720,572 710,562 C700,572 685,565 688,552 C678,545 680,530 690,528 C680,520 685,515 685,520Z" fill="#FFDDBB" stroke="#735B40" stroke-width="1.5"/>
+  <text x="708" y="580" text-anchor="middle" class="label">Puffy</text>
+
+  <!-- ═══ ROW 4: Component Shape Mapping ═══ -->
+  <text x="400" y="615" text-anchor="middle" class="heading">Component Shape Mapping</text>
+
+  <!-- Button (Full) -->
+  <rect x="20" y="630" width="100" height="36" rx="18" fill="#8B5000"/>
+  <text x="70" y="653" text-anchor="middle" class="label" fill="#FFFFFF">Button</text>
+  <text x="70" y="682" text-anchor="middle" class="token">Full</text>
+
+  <!-- Chip (Small 8dp) -->
+  <rect x="135" y="634" width="80" height="28" rx="8" fill="none" stroke="#847468" stroke-width="1"/>
+  <text x="175" y="653" text-anchor="middle" class="label">Chip</text>
+  <text x="175" y="682" text-anchor="middle" class="token">Small 8dp</text>
+
+  <!-- Card (Medium 12dp) -->
+  <rect x="230" y="630" width="100" height="50" rx="12" fill="#F5E6DA"/>
+  <text x="280" y="660" text-anchor="middle" class="label">Card</text>
+  <text x="280" y="695" text-anchor="middle" class="token">Medium 12dp</text>
+
+  <!-- FAB (Large 20dp) -->
+  <rect x="350" y="630" width="52" height="52" rx="16" fill="#FFDCB8"/>
+  <text x="376" y="661" text-anchor="middle" class="label" fill="#2D1600">+</text>
+  <text x="376" y="695" text-anchor="middle" class="token">Large 20dp</text>
+
+  <!-- TextField (XS 4dp) -->
+  <rect x="420" y="638" width="100" height="36" rx="4" fill="#EFE0D5"/>
+  <text x="470" y="661" text-anchor="middle" class="label">TextField</text>
+  <text x="470" y="695" text-anchor="middle" class="token">XS 4dp (top)</text>
+
+  <!-- Dialog (XL 32dp) -->
+  <rect x="540" y="628" width="110" height="56" rx="28" fill="#FFF8F4" stroke="#D7C3B5" stroke-width="1"/>
+  <text x="595" y="660" text-anchor="middle" class="label">Dialog</text>
+  <text x="595" y="695" text-anchor="middle" class="token">XL 32dp</text>
+
+  <!-- Bottom Sheet (XXL 48dp top) -->
+  <path d="M670,680 L670,648 C670,628 690,628 710,628 C730,628 750,628 750,648 L750,680 Z" fill="#FFF8F4" stroke="#D7C3B5" stroke-width="1"/>
+  <text x="710" y="660" text-anchor="middle" class="label">Sheet</text>
+  <text x="710" y="695" text-anchor="middle" class="token">XXL 48dp (top)</text>
+
+  <!-- Footer -->
+  <text x="400" y="715" text-anchor="middle" class="token">Based on https://m3.material.io/styles/shape/overview-principles — Shape scale, corner styles, and 35 expressive shapes</text>
+</svg>

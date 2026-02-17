@@ -113,3 +113,4 @@ Theme via CSS custom properties in your global stylesheet:
 - SMUI: https://sveltematerialui.com/
 - SMUI GitHub: https://github.com/hperrin/svelte-material-ui
 - @material/web (works in Svelte): https://material-web.dev/
+- @material/web GitHub: https://github.com/material-components/material-web

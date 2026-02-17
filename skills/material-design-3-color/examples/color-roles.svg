@@ -1,0 +1,125 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 500" width="800" height="500">
+  <!--
+    M3 Color Roles — Orange Palette (source: #FF9800)
+    Shows the relationship between primary, secondary, tertiary,
+    and surface color roles in Material Design 3.
+
+    Usage: Reference this SVG in documentation or as a visual guide
+    when explaining M3 color token relationships to stakeholders.
+
+    License: Apache-2.0
+  -->
+  <style>
+    text { font-family: 'Roboto', 'Google Sans', system-ui, sans-serif; }
+    .label { font-size: 11px; font-weight: 500; }
+    .role { font-size: 9px; opacity: 0.8; }
+    .heading { font-size: 16px; font-weight: 700; }
+  </style>
+
+  <!-- Background -->
+  <rect width="800" height="500" fill="#FFF8F4"/>
+
+  <!-- Title -->
+  <text x="400" y="30" text-anchor="middle" class="heading" fill="#211A13">M3 Color Roles — Orange Palette</text>
+
+  <!-- Primary Group -->
+  <text x="100" y="65" text-anchor="middle" class="label" fill="#211A13">Primary</text>
+  <rect x="20" y="75" width="160" height="60" rx="16" fill="#8B5000"/>
+  <text x="100" y="100" text-anchor="middle" class="label" fill="#FFFFFF">primary</text>
+  <text x="100" y="115" text-anchor="middle" class="role" fill="#FFFFFF">#8B5000</text>
+  <rect x="20" y="140" width="160" height="40" rx="12" fill="#FFDCB8"/>
+  <text x="100" y="160" text-anchor="middle" class="label" fill="#2D1600">primary-container</text>
+  <text x="100" y="173" text-anchor="middle" class="role" fill="#2D1600">#FFDCB8</text>
+
+  <!-- Secondary Group -->
+  <text x="300" y="65" text-anchor="middle" class="label" fill="#211A13">Secondary</text>
+  <rect x="220" y="75" width="160" height="60" rx="16" fill="#735B40"/>
+  <text x="300" y="100" text-anchor="middle" class="label" fill="#FFFFFF">secondary</text>
+  <text x="300" y="115" text-anchor="middle" class="role" fill="#FFFFFF">#735B40</text>
+  <rect x="220" y="140" width="160" height="40" rx="12" fill="#FFDDBB"/>
+  <text x="300" y="160" text-anchor="middle" class="label" fill="#291804">secondary-container</text>
+  <text x="300" y="173" text-anchor="middle" class="role" fill="#291804">#FFDDBB</text>
+
+  <!-- Tertiary Group -->
+  <text x="500" y="65" text-anchor="middle" class="label" fill="#211A13">Tertiary</text>
+  <rect x="420" y="75" width="160" height="60" rx="16" fill="#586339"/>
+  <text x="500" y="100" text-anchor="middle" class="label" fill="#FFFFFF">tertiary</text>
+  <text x="500" y="115" text-anchor="middle" class="role" fill="#FFFFFF">#586339</text>
+  <rect x="420" y="140" width="160" height="40" rx="12" fill="#DCE8B4"/>
+  <text x="500" y="160" text-anchor="middle" class="label" fill="#161F00">tertiary-container</text>
+  <text x="500" y="173" text-anchor="middle" class="role" fill="#161F00">#DCE8B4</text>
+
+  <!-- Error Group -->
+  <text x="700" y="65" text-anchor="middle" class="label" fill="#211A13">Error</text>
+  <rect x="620" y="75" width="160" height="60" rx="16" fill="#BA1A1A"/>
+  <text x="700" y="100" text-anchor="middle" class="label" fill="#FFFFFF">error</text>
+  <text x="700" y="115" text-anchor="middle" class="role" fill="#FFFFFF">#BA1A1A</text>
+  <rect x="620" y="140" width="160" height="40" rx="12" fill="#FFDAD6"/>
+  <text x="700" y="160" text-anchor="middle" class="label" fill="#410002">error-container</text>
+  <text x="700" y="173" text-anchor="middle" class="role" fill="#410002">#FFDAD6</text>
+
+  <!-- Surface Group -->
+  <text x="100" y="220" text-anchor="middle" class="heading" fill="#211A13">Surface Containers</text>
+
+  <!-- Surface tones (light) -->
+  <rect x="20"  y="235" width="108" height="80" rx="12" fill="#FFFFFF"/>
+  <text x="74" y="265" text-anchor="middle" class="label" fill="#211A13">lowest</text>
+  <text x="74" y="280" text-anchor="middle" class="role" fill="#211A13">#FFFFFF</text>
+
+  <rect x="133" y="235" width="108" height="80" rx="12" fill="#FFF1E7"/>
+  <text x="187" y="265" text-anchor="middle" class="label" fill="#211A13">low</text>
+  <text x="187" y="280" text-anchor="middle" class="role" fill="#211A13">#FFF1E7</text>
+
+  <rect x="246" y="235" width="108" height="80" rx="12" fill="#FBECE0"/>
+  <text x="300" y="265" text-anchor="middle" class="label" fill="#211A13">container</text>
+  <text x="300" y="280" text-anchor="middle" class="role" fill="#211A13">#FBECE0</text>
+
+  <rect x="359" y="235" width="108" height="80" rx="12" fill="#F5E6DA"/>
+  <text x="413" y="265" text-anchor="middle" class="label" fill="#211A13">high</text>
+  <text x="413" y="280" text-anchor="middle" class="role" fill="#211A13">#F5E6DA</text>
+
+  <rect x="472" y="235" width="108" height="80" rx="12" fill="#EFE0D5"/>
+  <text x="526" y="265" text-anchor="middle" class="label" fill="#211A13">highest</text>
+  <text x="526" y="280" text-anchor="middle" class="role" fill="#211A13">#EFE0D5</text>
+
+  <rect x="585" y="235" width="108" height="80" rx="12" fill="#E5D7CC"/>
+  <text x="639" y="265" text-anchor="middle" class="label" fill="#211A13">dim</text>
+  <text x="639" y="280" text-anchor="middle" class="role" fill="#211A13">#E5D7CC</text>
+
+  <rect x="698" y="235" width="82" height="80" rx="12" fill="#FFF8F4"/>
+  <text x="739" y="265" text-anchor="middle" class="label" fill="#211A13">bright</text>
+  <text x="739" y="280" text-anchor="middle" class="role" fill="#211A13">#FFF8F4</text>
+
+  <!-- Tonal Palette Strip -->
+  <text x="400" y="350" text-anchor="middle" class="heading" fill="#211A13">Primary Tonal Palette</text>
+
+  <rect x="20"  y="365" width="69" height="50" fill="#000000"/>
+  <text x="55" y="395" text-anchor="middle" class="role" fill="#FFFFFF">0</text>
+  <rect x="89"  y="365" width="69" height="50" fill="#2D1600"/>
+  <text x="124" y="395" text-anchor="middle" class="role" fill="#FFFFFF">10</text>
+  <rect x="158" y="365" width="69" height="50" fill="#4A2800"/>
+  <text x="193" y="395" text-anchor="middle" class="role" fill="#FFFFFF">20</text>
+  <rect x="227" y="365" width="69" height="50" fill="#6A3C00"/>
+  <text x="262" y="395" text-anchor="middle" class="role" fill="#FFFFFF">30</text>
+  <rect x="296" y="365" width="69" height="50" fill="#8B5000"/>
+  <text x="331" y="395" text-anchor="middle" class="role" fill="#FFFFFF">40</text>
+  <rect x="365" y="365" width="69" height="50" fill="#A96700"/>
+  <text x="400" y="395" text-anchor="middle" class="role" fill="#FFFFFF">50</text>
+  <rect x="434" y="365" width="69" height="50" fill="#C97F0A"/>
+  <text x="469" y="395" text-anchor="middle" class="role" fill="#211A13">60</text>
+  <rect x="503" y="365" width="69" height="50" fill="#E59A2F"/>
+  <text x="538" y="395" text-anchor="middle" class="role" fill="#211A13">70</text>
+  <rect x="572" y="365" width="69" height="50" fill="#FFB86A"/>
+  <text x="607" y="395" text-anchor="middle" class="role" fill="#211A13">80</text>
+  <rect x="641" y="365" width="69" height="50" fill="#FFDCB8"/>
+  <text x="676" y="395" text-anchor="middle" class="role" fill="#211A13">90</text>
+  <rect x="710" y="365" width="70" height="50" fill="#FFFFFF"/>
+  <text x="745" y="395" text-anchor="middle" class="role" fill="#211A13">100</text>
+
+  <!-- Footer -->
+  <text x="400" y="445" text-anchor="middle" class="role" fill="#51443A">Generated from source: #FF9800 • Tonal Spot scheme</text>
+  <text x="400" y="460" text-anchor="middle" class="role" fill="#847468">Use material-theme-builder skill to generate from any source color</text>
+
+  <!-- Outline/Inverse tokens -->
+  <text x="400" y="485" text-anchor="middle" class="role" fill="#51443A">outline: #847468 • outline-variant: #D7C3B5 • inverse-surface: #372F27 • inverse-primary: #FFB86A</text>
+</svg>

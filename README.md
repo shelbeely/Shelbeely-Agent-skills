@@ -175,6 +175,16 @@ Android Jetpack Compose Material 3 implementation. `MaterialTheme`, dynamic colo
 - "Set up Compose Material 3"
 - Using `androidx.compose.material3`
 
+### material-theme-builder
+
+Generate complete M3 color themes programmatically from any source color using `@material/material-color-utilities`. Includes a ready-to-run script.
+
+**Use when:**
+- "Generate an M3 theme from my brand color"
+- "Create color tokens from #FF9800"
+- Generating light/dark palettes programmatically
+- Exporting M3 tokens as CSS or JSON
+
 ## Installation
 
 ```bash
@@ -196,10 +206,28 @@ Set up M3 color theming with dark mode
 Build a navigation component following M3 guidelines
 ```
 
+## Official M3 Resources
+
+- M3 specification: https://m3.material.io/
+- M3 for Web: https://m3.material.io/develop/web
+- M3 Design Kit (Figma): https://www.figma.com/community/file/1035203688168086460
+- Material Web Components (@material/web): https://github.com/material-components/material-web
+- Material Color Utilities: https://github.com/material-foundation/material-color-utilities
+- Material Theme Builder: https://github.com/material-foundation/material-theme-builder
+- Material Design Tokens: https://github.com/material-foundation/material-tokens
+- Angular Material: https://github.com/angular/components
+- MUI (React): https://mui.com/material-ui/
+- Vuetify (Vue): https://vuetifyjs.com/
+- Material Symbols: https://fonts.google.com/icons
+
 ## Skill Structure
 
 Each skill contains:
 - `SKILL.md` — Instructions for the agent (YAML frontmatter + Markdown)
+- Optional scripts, examples, or config files referenced by the instructions
+- Optional `examples/` directory with SVG images, HTML demos, and CSS patterns
+
+Skills are authored in `skills/` and symlinked into `.github/skills/` for [Copilot coding agent](https://docs.github.com/en/copilot/how-tos/use-copilot-agents/coding-agent/create-skills) discovery.
 
 ## License
 

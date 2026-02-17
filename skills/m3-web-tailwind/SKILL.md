@@ -145,6 +145,9 @@ module.exports = {
 
 ## Resources
 
+- `tailwind.config.js` — Ready-to-use Tailwind config with M3 tokens (orange palette) included in this skill's directory. Copy into your project and customize.
+- `material-theme-builder` skill — Generate a custom palette from any source color.
+- Official M3 CSS tokens: https://github.com/material-foundation/material-tokens
 - Plugin: https://github.com/rinturaj/tailwind-material-3
 - Token mapping guide: https://nicolalazzari.ai/articles/integrating-design-tokens-with-tailwind-css
 - Tailwind theme config: https://tailwindcss.com/docs/theme

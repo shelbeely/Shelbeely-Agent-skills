@@ -201,6 +201,8 @@ Build a navigation component following M3 guidelines
 Each skill contains:
 - `SKILL.md` — Instructions for the agent (YAML frontmatter + Markdown)
 
+Skills are authored in `skills/` and symlinked into `.github/skills/` for [Copilot coding agent](https://docs.github.com/en/copilot/how-tos/use-copilot-agents/coding-agent/create-skills) discovery.
+
 ## License
 
 Apache License 2.0. See [LICENSE](LICENSE).

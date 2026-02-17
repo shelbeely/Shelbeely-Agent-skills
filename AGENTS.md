@@ -12,7 +12,12 @@ A collection of Material Design 3 agent skills covering the full specification f
 skills/
   {skill-name}/           # kebab-case directory name
     SKILL.md              # Required: skill definition with YAML frontmatter
+.github/
+  skills/
+    {skill-name} -> ../../skills/{skill-name}   # Symlinks for Copilot discovery
 ```
+
+Skills are authored in `skills/` and symlinked into `.github/skills/` so that GitHub Copilot coding agent can discover them as project skills (per [GitHub docs](https://docs.github.com/en/copilot/how-tos/use-copilot-agents/coding-agent/create-skills)).
 
 ### SKILL.md Format
 
@@ -69,4 +74,5 @@ Framework/library implementation skills — use when a project uses a specific s
 1. Create `skills/{skill-name}/SKILL.md`
 2. Add YAML frontmatter with `name`, `description`, and `license`
 3. Write clear guidelines, code examples, and a checklist
-4. Update `README.md` with the new skill description
+4. Add a symlink: `ln -s ../../skills/{skill-name} .github/skills/{skill-name}`
+5. Update `README.md` with the new skill description

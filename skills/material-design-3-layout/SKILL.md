@@ -731,3 +731,8 @@ When implementing M3 layout, ensure:
 - [ ] Disabled states use 38% content opacity and 12% background opacity
 - [ ] State layers use on-surface color at appropriate opacities
 - [ ] Performance is optimized (Grid/Flexbox, lazy loading)
+
+## Resources
+
+- M3 layout overview: https://m3.material.io/foundations/layout/understanding-layout/overview
+- Material Design Tokens: https://github.com/material-foundation/material-tokens

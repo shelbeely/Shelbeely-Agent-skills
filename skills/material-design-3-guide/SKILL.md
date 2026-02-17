@@ -500,17 +500,19 @@ M3 can be implemented across many web stacks. Each framework has a **dedicated l
 - **M3 Components**: https://m3.material.io/components
 - **M3 Styles**: https://m3.material.io/styles
 - **M3 Foundations**: https://m3.material.io/foundations
-- **Material Theme Builder**: https://m3.material.io/theme-builder
-- **Material Symbols**: https://fonts.google.com/icons
-- **Figma M3 Kit**: Official design resources
+- **M3 for Web**: https://m3.material.io/develop/web
 - **M3 for Android**: https://m3.material.io/develop/android/jetpack-compose
 - **M3 for Flutter**: https://m3.material.io/develop/flutter
-- **M3 for Web**: https://material-web.dev/
-- **Beer CSS** (CSS-only M3): https://www.beercss.com/
+- **Material Web Components** (@material/web): https://github.com/material-components/material-web
+- **Material Color Utilities**: https://github.com/material-foundation/material-color-utilities
+- **Material Theme Builder**: https://github.com/material-foundation/material-theme-builder
+- **Material Design Tokens**: https://github.com/material-foundation/material-tokens
+- **Angular Material**: https://github.com/angular/components
+- **Material Symbols**: https://fonts.google.com/icons
 - **MUI** (React): https://mui.com/material-ui/
-- **Angular Material**: https://material.angular.dev/
 - **Vuetify** (Vue): https://vuetifyjs.com/
 - **SMUI** (Svelte): https://sveltematerialui.com/
+- **Beer CSS** (CSS-only M3): https://www.beercss.com/
 - **Tailwind M3 Plugin**: https://github.com/rinturaj/tailwind-material-3
 
 ## Checklist for Material Design 3 Projects

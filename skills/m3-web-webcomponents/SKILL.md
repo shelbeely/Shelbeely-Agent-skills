@@ -157,6 +157,7 @@ Theme via CSS custom properties:
 
 ## Resources
 
+- M3 for Web: https://m3.material.io/develop/web
 - Documentation: https://material-web.dev/
 - Quick start: https://material-web.dev/about/quick-start/
 - Theming: https://material-web.dev/theming/material-theming/

@@ -474,3 +474,8 @@ When implementing M3 motion, ensure:
 - [ ] Ripple effects are implemented for touch targets
 - [ ] Haptic feedback is coordinated with spring animations where appropriate
 - [ ] Shape morphing animations use expressive easing
+
+## Resources
+
+- M3 motion overview: https://m3.material.io/styles/motion/overview
+- Material Design Tokens (motion): https://github.com/material-foundation/material-tokens

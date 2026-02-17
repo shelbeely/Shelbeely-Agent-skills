@@ -516,3 +516,9 @@ When implementing M3 typography, ensure:
 - [ ] All text is readable at default and zoomed sizes
 - [ ] Performance is optimized (font subsetting, loading strategy)
 - [ ] Medium contrast approach is followed for balance of legibility and expression
+
+## Resources
+
+- M3 typography overview: https://m3.material.io/styles/typography/overview
+- Material Design Tokens (typography): https://github.com/material-foundation/material-tokens
+- Google Fonts: https://fonts.google.com/

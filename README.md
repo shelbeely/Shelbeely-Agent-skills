@@ -206,6 +206,19 @@ Set up M3 color theming with dark mode
 Build a navigation component following M3 guidelines
 ```
 
+## Official M3 Resources
+
+- M3 specification: https://m3.material.io/
+- M3 for Web: https://m3.material.io/develop/web
+- Material Web Components (@material/web): https://github.com/material-components/material-web
+- Material Color Utilities: https://github.com/material-foundation/material-color-utilities
+- Material Theme Builder: https://github.com/material-foundation/material-theme-builder
+- Material Design Tokens: https://github.com/material-foundation/material-tokens
+- Angular Material: https://github.com/angular/components
+- MUI (React): https://mui.com/material-ui/
+- Vuetify (Vue): https://vuetifyjs.com/
+- Material Symbols: https://fonts.google.com/icons
+
 ## Skill Structure
 
 Each skill contains:

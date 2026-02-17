@@ -149,6 +149,7 @@ openDialog() {
 
 ## Resources
 
+- GitHub: https://github.com/angular/components
 - Theming guide: https://material.angular.dev/guide/theming
 - M3 migration: https://v17.material.angular.dev/guide/material-3
 - Design tokens: https://konstantin-denerz.com/angular-material-3-theming-design-tokens-and-system-variables/

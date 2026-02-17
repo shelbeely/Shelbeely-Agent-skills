@@ -615,3 +615,8 @@ When implementing M3 shape system, ensure:
 - [ ] Focus indicators respect rounded shapes
 - [ ] Performance is optimized (GPU acceleration)
 - [ ] Responsive adjustments for different screen sizes
+
+## Resources
+
+- M3 shape overview: https://m3.material.io/styles/shape/overview
+- Material Design Tokens (shape): https://github.com/material-foundation/material-tokens

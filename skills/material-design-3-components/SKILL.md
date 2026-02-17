@@ -1119,3 +1119,11 @@ When implementing M3 components, ensure:
 - [ ] Component is fully keyboard navigable
 - [ ] M3 Expressive additions (FAB menu, split buttons, button groups, toolbars) are used where appropriate
 - [ ] Library-specific best practices are followed (see library-specific skills: `m3-web-react`, `m3-web-angular`, etc.)
+
+## Resources
+
+- M3 component specs: https://m3.material.io/components
+- M3 for Web: https://m3.material.io/develop/web
+- @material/web: https://github.com/material-components/material-web
+- Angular Material: https://github.com/angular/components
+- Material Design Tokens: https://github.com/material-foundation/material-tokens

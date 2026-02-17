@@ -10,6 +10,7 @@ jobs:
   figma-export:
     name: Figma Export
     runs-on: ubuntu-latest
+    environment: copilot
     steps:
       - uses: actions/checkout@v4
 

@@ -223,16 +223,16 @@ With the Figma MCP server enabled, the coding agent can:
 2. In your repository, go to **Settings > Environments** and create a `copilot` environment (if it doesn't exist).
 3. Add an environment secret named `COPILOT_MCP_FIGMA_API_KEY` with your Figma PAT as the value.
 4. Copy the MCP configuration from `.github/copilot/mcp.json` into your repository's **Settings > Copilot > Coding agent > MCP configuration**.
-## Figma Export Action
+## Figma SVG Export
 
-This repository includes a GitHub Actions workflow ([`.github/workflows/figma-export.yml`](.github/workflows/figma-export.yml)) that exports SVG components from the [Material 3 Design Kit](https://www.figma.com/design/lC2BGHfMdhAmcEFhx9S6df/Material-3-Design-Kit--Community-) Figma file using [`primer/figma-action`](https://github.com/primer/figma-action).
+SVG assets in the `skills/*/examples/` directories (such as shape patterns and component diagrams) are manually exported from the [Material 3 Design Kit](https://www.figma.com/design/lC2BGHfMdhAmcEFhx9S6df/Material-3-Design-Kit--Community-) Figma file.
 
-### Setup
+**Note:** Automated bulk export via GitHub Actions is not currently feasible because:
+- The M3 Design Kit contains 5,597 components, exceeding URL length limits for the Figma API
+- The `primer/figma-action` tool is [archived and unmaintained](https://github.com/primer/figma-action)
+- Batched export scripts would require custom implementation
 
-1. Add a repository secret named `COPILOT_MCP_FIGMA_API_KEY` with your Figma Personal Access Token.
-2. Go to **Actions > Export SVG from Figma** and click **Run workflow**.
-
-Exported components are committed to the `figma-export/` directory in the repository.
+For now, SVG assets are selectively exported and manually curated based on skill requirements.
 
 ## Official M3 Resources
 

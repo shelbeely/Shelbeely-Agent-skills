@@ -48,6 +48,10 @@ def parse_file(path: pathlib.Path) -> Dict[str, Any]:
         "description": meta.get("description"),
         "how": meta.get("how"),
         "note": meta.get("note"),
+        "nickname": meta.get("nickname"),
+        "featured": meta.get("featured", False),
+        "hidden": meta.get("hidden", True),
+        "redirect_from": meta.get("redirect_from"),
         "permissions": meta.get("permissions") or [],
         "conditions": meta.get("conditions") or [],
         "limitations": meta.get("limitations") or [],
@@ -55,7 +59,8 @@ def parse_file(path: pathlib.Path) -> Dict[str, Any]:
         "license_text": body.strip("\n"),
         "source_file": path.name,
     }
-    return rec
+    # Remove None values to keep catalog clean
+    return {k: v for k, v in rec.items() if v is not None}
 
 
 def main() -> int:

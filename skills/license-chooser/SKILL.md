@@ -20,10 +20,11 @@ You are NOT a lawyer. Provide general information and help users make an informe
 - Is the project a **library** or an **application**?
 - Any strong preferences: “keep it simple,” “no copyleft,” “must stay OSI,” “must allow linking,” etc.
 
-2) Check constraints from dependencies (if possible)
+2) **Check constraints from dependencies** (if possible)
 - If the user can run a scanner, ask them to provide a list of dependency licenses (SPDX IDs).
 - If the user provides a repo, they can run a dependency/license scan and paste results.
 - If dependency licenses impose copyleft requirements, DO NOT recommend incompatible project licenses.
+- Use `scripts/check_compatibility.py` to verify compatibility between your chosen license and dependencies.
 
 3) Recommend 1–3 licenses with reasons
 - Always output SPDX IDs.
@@ -109,6 +110,21 @@ python scripts/render_license.py --catalog data/full_catalog.json \
   --projecturl "https://github.com/you/myproject" > LICENSE
 ```
 
+### Check dependency compatibility
+```bash
+# Check if MIT project can use GPL and Apache dependencies
+python scripts/check_compatibility.py \
+  --project-license MIT \
+  --deps GPL-3.0 Apache-2.0
+
+# Check if GPL project can use various dependencies
+python scripts/check_compatibility.py \
+  --project-license GPL-3.0 \
+  --deps MIT Apache-2.0 LGPL-3.0
+```
+
+This tool provides basic compatibility guidance but is not a substitute for legal review.
+
 ## Metadata vocabulary
 
 This skill uses three buckets matching choosealicense.com:
@@ -138,3 +154,12 @@ When you recommend:
 - Provide 2–4 bullets of reasoning per license
 - Provide 1 “watch out” bullet per license
 - End with “Next steps” including adding the LICENSE file and updating README if desired (but do not create extra files in the skill package).
+
+## Additional resources
+
+- `EXAMPLES.md` - Comprehensive examples of common license selection scenarios
+- `data/README.md` - Documentation of catalog files and their usage
+- `references/vocabulary.md` - Complete list of license metadata tags
+- `references/compatibility.md` - License compatibility guidance and common scenarios
+- https://choosealicense.com - Official GitHub license chooser site
+- https://spdx.org/licenses/ - Complete SPDX license list

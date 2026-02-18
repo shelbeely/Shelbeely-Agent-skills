@@ -185,6 +185,26 @@ Generate complete M3 color themes programmatically from any source color using `
 - Generating light/dark palettes programmatically
 - Exporting M3 tokens as CSS or JSON
 
+### license-chooser
+
+Help choose an appropriate software license (MIT, Apache-2.0, GPL-3.0, etc.) based on project goals and constraints. Explains tradeoffs between permissive vs copyleft licenses, patent grants, and compatibility issues.
+
+**Use when:**
+- "What license should I use for my project?"
+- "Are these licenses compatible?"
+- Adding a LICENSE file to a repository
+- Understanding license implications for commercial use
+
+### skill-creator
+
+Guide for creating effective skills that extend agent capabilities with specialized knowledge, workflows, or tool integrations.
+
+**Use when:**
+- Creating a new skill for an agent
+- Updating an existing skill
+- "How do I write a skill?"
+- Learning skill authoring best practices
+
 ## Installation
 
 ```bash

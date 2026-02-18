@@ -4,7 +4,7 @@ This file provides guidance to AI coding agents working with this repository.
 
 ## Repository Overview
 
-A collection of Material Design 3 agent skills covering the full specification from M3 You baseline through M3 Expressive. Skills are packaged instructions that extend AI coding agent capabilities for implementing Material Design 3 in any project.
+A collection of agent skills for AI coding agents. The primary focus is Material Design 3 implementation skills covering the full specification from M3 You baseline through M3 Expressive, plus general-purpose skills for common development tasks. Skills are packaged instructions that extend AI coding agent capabilities.
 
 ## Skill Structure
 
@@ -72,6 +72,13 @@ Framework/library implementation skills — use when a project uses a specific s
 - `m3-web-ink` — Ink (React CLI) with @inkjs/ui
 - `m3-web-flutter` — Flutter Material 3
 - `m3-web-android` — Android Jetpack Compose
+
+### General-Purpose Skills
+
+Domain-agnostic skills for common development tasks:
+
+- `license-chooser` — Software license selection and LICENSE file generation
+- `skill-creator` — Guide for creating effective agent skills
 
 ## Adding a New Skill
 

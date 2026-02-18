@@ -1,0 +1,65 @@
+{
+  "MIT": {
+    "title": "MIT License",
+    "spdx_id": "MIT",
+    "description": "A short and simple permissive license with conditions only requiring preservation of copyright and license notices.",
+    "permissions": [
+      "commercial-use",
+      "modification",
+      "distribution",
+      "private-use"
+    ],
+    "conditions": [
+      "license-notice"
+    ],
+    "limitations": [
+      "liability",
+      "warranty"
+    ],
+    "license_text": "MIT License\n\nCopyright (c) [year] [fullname]\n\nPermission is hereby granted, free of charge, to any person obtaining a copy\nof this software and associated documentation files (the \"Software\"), to deal\nin the Software without restriction, including without limitation the rights\nto use, copy, modify, merge, publish, distribute, sublicense, and/or sell\ncopies of the Software, and to permit persons to whom the Software is\nfurnished to do so, subject to the following conditions:\n\nThe above copyright notice and this permission notice shall be included in all\ncopies or substantial portions of the Software.\n\nTHE SOFTWARE IS PROVIDED \"AS IS\", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR\nIMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,\nFITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE\nAUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER\nLIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,\nOUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE\nSOFTWARE.\n"
+  },
+  "Apache-2.0": {
+    "title": "Apache License 2.0",
+    "spdx_id": "Apache-2.0",
+    "description": "A permissive license whose main conditions require preservation of copyright and license notices. Contributors provide an express grant of patent rights.",
+    "permissions": [
+      "commercial-use",
+      "modification",
+      "distribution",
+      "private-use",
+      "patent-use"
+    ],
+    "conditions": [
+      "license-notice",
+      "state-changes"
+    ],
+    "limitations": [
+      "liability",
+      "warranty",
+      "trademark-use",
+      "patent-termination"
+    ],
+    "license_text": "Apache License\nVersion 2.0, January 2004\nhttp://www.apache.org/licenses/\n\nTERMS AND CONDITIONS FOR USE, REPRODUCTION, AND DISTRIBUTION\n\n1. Definitions.\n...\n(For brevity in this sample catalog, the full Apache-2.0 text is not embedded.\nBuild a complete catalog via scripts/export_catalog.py for exact license text.)\n"
+  },
+  "GPL-3.0-only": {
+    "title": "GNU General Public License v3.0 only",
+    "spdx_id": "GPL-3.0-only",
+    "description": "A strong copyleft license that requires making source available for distributed derivatives under the same license.",
+    "permissions": [
+      "commercial-use",
+      "modification",
+      "distribution",
+      "private-use"
+    ],
+    "conditions": [
+      "disclose-source",
+      "license-notice",
+      "same-license"
+    ],
+    "limitations": [
+      "liability",
+      "warranty"
+    ],
+    "license_text": "GNU GENERAL PUBLIC LICENSE\nVersion 3, 29 June 2007\n...\n(For brevity in this sample catalog, the full GPL-3.0 text is not embedded.\nBuild a complete catalog via scripts/export_catalog.py for exact license text.)\n"
+  }
+}

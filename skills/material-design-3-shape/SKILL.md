@@ -124,10 +124,10 @@ M3 Expressive introduces a library of 35 decorative and functional shapes that g
 ### Complete Shape Catalog
 
 **Geometric Shapes**:
-- Circle, Square, Slanted Square, Oval, Pill, Semi Circle, Triangle, Diamond, Pentagon, Gem, Arch
+- Circle, Square, Slanted Square, Oval, Pill, Semi Circle, Triangle, Diamond, Pentagon, Hexagon, Gem, Arch
 
 **Organic and Playful Shapes**:
-- Flower, Puffy, Puffy Diamond, Clover 4, Clover 8, Bun, Heart, Ghostish, Clam Shell
+- Flower, Puffy, Puffy Diamond, Clover 4, Clover 8, Bun, Heart, Ghost-ish
 
 **Burst and Star Shapes**:
 - Sunny, Very Sunny, Burst, Soft Burst, Boom, Soft Boom, Fan, Arrow
@@ -619,5 +619,55 @@ When implementing M3 shape system, ensure:
 ## Resources
 
 - `examples/shape-corners.svg` — Visual reference SVG showing the complete M3 shape system: corner radius scale (None → Full), corner styles (rounded, cut, squircle, asymmetric), expressive shape library samples, and component shape mapping. Based on https://m3.material.io/styles/shape/overview-principles.
+
+### M3 Expressive Shape Library SVGs
+
+Individual SVG path definitions for each of the 35 M3 Expressive shapes, exported from the official Material 3 Design Kit. Each SVG contains a single `<path>` element at 380×380 viewport. Use the `d` attribute as a `clip-path: path(...)` value or as an SVG mask.
+
+**Geometric Shapes**:
+- `examples/shape-circle.svg` — Circle
+- `examples/shape-square.svg` — Square
+- `examples/shape-slanted.svg` — Slanted Square
+- `examples/shape-oval.svg` — Oval
+- `examples/shape-pill.svg` — Pill
+- `examples/shape-semicircle.svg` — Semi Circle
+- `examples/shape-triangle.svg` — Triangle
+- `examples/shape-diamond.svg` — Diamond
+- `examples/shape-pentagon.svg` — Pentagon
+- `examples/shape-hexagon.svg` — Hexagon
+- `examples/shape-gem.svg` — Gem
+- `examples/shape-arch.svg` — Arch
+
+**Organic and Playful Shapes**:
+- `examples/shape-flower.svg` — Flower
+- `examples/shape-puffy.svg` — Puffy
+- `examples/shape-puffy-diamond.svg` — Puffy Diamond
+- `examples/shape-clover-4.svg` — Clover 4
+- `examples/shape-clover-8.svg` — Clover 8
+- `examples/shape-bun.svg` — Bun
+- `examples/shape-heart.svg` — Heart
+- `examples/shape-ghost-ish.svg` — Ghost-ish
+
+**Burst and Star Shapes**:
+- `examples/shape-sunny.svg` — Sunny
+- `examples/shape-very-sunny.svg` — Very Sunny
+- `examples/shape-burst.svg` — Burst
+- `examples/shape-soft-burst.svg` — Soft Burst
+- `examples/shape-boom.svg` — Boom
+- `examples/shape-soft-boom.svg` — Soft Boom
+- `examples/shape-fan.svg` — Fan
+- `examples/shape-arrow.svg` — Arrow
+
+**Cookie Shapes** (scalloped edges):
+- `examples/shape-cookie-4.svg` — Cookie 4
+- `examples/shape-cookie-6.svg` — Cookie 6
+- `examples/shape-cookie-7.svg` — Cookie 7
+- `examples/shape-cookie-9.svg` — Cookie 9
+- `examples/shape-cookie-12.svg` — Cookie 12
+
+**Pixel Shapes**:
+- `examples/shape-pixel-circle.svg` — Pixel Circle
+- `examples/shape-pixel-triangle.svg` — Pixel Triangle
+
 - M3 shape overview: https://m3.material.io/styles/shape/overview
 - Material Design Tokens (shape): https://github.com/material-foundation/material-tokens
